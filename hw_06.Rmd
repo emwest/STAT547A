@@ -2,7 +2,7 @@
 title: 'Homework 6: working with stringr and nested lists'
 author: "Emily West"
 date: "11/5/2017"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -12,9 +12,10 @@ library(stringr)
 library(glue)
 ```
 
-Dear Reveiwer,
-Welcome to my first STAT 547A homework! I am new to the course, having taken Jenny Bryan's STAT 545 last fall so please bear with me as I warm up some out-of-shape coding muscles. Considering I return to my 545 homework assignments fairly regularly to check specific code and functions I hope to format these homework assignments in much the same way, filled with lots of comments about what works, why it works, and of course what doesn't work and potential reasons for why that is. 
-For the first part of this homework adventure I opted to work through the exercises in the strings chapter of R for data science.
+#Dear Reveiwer,
+#Welcome to my first STAT 547A homework! I am new to the course, having taken Jenny Bryan's STAT 545 last fall so please bear with me as I warm up some out-of-shape coding muscles. Considering I return to my 545 homework assignments fairly regularly to check specific code and functions I hope to format these homework assignments in much the same way, filled with lots of comments about what works, why it works, and of course what doesn't work and potential reasons for why that is. 
+
+#PART I: For the first part of this homework adventure I opted to work through the exercises in the strings chapter of R for data science.
 ```{r}
 #Some background on regular expressions: a regular expression is simply a pattern describing a string of characters. A regular expression is used to match 0-n characters in a string. A regular expression can include digits and letters which will match to themselves. Metacharacters are characters with special meaning including \ $ . [ { etc, to match a metacharacter it must be preceded with a backslash.
 
