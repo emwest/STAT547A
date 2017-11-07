@@ -16,47 +16,57 @@ library(glue)
 #Welcome to my first STAT 547A homework! I am new to the course, having taken Jenny Bryan's STAT 545 last fall so please bear with me as I warm up some out-of-shape coding muscles. Considering I return to my 545 homework assignments fairly regularly to check specific code and functions I hope to format these homework assignments in much the same way, filled with lots of comments about what works, why it works, and of course what doesn't work and potential reasons for why that is. 
 
 #PART I: For the first part of this homework adventure I opted to work through the exercises in the strings chapter of R for data science.
-```{r}
-#Some background on regular expressions: a regular expression is simply a pattern describing a string of characters. A regular expression is used to match 0-n characters in a string. A regular expression can include digits and letters which will match to themselves. Metacharacters are characters with special meaning including \ $ . [ { etc, to match a metacharacter it must be preceded with a backslash.
+
+Some background on regular expressions: a regular expression \n is simply a pattern describing a string of characters. A regular expression is used to match 0-n characters in a string. A regular expression can include digits and letters which will match to themselves. Metacharacters are characters with special meaning including \ $ . [ { etc, to match a metacharacter it must be preceded with a backslash.
 
 ############14.2.5#####################
 #1. paste() is a concatenate function that binds together character strings. You can designate a desired seperate function, such as sep = "," or sep = ".", however the default is sep = " ". The paste0() is similar in its function but instead the default seperation is sep = "", making it more efficient. glue() is a stringr function that is similar to base R's paste(). paste() will return NA's if they are present in tbe vector
-
+```{r}
 x<-c("abc","ab",NA)
 y<-c("xyz", "yz", "z")
 
 paste(x,y) #space is default seperator, NA is returned
 (paste0(x,y)) #space is dropped, NA still returned
 (glue("{x}{y}")) #no spaces, NA still returned
+```
 
-#2. If you were using str_c to develop a matrix of strings, the sep = would designate the string to be placed between each column, whereas collapse designates whether or not each row is collapse into a single string or the entire matrix collapsed into a string. collapse = NULL means that each row is a string, collapse = non-NUll, the entire matrix is a single string.
+
+2. If you were using str_c to develop a matrix of strings, the sep = would designate the string to be placed between each column, whereas collapse designates whether or not each row is collapse into a single string or the entire matrix collapsed into a string. collapse = NULL means that each row is a string, collapse = non-NUll, the entire matrix is a single string.
+
+```{r}
 str_c(y, sep = ".", collapse = NULL) # there are still 3 strings of lengths 3,2,1
 str_c(y, sep = ".", collapse = ",") # now we have one string of a length 8
+```
 
-#3. Extract the middle character from a string using str_subset() and str_length(): 
-#Note: str_sub(argument, character location to start, character location to end)
-  #first, with a string that is an odd length:
-q<-c("abcde")
-q
-(str_length(q)) #this string is 5 characters long
-str_sub(q,3,3) #the third entry is the middle entry
+3. Extract the middle character from a string using str_subset() and str_length(): 
+Note: str_sub(argument, character location to start, character location to end)
+```{r}
+
+str_c(y, sep = ".", collapse = NULL) # there are still 3 strings of lengths 3,2,1
+str_c(y, sep = ".", collapse = ",") # now we have one string of a length 8
 
 x<- "abcd"
 (str_length(x)) #tricky, now there is a string with an even number of characters!
 str_length(x)/2
 str_sub(x, 2,3) #now I have selected for the 2 middle characters
 
-#4. str_wrap() is a formatting function that formats strings into paragraphs that are designated by the input paramaters
+```
+
+4. str_wrap() is a formatting function that formats strings into paragraphs that are designated by the input paramaters
+```{r}
 y <- "R is a challenging language for some of us to learn, however it is proving to be an invaluable tool in expediating and tracking analyses related to my thesis"
 str_wrap(y, width = 25, indent = 2) #yikes, this is ugly - \n is showing the placement of each paragraph, 25 indicates that as close to 25 characters should be printed per line 
 cat(str_wrap(y, width = 25)) #cat() is a nice way to print the output of the str_wrap to visually check the formatting
+```
 
 #5. str_trim() "trims" the whitespace from the beginning and end of a character string:
+```{r}
 a <- c(" a ", " b ", " a b ")
 str_trim(a) #trims the leading and tailing white space but maintains spaces in between characters
+```
 
 #6. Write a function that turns a vector into a string, consider what it should do if a vector length 0,1,2 is input
-
+```{r}
 c<-c("a", "b", "c")
 d<-c("a","b")
 str_length(c) #3 strings with a length of 1
@@ -69,76 +79,115 @@ to_str<-function(x){
 
 #to_str(d) #function fails on a vector with a length shorter than 3!
 str_length(to_str(c)) # a single string with a length of 3
-
+```
 
 ############14.3.1#####################
 #Matching is all about indicating and locating a character, or set of characters, you are interested in.
 #examples from the text:
-x <- c("apple", "banana", "pear")
-str_view(x, "an") #in x highlight characters a and n, based on the the output from banana and apple, this suggests str_view will not return redundant strings, that is it only highlights the first "p" in apple and the first instance of "an" in banana 
 
-str_view(x, ".a.") #"." before and after a character has a special behavior that matches any character around the character you indicate. If you actually want to match a "." you have to escape it using a backslash
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, "an") 
+#in x highlight characters a and n, based on the the output from banana and apple, this suggests str_view will not return redundant strings, that is it only highlights the first "p" in apple and the first instance of "an" in banana 
+str_view(x, ".a.") 
+#"." before and after a character has a special behavior that matches any character around the character you indicate. If you actually want to match a "." you have to escape it using a backslash
+
+```
+
+
 
 #1.Explain why each of these strings don’t match a \: "\", "\\", "\\\".
-  #A backslash is a extra special character because it has two functions, one used to create regular expressions and the other to escape other special characters like ".", "'"
-  # This is best expressed with a couple of examples, note the original code is from the R for Data Science example, however I have modifided and expanded it to make expressly clear what is happening in each step.
+  A backslash is a extra special character because it has two functions, one used to create regular expressions and the other to escape other special characters like ".", "'"
+   This is best expressed with a couple of examples, note the original code is from the R for Data Science example, however I have modifided and expanded it to make expressly clear what is happening in each step.
+```{r}
 str_view(c("abc", "a.c", "bef"), "a.c")#returns a and c with ANY character in between the two
 str_view(c("abc", "a.c", "bef"), "a\\.c") #returns a.c literally, that is, "." is not being used in its special way of matching any character it is being used as a character itself
 str_view(c("abc", "a.c", "bef"), "\\.") #returns . as its own character
 # str_view(c("abc", "a\c", "bef"), "\\\\") #Yikes, that won't work because R is looking for a special character to escape after the \
 str_view(c("abc", "a\\c", "bef"), "\\\\") # in the string itself we need a \ to escape the backslash and in the parameter we need the double backslash to match the special character \ that is being escaped in the first place.
+```
 
 #2.How would you match the sequence "'\? 
   #This requires escaping a string of special characters, which means everyone gets their own backslash:
-str_view(c("\"\'\\"), "\\'\\\\") #something funny is happening, the quotes are being closed so they are not being matched- I tried several iterations of adding backslashes before the " but to no avail :(
-str_view(c("\'\\"), "\\'\\\\") #I can get the last two characters to be matched
+
+```{r}
+str_view(c("\"\'\\"), "\\'\\\\") 
+#something funny is happening, the quotes are being closed so they are not being matched- I tried several iterations of adding backslashes before the " but to no avail :(
+str_view(c("\'\\"), "\\'\\\\") 
+#I can get the last two characters to be matched
+```
 
 #3. What patterns will the regular expression \..\..\.. match? How would you represent it as a string?
-c<- "\asdfghjkl"
 
+```{r}
+c<- "\asdfghjkl"
 #str_view(c, "\..\..\..") # str_view does not seem to like this type of expression because of the \. which is it designating an "unrecognized escape character"
 c<- "what if i.write a sentence.with lots of periods.init"
 #str_view(c, "\..\..\..") #hmmm the way I read the expression is: escape the "." and match any character after it, but that does not appear so. 
 #c<- "what if i\.write a sentence\.with lots of periods.init"
 #str_view(c, "\\..\\..\\..") #NOPE
+```
 
 ############14.3.2#####################
 #Special "anchors": ^ matches the start of a string, $ matches the end of a string
 #Hadley Wickham remembers it this way: "To remember which is which, try this mnemonic which I learned from Evan Misshula: if you begin with power (^), you end up with money ($)."
 
 #1. How would you match the literal string "$^$"?
+
+```{r}
 str_view(c("$^$"), "\\$\\^\\$") #escape and match all special characters using \\
+```
 
 #2. Given the corpus of common words in stringr::words, create regular expressions that find all words that:
-  # First, what are we dealing with in stringr::words? View(stringr::words), wow 980 words!
+   First, what are we dealing with in stringr::words? View(stringr::words), wow 980 words!
 
 # a. Start with y:
+```{r}
 str_view(stringr::words, "^y", match = TRUE)
+```
 # b. End with x:
+```{r}
 str_view(stringr::words, "x$", match = TRUE)
 str_subset(stringr::words, "x$") #something funky is happening in my viewer and I can't scroll so this is a check to see if the code actually work and it looks like it does!
+```
 
 #3. Are exactly three letters long. (Don’t cheat by using str_length()!)
 #str_view(stringr::words, "^...") #gives you the first 3 letters of each word
-str_view(stringr::words, "\\b[a-zA-Z0-9]{3,3}\\b", match = TRUE)# SWEET, using the boundary "\b" expression you designate what you want selected, here it is alpha numeric, then {min,max} length of words
+```{r}
+str_view(stringr::words, "\\b[a-zA-Z0-9]{3,3}\\b", match = TRUE)
+# SWEET, using the boundary "\b" expression you designate what you want selected, here it is alpha numeric, then {min,max} length of words
+```
 
 #4. Have seven letters or more
-str_view(stringr::words, ".......", match = TRUE) #Match = true resolves earlier issue, it highlights in the viewer only the matches
+```{r}
+str_view(stringr::words, ".......", match = TRUE) 
+#Match = true resolves earlier issue, it highlights in the viewer only the matches
+```
 
 ############14.3.3#####################
 
 #1. Create regular expressions to find all words that
-
-  #a. starts with a vowel:
-str_view(stringr::words, "^a|^e|^i|^o|^u", match = TRUE) #the | indicates "or" between each matching option, early attemps show that you must have ^ for each vowel, that is you must designate position after every or otherwise it will pick any ol' word with an e,i,o,u
+```{r}
+ #a. starts with a vowel:
+str_view(stringr::words, "^a|^e|^i|^o|^u", match = TRUE) 
+#the | indicates "or" between each matching option, early attemps show 
+#that you must have ^ for each vowel, that is you must designate position after 
+#every or otherwise it will pick any ol' word with an e,i,o,u
  #b. only contain consonants
-str_view(stringr::words, "!a|!e|!i|!o|!u", match = TRUE) #it does not appear there are any all consonant words
+str_view(stringr::words, "!a|!e|!i|!o|!u", match = TRUE) 
+#it does not appear there are any all consonant words
+ #c. end with ed, but not eed
+str_view(stringr::words, "ed$", match = TRUE) 
+#grabs all that end in -ed AND eed, but how to get rid of those eed?
 
-  #c. end with ed, but not eed
-str_view(stringr::words, "ed$", match = TRUE) #grabs all that end in -ed AND eed, but how to get rid of those eed?
+```
+
+ 
+
+```{r}
 ########str_view(stringr::words, "\\b[a-zA-Z0-9]{3,3}\\bed$", match = TRUE)
 #str_view(stringr::words, "["ed$"]", match = TRUE) #I have struggled through several iterations of modifying this approach :(
-
   #d. ending with -ing or -ise
 str_view(stringr::words, "ing$|ise", match = TRUE)
 
@@ -161,9 +210,11 @@ c<- c("555-555-5555", "home 555-555-5551", "mobile555-555-5552")
 
 str_view(c, "...\\-...\\-....") 
 str_subset(c, "...\\-...\\-....") # we could subset all the strings with a phone number
-
+```
 
 ############14.3.4#####################
+
+```{r}
 #1. Describe the equivalents of ?, +, *, in {m,n} form.
   #Take R for data science's example:
 x <- "1888 is the longest year in Roman numerals: MDCCCLXXXVIII"
@@ -200,8 +251,11 @@ str_view(words, "^[^aeiou]{3,3}", match = TRUE)
    #c. Have 2 or more vowel-consonant pairs in a row
      
 #4. I spent an abusrd amount of time trying to do the regex crossword to no avail :(
+```
      
 #############14.3.5################
+
+```{r}
 #1. describe what the expression below will match:
      #a. (.)\1\1
      c<-c("aaaaabbbbcccbcbcbcb", "a", "b") 
@@ -223,15 +277,18 @@ str_view(c, "^(.)(.)$\\1") #well that doesn't work
 r<-c("church", "fright")
 #str_view(r, "(..)\\2")
 #str_view(r, "(..)\\1")
-str_view(r, "(..)") #that just gets the first two letters...but how do we move on to matching repitition
+str_view(r, "(..)") #that just gets the first two letters...
+#but how do we move on to matching repitition
 #str_view(r, "(..)\\1") #nope
 #str_view(r, "(..)*\\6")
   #c. Contain one letter repeated in at least three places (e.g. “eleven” contains three “e”s.) 
 
 x<- c("bananana", "cococonutcoco", "cucucumber")
 #str_view(x, "(..)\\1")
+```
 
 #############14.4.2################
+```{r}
 #Life is often easier if you build a series of simple regexps rather than one big monolith
 #str_detect() #let's you suss out patterns and will return a logical vector of the same length as the input. by converting the output object to numeric the TRUEs and FALSEs become binary and you can use sum() and mean()
 mean(str_detect(words, "[aeiou]$")) #words that end with a vowel
@@ -256,9 +313,11 @@ str_detect(words, "^[aeiou][^aeiou]$")
   df<- tibble(word = words, i = seq_along(word))
 #df %>% mutate(vowels = str_count(word, "[aeiou]"),consonants = str_count(word, "[^aeiou]"))
 #df %>% select("word", "consonants") %>% summary(max) #this should work if it were being read as a dataframe with columns for vowels and consonants, however it is not so its not working...either.
-
+```
 
 #############14.4.3################
+
+```{r}
 #1. In the previous example, you might have noticed that the regular expression matched “flickered”, fix the code:
 
 colours <- c("red", "orange", "yellow", "green", "blue", "purple")
@@ -275,9 +334,12 @@ str_view_all(more, colour_match)
 str_extract(sentences, "ing$") #this doesn't apear to do anything
   #c. All plurals.
 # to do this I would need to find all of the words in each sentence that end with s
+```
 
 #############14.4.4################
 
+
+```{r}
 #1. Find all words that come after a “number” like “one”, “two”, “three” etc. Pull out both the number and the word.
 num<- "(one|two|three|four) ([^ ]+)"
 is_num <- sentences %>%  str_subset(num)
@@ -295,8 +357,10 @@ is_c %>% str_extract(c) #this only gives you the letters before and after the ap
 c<- "(.......'.)"
 is_c<- sentences %>% str_subset(c) 
 is_c %>% str_extract(c) # this is a cheap work around to the above mentioned problem
+```
 
 #############14.4.5################
+```{r}
 #1. Replace all forward slashes in a string with backslashes.
 x<- c("f/x/asd/")
 #str_replace(x, c("/"="\\\\"))
@@ -310,10 +374,12 @@ sentences %>%
   str_replace("([^ ]+) ([^ ]+) ([^ ]+)", "\\1 \\3 \\2") #this is how the r gods switched word placement around
 
 str_replace(words, "(.) (.) (.)", "\\1 \\3 \\2")
-
+```
 
 
 #############14.4.6################
+
+```{r}
 #1. Split up a string like "apples, pears, and bananas" into individual components.
 c<- ("apples pears bananas")
 str_split(c, " ", simplify =TRUE)
@@ -324,6 +390,7 @@ str_split(c, " ", simplify =TRUE)
 #3. What does splitting with an empty string ("") do? Experiment, and then read the documentation
 str_split(c, "", simplify =TRUE)
 #Splitting with an empty string gives you ever character, including spaces, that exist in the string
+```
 
 #############14.5.1################
 #1. How would you find all strings containing \ with regex() vs. with fixed()?
