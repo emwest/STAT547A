@@ -1,0 +1,248 @@
+---
+title: "class07 writing functions in R"
+author: "Emily West"
+date: "10/26/2017"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Functions in R!
+```{r}
+#functions takes in an object and returns an output
+#some functions are not found in base R
+#reduces the amount time spent writing code
+#if you use a chunk more than once in your code you should write a function
+```
+
+```{r}
+library(gapminder)
+str(gapminder)
+```
+
+there is no built in function to calculate max and min
+```{r}
+min(gapminder$lifeExp)
+max(gapminder$lifeExp)
+range(gapminder$lifeExp)
+```
+
+```{r}
+max(gapminder$lifeExp)-min(gapminder$lifeExp)
+with(gapminder, max(lifeExp)-min(lifeExp))
+range(gapminder$lifeExp)[2] - range(gapminder$lifeExp)[1]
+with(gapminder, range(lifeExp)[2] - range(lifeExp)[1])
+diff(range(gapminder$lifeExp))
+```
+
+```{r}
+max_minus_min <- function(x) max(x) - min(x)
+max_minus_min(gapminder$lifeExp)
+
+max_minus_min(1:10)
+max_minus_min(runif(1000))
+```
+
+```{r}
+max_minus_min(gapminder$gdpPercap)
+max_minus_min(gapminder$pop)
+```
+
+#Try to break the function
+```{r}
+max_minus_min(gapminder) #dataframe
+max_minus_min(gapminder$country) #character
+max_minus_min("eggplants are purpler") #String
+```
+when the function should break
+```{r}
+#why isn't this throwing an error? R will try to compute as possible, R will take Trues and Falses as 1s and 0s
+max_minus_min(gapminder[c('lifeExp', 'gdpPercap', 'pop')]) #string these vectors together and comput max and min on these
+max_minus_min(c(TRUE, TRUE, FALSE, TRUE, TRUE))
+```
+
+stopifnot
+```{r}
+#solution to code running when it shoudn't
+mmm<-function(x){
+stopifnot(is.numeric(x))
+max(x)-min(x)
+}
+
+mmm(gapminder)
+```
+
+#better to use if then stop
+```{r}
+mmm2 <- function(x) {
+  if(!is.numeric(x)) {
+    stop('I am so sorry, but this function only works for numeric input!\n',
+         'You have provided an object of class: ', class(x)[1])
+  }
+  max(x) - min(x)
+}
+mmm2(gapminder) #tells you there is an error, where the error is and possibly how to fix it
+```
+
+Challenge
+```{r}
+#1. create a new function that takes a number and returns the remainder after dividing by 10:
+15%%10 #the %% give remainder after division
+mod_ten1<- function(x){
+  x%%10
+  }
+#2. Add if then stop statement into function that returns error message if the wrong input is added
+mod_ten<- function(x){
+  if(!is.numeric(x)){stop("I am so sorry, but this function only works for numeric input!/n'. 'You have provided an object of class'. class(x)[1]")}
+  x%%10
+  }
+#curly braces for if statement if you have more than one line for if statement
+mod_ten(gapminder)
+```
+
+#generalize function to other quantiles
+```{r}
+#median = 0.5 quantile
+#1st quartile = 0.25 quantile
+#3rd quartile = 0.75 quantile
+
+quantile(gapminder$lifeExp)
+quantile(gapminder$lifeExp, probs = 0.5)
+median(gapminder$lifeExp)
+quantile(gapminder$lifeExp, probs = c(0.25, 0.75))
+boxplot(gapminder$lifeExp, plot = FALSE)$stats
+#write a code that takes the difference between two quantiles
+the_probs <- c(0.25, 0.75)
+the_quantiles <- quantile(gapminder$lifeExp, probs = the_probs)
+max(the_quantiles) - min(the_quantiles)
+
+#this funtion takes in two arguments: x and probs
+qdiff1 <- function(x, probs) {
+  stopifnot(is.numeric(x))
+  the_quantiles <- quantile(x = x, probs = probs)
+  max(the_quantiles) - min(the_quantiles)
+}
+
+qdiff1(gapminder$lifeExp, probs = c(0.25, 0.75))
+```
+
+#Make useful parameter names, what the heck do zeus and hera mean?? think about the parameters the 
+```{r}
+qdiff2 <- function(zeus, hera) {
+  stopifnot(is.numeric(zeus))
+  the_quantiles <- quantile(x = zeus, probs = hera)
+  return(max(the_quantiles) - min(the_quantiles))
+}
+qdiff2(zeus = gapminder$lifeExp, hera = 0:1)
+```
+
+#return() explicit funtion to deliver an output at any point 
+```{r}
+qdiff3 <- function(my_x, my_probs) {
+ stopifnot(is.numeric(my_x))
+  the_quantiles <- quantile(x = my_x, probs = my_probs)
+  return(max(the_quantiles) - min(the_quantiles))
+}
+qdiff3(my_x = gapminder$lifeExp, my_probs = 0:1)
+
+
+qdiff4 <- function(x, probs = c(0, 1)) {
+  stopifnot(is.numeric(x))
+  the_quantiles <- quantile(x, probs)
+  return(max(the_quantiles) - min(the_quantiles))
+}
+```
+
+#Problem 2
+```{r}
+mod_x<-function(value, divisor){
+  value%%divisor
+}
+mod_x(15,6)
+
+#set the default parameter value of divisor to be 10
+mod_x10<-function(value, divisor = 10){
+  int<-value%/%divisor
+  mod<-value%%divisor
+  #when you have multiple outputs you should make the output a list
+  output<-list(quotient-int, remainder-mod)
+  return(output)
+}
+mod_x10(16)
+
+#add a stopifnot() statement into function that returns informative error message if the divisor is not an integer
+
+mod_x2<-function(value, divisor){
+  stopifnot(is.integer(divisor))
+  value%%divisor
+}
+mod_x2(22, 5.2)
+
+```
+
+```{r}
+z<-gapminder$lifeExp
+z[3]<- NA
+quantile(gapminder$lifeExp)
+quantile(z)
+quantile(z,na.rm = TRUE) #na.rm defaults are often FALSE
+```
+
+```{r}
+qdiff5 <- function(x, probs = c(0, 1)) {
+  stopifnot(is.numeric(x))
+  the_quantiles <- quantile(x, probs, na.rm = TRUE)
+  return(max(the_quantiles) - min(the_quantiles))
+}
+qdiff5(gapminder$lifeExp)
+qdiff5(z)
+```
+
+# ... argument
+```{r}
+qdiff7 <- function(x, probs = c(0, 1), na.rm = TRUE, ...) {
+  the_quantiles <- quantile(x = x, probs = probs, na.rm = na.rm, ...)
+  return(max(the_quantiles) - min(the_quantiles))
+}
+# but what is the type argument doing?
+set.seed(1234)
+z <- rnorm(10)
+quantile(z, type = 1)
+
+#two different type arguments for quantile computing
+quantile(z, type = 4)
+all.equal(quantile(z, type = 1), quantile(z, type = 4))
+qdiff7(z, probs = c(0.25, 0.75), type = 1)
+qdiff7(z, probs = c(0.25, 0.75), type = 4)
+
+#... allows you to pass more information through an argument without throwing an error
+```
+
+#formally test your function:
+```{r}
+library(testthat)
+
+test_that('invalid args are detected', {
+  expect_error(qdiff7("eggplants are purple"))
+  expect_error(qdiff7(iris))
+  })
+
+test_that('NA handling works', {
+  expect_error(qdiff7(c(1:5, NA), na.rm = FALSE))
+  expect_equal(qdiff7(c(1:5, NA)), 4)
+})
+
+qdiff_no_NA <- function(x, probs = c(0, 1)) {
+  the_quantiles <- quantile(x = x, probs = probs)
+  return(max(the_quantiles) - min(the_quantiles))
+}
+test_that('NA handling works', {
+  expect_that(qdiff_no_NA(c(1:5, NA)), equals(4))
+})
+?return()
+```
+
