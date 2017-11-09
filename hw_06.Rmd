@@ -17,7 +17,7 @@ library(glue)
 
 #PART I: For the first part of this homework adventure I opted to work through the exercises in the strings chapter of R for data science.
 
-Some background on regular expressions: a regular expression \n is simply a pattern describing a string of characters. A regular expression is used to match 0-n characters in a string. A regular expression can include digits and letters which will match to themselves. Metacharacters are characters with special meaning including \ $ . [ { etc, to match a metacharacter it must be preceded with a backslash.
+Some background on regular expressions: a regular expression is simply a pattern describing a string of characters. A regular expression is used to match 0-n characters in a string. A regular expression can include digits and letters which will match to themselves. Metacharacters are characters with special meaning including \ $ . [ { etc, to match a metacharacter it must be preceded with a backslash.
 
 ############14.2.5#####################
 #1. paste() is a concatenate function that binds together character strings. You can designate a desired seperate function, such as sep = "," or sep = ".", however the default is sep = " ". The paste0() is similar in its function but instead the default seperation is sep = "", making it more efficient. glue() is a stringr function that is similar to base R's paste(). paste() will return NA's if they are present in tbe vector
@@ -394,6 +394,31 @@ str_split(c, "", simplify =TRUE)
 
 #############14.5.1################
 #1. How would you find all strings containing \ with regex() vs. with fixed()?
+fixed() is a dreamy function that match a sequence exactly. This can easily cut through all the "false" positives of using str_detect HOWEVER, because fixed() matches directly when using non-English data certain character will be treated as non-matching because they are defined in different ways
+```{r}
+?fixed()
+a1 <- "\u00e1"
+a2 <- "a\u0301"
+c(a1, a2)
+#> [1] "á" "á"
+a1 == a2
+#> [1] FALSE
+str_detect(a1, fixed(a2))
+#> [1] FALSE
+str_detect(a1, coll(a2)) #coll() allows for case insensitive matching
+#> [1] TRUE
+
+a <- c("aei\\", "x\\y", "\'")
+a
+
+#Using a regular expression:
+str_detect(a, "\\\\")
+str_view_all(a, "\\\\")
+
+str_detect(a, fixed("\\")) #this does not work!
+str_detect(a, fixed("\\\\")) #this returns all falses :(
+
+```
 
 #2. What are the five most common words in sentences?
 
@@ -406,11 +431,8 @@ str_split(c, "", simplify =TRUE)
 #b. Generate random text.
 #c. How do you control the language that stri_sort() uses for sorting?
 
-```
-
-
 #Part I reflection:
-This exercise took me many hours to complete and many of the problems I attempted I have no resolution despite trolling the internet for solutions. I find much of the matching syntax to be not very intuitive, especially with \\ and ordering and spent A LOT of time trying to figure that out alone. 
+This exercise took me SO many hours to complete and many of the problems I attempted I have no resolution despite trolling the internet for solutions. I find much of the matching syntax to be not very intuitive, especially with \\ and ordering and spent A LOT of time trying to figure that out alone. 
 A great resource I found:
 http://www2.stat.duke.edu/~cr173/Sta523_Fa15/regex.html
 
@@ -424,27 +446,41 @@ library(gapminder)
 gap<-gapminder
 str(gap) #6 variables, 1704 observations
 
-gap %>% filter(country =="Canada") 
-
-panel <-gap %>% filter(country =="Canada") %>% select(country, lifeExp, pop) #data is grouped by year for canada, we have mean life expectancy and mean population
+#What do I want mt function to do:
+gap %>% filter(country =="Canada") #highlight 1 country
+panel <-gap %>% filter(country =="Canada") %>% select(country, lifeExp, pop) #data is grouped by year for canada, we have mean life expectancy and mean population 
 lm(panel$lifeExp~panel$pop)
 
-#This type function will be important for my own analysis were I will be plugging different data in constantly and not wanting to rewrite the skeleton code:
+#This following type function will be important for my own analysis were I will be plugging different datasets with the same variables into a lm and not wanting to rewrite the skeleton code:
 
 
 model_funs<- function(x,y){
-  pain<-gap %>% filter(country == y) %>% select(country, lifeExp, pop)
+  pain<- x %>% filter(country == y) %>% select(country, lifeExp, pop)
+  lmodel<-lm(pain$lifeExp~panel$pop)
+  print(lmodel)
+  lm.sum<-summary(lmodel)
+  print(lm.sum)}
+#It would be really nice to stop this code, or get a warning if 
+#the model was not significant, that is the p-Value was greater than 0.05
+
+#What if I try to add the summary statistics to the dataset so it is wrapped up all nicely?
+model_funsB<- function(x,y){
+  pain<- x %>% filter(country == y) %>% select(country, lifeExp, pop)
   lmodel<-lm(pain$lifeExp~panel$pop)
   print(lmodel)
   lm.sum<-summary(lmodel)
   print(lm.sum)
-} #It would be really nice to stop this code, or get a warning if the model was not significant, that is the p-Value was greater than 0.05
+  xstats <- x %>% mutate("yhat"=fitted(lmodel), "x$resid"=resid(lmodel), "x$stdev"=resid(lmodel)/lm.sum$sigma)} 
 
-model_funs(gap, "Algeria")
 
-#Oh no! What if the data doesn't appear linear? Easy, plop those transformations right into the code!
+#test:
+(model_funs(gap, "Algeria"))
+(model_funsB(gap, "Canada"))#hmmm something about the yhats not being the same length as the input variable...possibly some NA's in there?
+
+#Oh no! What if the data doesn't appear linear? Easy, 
+#plop those transformations right into the code!
 model_nln<- function(x,y){
-  pain<-gap %>% filter(country == y) %>% select(country, lifeExp, pop)
+  pain<- x %>% filter(country == y) %>% select(country, lifeExp, pop)
   lmodel<-lm(pain$lifeExp~(panel$pop^2))
   print(lmodel)
   lm.sum<-summary(lmodel)
@@ -453,6 +489,79 @@ model_nln<- function(x,y){
 
 model_nln(gap, "Algeria")
 
+#now I have two functions for linear regressions that take care 
+#if the data are linear 
+#or non-linear and they automatically spit out the 
+#summary statistics.
+
+#Is there a way to get the plotting to also be 
+#made more efficient?
 ```
+
+```{r}
+#Here is a series of examples that show the utility of 
+#functions in prepping a dataset for analysis:
+
+#as_fa <- function(x) {
+  #x$year.f <- as.function(x$year)
+  #x$pop.f <- as.function(x$pop)} R does not like this format 
+
+#This type of function is slightly unrealistic for gapminder data but 
+#I developed it to be used in my own data where I have several 
+#datasets with variables such as site, transect and plot that R would 
+#like to treat as numeric or integer but for analysis I will need 
+#to be factors:
+as_fa <- function(x) {
+  a <- x %>% mutate("year.f"=as.factor(x$year), "pop.f"=as.factor(x$pop))
+  }
+
+funsies<-as_fa(gap)
+str(funsies) 
+#View(funsies)
+
+#This is what the function looks like once I modified it 
+#for use in my own dataset:
+as_fa2<-function(x) {
+  s <- x %>% mutate("site.f"=as.factor(x$site))
+  t <- s %>% mutate("transect.f"=as.factor(x$transect))
+  p <- t %>% mutate("plot.f"=as.factor(x$plot))
+}
+
+#but the above is an inefficient way to write the code making 
+#seperate iterations for each mutate function, instead a more 
+#linear approach is desirable:
+as_fa3<-function(x) {
+  s <- x %>% mutate("site.f"=as.factor(x$site),"transect.f"=as.factor(x$transect), "plot.f"=as.factor(x$plot))
+}
+
+```
+For reference, this is what my code looked like before building a function for this homework:
+#colldat$site.f<- as.factor(colldat$site)
+#colldat$transect.f <- as.factor(colldat$transect)
+#colldat$plot.f <- as.factor(colldat$plot)
+#plotdens$site.f <- (as.factor(plotdens$site))
+#plotdens$transect.f <- (as.factor(plotdens$transect))
+#plotdens$plot.f <- (as.factor(plotdens$plot))
+#site_info$site.f <- as.factor(site_info$site)
+#site_info$transect.f <- as.factor(site_info$transect)
+
+This is a lesson in efficiency, I just took 8 lines of descrete code and streamlined it into a function that I can use once on each of my 3 datasets.
+
+
+```{r}
+#I also need each plot to have a unique identifier so when I join different datasets, i.e. my plant and insect data, each row is properly matched up, that means adding a new column to each dataset:
+un_id<- function(x){
+  a<-x %>% mutate("plot_id"=as.factor(paste(site.f, transect.f, plot.f, sep= "."), "transect_id"=as.factor(paste(site.f,transect.f, sep="."))))
+}
+```
+This is what my old code looked like for creating unique identifiers:
+#colldat$plot_id <- as.factor(paste(colldat$site, colldat$transect.f, colldat$plot.f, sep= "."))
+#colldat$transect_id<- as.factor(paste(colldat$site, colldat$transect.f, sep = "."))
+#plotdens$plot_id <- as.factor(paste(plotdens$site, plotdens$transect.f, plotdens$plot.f, sep= "."))
+#plotdens$transect_id <- as.factor(paste(plotdens$site, plotdens$transect.f,  sep= "."))
+#site_info$transect_id <- as.factor(paste(site_info$site.f, site_info$transect.f, sep ="."))
+
 #Part II reflection:
-WOw this part was SO much more enjoyable! Functions, while intimidating, are an excellent way to streamline a task, for instance when trying to fit linear models. I can use this type of function quite readily to determine 1. if my models are significant and 2. which variables are significant. As I continue to develop my skills I would like to be able to implement a warning that one or both of these things are false. The skeleton code that I created above can easily be changed to accomodate different, or additional, variables. It also makes performing transformations quite seamless. 
+WOw this part of the assignment was SO enjoyable! Functions, while intimidating, are an excellent way to streamline a task, for instance when trying to fit linear models. I can use this type of function quite readily to determine 1. if my models are significant and 2. which variables are significant. I used code I have been copying and pasting repeatedly in my own data analysis to build functions I can quickly plug my data into without as much redundancy. 
+As I continue to develop my skills I would like to be able to implement a warning that one or both of these things are false. The skeleton code that I created above can easily be changed to accomodate different, or additional, variables. It also makes performing transformations quite seamless. 
+In the latter part of this exercise I was able to use functions to streamline much of the work I have already done in the preliminary analysis of my MSc. This is rather exciting because prior to taking this course I had a suspicion there was a much cleaner way to write this code, I was just unsure how to do it!
