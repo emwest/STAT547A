@@ -2,8 +2,7 @@
 title: 'Homework 6: working with stringr and nested lists'
 author: "Emily West"
 date: "11/5/2017"
-output: github_document
-always_allow_html: yes
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -94,9 +93,9 @@ examples from the text:
 
 ```{r}
 x <- c("apple", "banana", "pear")
-#str_view(x, "an") 
+str_view_all(x, "an") 
 #in x highlight characters a and n, based on the the output from #banana and apple, this suggests str_view will not return #redundant strings, that is it only highlights the first "p" in #apple and the first instance of "an" in banana 
-#str_view(x, ".a.") 
+str_view(x, ".a.") 
 #"." before and after a character has a special behavior that matches any character around the character you indicate. If you actually want to match a "." you have to escape it using a backslash
 
 ```
@@ -107,20 +106,20 @@ x <- c("apple", "banana", "pear")
   A backslash is an extra special character because it has two functions, one used to create regular expressions and the other to escape other special characters like ".", "'"
    This is best expressed with a couple of examples, note the original code is from the R for Data Science example, however I have modifided and expanded it to make expressly clear what is happening in each step.
 ```{r}
-#str_view(c("abc", "a.c", "bef"), "a.c")#returns a and c with #ANY character in between the two
-#str_view(c("abc", "a.c", "bef"), "a\\.c") #returns a.c literally, that is, "." is not being used in its special way of matching any character it is being used as a character itself
-#str_view(c("abc", "a.c", "bef"), "\\.") #returns . as its own character
-# str_view(c("abc", "a\c", "bef"), "\\\\") #Yikes, that won't work because R is looking for a special character to escape after the \
-#str_view(c("abc", "a\\c", "bef"), "\\\\") # in the string itself we need a \ to escape the backslash and in the parameter we need the double backslash to match the special character \ that is being escaped in the first place.
+str_view(c("abc", "a.c", "bef"), "a.c")#returns a and c with #ANY character in between the two
+str_view(c("abc", "a.c", "bef"), "a\\.c") #returns a.c literally, that is, "." is not being used in its special way of matching any character it is being used as a character itself
+str_view(c("abc", "a.c", "bef"), "\\.") #returns . as its own character
+#str_view(c("abc", "a\c", "bef"), "\\\\") #Yikes, that won't work because R is looking for a special character to escape after the \
+str_view(c("abc", "a\\c", "bef"), "\\\\") # in the string itself we need a \ to escape the backslash and in the parameter we need the double backslash to match the special character \ that is being escaped in the first place.
 ```
 
 2.How would you match the sequence "'\? 
   #This requires escaping a string of special characters, which means everyone gets their own backslash:
 
 ```{r}
-#str_view(c("\"\'\\"), "\\'\\\\") 
+str_view(c("\"\'\\"), "\\'\\\\") 
 #something funny is happening, the quotes are being closed so they are not being matched- I tried several iterations of adding backslashes before the " but to no avail :(
-#str_view(c("\'\\"), "\\'\\\\") 
+str_view(c("\'\\"), "\\'\\\\") 
 #I can get the last two characters to be matched
 ```
 
@@ -130,7 +129,7 @@ x <- c("apple", "banana", "pear")
 c<- "\asdfghjkl"
 #str_view(c, "\..\..\..") # str_view does not seem to like this type of expression because of the \. which is it designating an "unrecognized escape character"
 c<- "what if i.write a sentence.with lots of periods.init"
-#str_view(c, "\..\..\..") #hmmm the way I read the expression is: escape the "." and match any character after it, but that does not appear so. 
+#str_view(c, "\\..\..\..") #hmmm the way I read the expression is: escape the "." and match any character after it, but that does not appear so. 
 #c<- "what if i\.write a sentence\.with lots of periods.init"
 #str_view(c, "\\..\\..\\..") #NOPE
 ```
@@ -142,7 +141,7 @@ Hadley Wickham remembers it this way: "To remember which is which, try this mnem
 1. How would you match the literal string "$^$"?
 
 ```{r}
-#str_view(c("$^$"), "\\$\\^\\$") #escape and match all special characters using \\
+str_view(c("$^$"), "\\$\\^\\$") #escape and match all special characters using \\
 ```
 
 2. Given the corpus of common words in stringr::words, create regular expressions that find all words that:
@@ -150,24 +149,24 @@ Hadley Wickham remembers it this way: "To remember which is which, try this mnem
 
 a. Start with y:
 ```{r}
-#str_view(stringr::words, "^y", match = TRUE)
+str_view(stringr::words, "^y", match = TRUE)
 ```
  b. End with x:
 ```{r}
-#str_view(stringr::words, "x$", match = TRUE)
+str_view(stringr::words, "x$", match = TRUE)
 str_subset(stringr::words, "x$") #something funky is happening in my viewer and I can't scroll so this is a check to see if the code actually work and it looks like it does!
 ```
 
 3. Are exactly three letters long. (Don’t cheat by using str_length()!)
 str_view(stringr::words, "^...") #gives you the first 3 letters of each word
 ```{r}
-#str_view(stringr::words, "\\b[a-zA-Z0-9]{3,3}\\b", match = TRUE)
+str_view(stringr::words, "\\b[a-zA-Z0-9]{3,3}\\b", match = TRUE)
 # SWEET, using the boundary "\b" expression you designate what #you want selected, here it is alpha numeric, then {min,max} #length of words
 ```
 
 4. Have seven letters or more
 ```{r}
-#str_view(stringr::words, ".......", match = TRUE) 
+str_view(stringr::words, ".......", match = TRUE) 
 #Match = true resolves earlier issue, it highlights in the viewer only the matches
 ```
 
@@ -176,7 +175,7 @@ str_view(stringr::words, "^...") #gives you the first 3 letters of each word
 1. Create regular expressions to find all words that
 ```{r}
  #a. starts with a vowel:
-#str_view(stringr::words, "^a|^e|^i|^o|^u", match = TRUE) 
+str_view(stringr::words, "^a|^e|^i|^o|^u", match = TRUE) 
 #the | indicates "or" between each matching option, early attemps show 
 #that you must have ^ for each vowel, that is you must designate position after 
 #every or otherwise it will pick any ol' word with an e,i,o,u
@@ -184,12 +183,11 @@ str_view(stringr::words, "^...") #gives you the first 3 letters of each word
 #str_view(stringr::words, "!a|!e|!i|!o|!u", match = TRUE) 
 #it does not appear there are any all consonant words
  #c. end with ed, but not eed
-#str_view(stringr::words, "ed$", match = TRUE) 
+str_view(stringr::words, "ed$", match = TRUE) 
 #grabs all that end in -ed AND eed, but how to get rid of those eed?
 
 ```
 
- 
 
 ```{r}
 ########str_view(stringr::words, "\\b[a-zA-Z0-9]{3,3}\\bed$", match = TRUE)
@@ -202,20 +200,20 @@ str_view(stringr::words, "cei", match = TRUE)
 
 #3. Is "q" always followed by "u"? 
   #Yes.
-#str_view(stringr::words, "qu", match = TRUE) # there are 10 occurences where q comes directly before u
-#str_view(stringr::words, "q.u", match = TRUE) # there are no occurence where q is seperated by some character then followed by u
-#str_view(stringr::words, "uq", match = TRUE) #no occurences where u is directly before q
-#str_view(stringr::words, "u.q", match = TRUE) 
+str_view(stringr::words, "qu", match = TRUE) # there are 10 occurences where q comes directly before u
+str_view(stringr::words, "q.u", match = TRUE) # there are no occurence where q is seperated by some character then followed by u
+str_view(stringr::words, "uq", match = TRUE) #no occurences where u is directly before q
+str_view(stringr::words, "u.q", match = TRUE) 
 
 #4. Write a regular expression that matches a word if its probably written in British English, not American English:
 
-#str_view(stringr::words, "..our$", match = TRUE) #the ... gets rid of any 4 and 5 letter words that are ubiquitous to both American and British english like four and flour
+str_view(stringr::words, "..our$", match = TRUE) #the ... gets rid of any 4 and 5 letter words that are ubiquitous to both American and British english like four and flour
 
 #5. Create a regular expression that will match telephone numbers as commonly written in your country
 c<- c("555-555-5555", "home 555-555-5551", "mobile555-555-5552")
 
-#str_view(c, "...\\-...\\-....") 
-#str_subset(c, "...\\-...\\-....") # we could subset all the strings with a phone number
+str_view(c, "...\\-...\\-....") 
+str_subset(c, "...\\-...\\-....") # we could subset all the strings with a phone number
 #This feels like a party trick!
 ```
 
@@ -225,36 +223,36 @@ c<- c("555-555-5555", "home 555-555-5551", "mobile555-555-5552")
 #1. Describe the equivalents of ?, +, *, in {m,n} form.
   #Take R for data science's example:
 x <- "1888 is the longest year in Roman numerals: MDCCCLXXXVIII"
-#str_view(x, "CC?")
-#str_view(x, "C{1,2}")
+str_view(x, "CC?")
+str_view(x, "C{1,2}")
   #? picks up the repition at the minimum length, that is {1,2}
-#str_view(x, "CC+")
-#str_view(x, "CC{1,3}")
+str_view(x, "CC+")
+str_view(x, "CC{1,3}")
   # + picks up all repeated characters starting with a length of 1 and will match all repetitions to n equivalent to {1,n}
-#str_view(x, "MD*") # * will pick up character strings even if #the repition is 0
-#str_view(x, "MD{0,1}")
+str_view(x, "MD*") # * will pick up character strings even if #the repition is 0
+str_view(x, "MD{0,1}")
 
 #2. a. ^.*$ - I'm totally baffled by this string...^indicates the beginning anchor, $ is the ending anchor, . expresses any character, and * highlights repetition of 0 or more times... none of the characters have been escaped
 
 
   #b. "\\{.+\\}" This is an equally confusing expression. match any character that repeats more than once?
-#str_view(x, "\\{.+\\}")
+str_view(x, "\\{.+\\}")
   
   #c. \d{4}-\d{2}-\d{2} This expression matches a string that starts with 4 digits, is seperated by - followed by two digits, another - and lastly 2 more digits
 y<- c("home 1234-12-12")
-#str_view(y, "\\d{4}-\\d{2}-\\d{2}")
+str_view(y, "\\d{4}-\\d{2}-\\d{2}")
   
 #d. "\\\\{4}" This expression escapes the \ and give the proceeding characters, was there maybe a \d that was supposed to be in here?
 z<- c("\\123456")
 z<- c("\\ancsdfs")
-#str_view(z, "\\\\{4}")
+str_view(z, "\\\\{4}")
 
 #3. Create regular expressions to find all words that:
   #a.start with three consonants 
-#str_view(words, "^[^aeiou]{3,3}", match = TRUE)
+str_view(words, "^[^aeiou]{3,3}", match = TRUE)
 
   #b. have three or more vowels in a row
-     #str_view(stringr::words, "[aeiou]{3,3}", match = TRUE) 
+     str_view(stringr::words, "[aeiou]{3,3}", match = TRUE) 
 ```
      
 #############14.3.5################
@@ -263,22 +261,22 @@ z<- c("\\ancsdfs")
 #1. describe what the expression below will match:
      #a. (.)\1\1
      c<-c("aaaaabbbbcccbcbcbcb", "a", "b") 
-#str_view(c, "(.)\\1\\1") #it matches the first group "aaa"
+str_view(c, "(.)\\1\\1") #it matches the first group "aaa"
   #b. "(.)(.)\\2\\1"
-#str_view(c, "(.)(.)\\2\\1") #it matches the first group "aaaa"
+str_view(c, "(.)(.)\\2\\1") #it matches the first group "aaaa"
   #c. (..)\1
-#str_view(c, "(..)\\1") #same result as "(.)(.)\\2\\1", 2 characters repeated once 
+str_view(c, "(..)\\1") #same result as "(.)(.)\\2\\1", 2 characters repeated once 
   #d. "(.).\\1.\\1"
-#str_view(c, "(.).\\1.\\1") #same result as last 2 expressions
+str_view(c, "(.).\\1.\\1") #same result as last 2 expressions
   #e. "(.)(.)(.).*\\3\\2\\1"
-#str_view(c, "(.)(.)(.).*\\3\\2\\1") # I actually have no idea what this expression is saying, other than the fact it pulls out the repetition of "cbcbcbc", maybe (.)(.)(.) refers to the 3 characters, . refers to the middle character b and * wants the repetition of that sequence, however I am still unsure what the heck the \\3\\2\1 are referring to
+str_view(c, "(.)(.)(.).*\\3\\2\\1") # I actually have no idea what this expression is saying, other than the fact it pulls out the repetition of "cbcbcbc", maybe (.)(.)(.) refers to the 3 characters, . refers to the middle character b and * wants the repetition of that sequence, however I am still unsure what the heck the \\3\\2\1 are referring to
 
 #2. Construct regular expressions to match words that:
   #a. start and end with the same character
 c<- c("bulb","toast", "noun")
 #str_view(c, "^(.)(.)$\\1") #well that doesn't work
   #b. Contain a repeated pair of letters (e.g. “church” contains “ch” repeated twice.)
-r<-c("church", "fright")
+#r<-c("church", "fright")
 #str_view(r, "(..)\\2")
 #str_view(r, "(..)\\1")
 #str_view(r, "(..)") #that just gets the first two letters...
@@ -288,7 +286,7 @@ r<-c("church", "fright")
   #c. Contain one letter repeated in at least three places (e.g. “eleven” contains three “e”s.) 
 
 x<- c("bananana", "cococonutcoco", "cucucumber")
-#str_view(x, "(..)\\1")
+str_view(x, "(..)\\1")
 ```
 
 #############14.4.2################
@@ -300,15 +298,15 @@ no_vowels_1 <- !str_detect(words, "[aeiou]")# all the words that don't have at l
 
 #1.For each of the following challenges, try solving it by using both a single regular expression, and a combination of multiple str_detect() calls
   #a. Find all words that start or end with x.
-#str_detect(words, "x$") #this gives you a logical output of TRUEs and FALSEs
-#str_view_all(words, "x$", match = TRUE) #this shows you the actual words that end with x
-#str_view_all(words, "^x", match = TRUE) #no words begin with x
+str_detect(words, "x$") #this gives you a logical output of TRUEs and FALSEs
+str_view_all(words, "x$", match = TRUE) #this shows you the actual words that end with x
+str_view_all(words, "^x", match = TRUE) #no words begin with x
 #another way to write this:
   words[str_detect(words, "x$")]
-  #str_subset(words, "x$")
+  str_subset(words, "x$")
   #b. Find all words that start with a vowel and end with a consonant
-str_detect(words, "^[aeiou][^aeiou]$")
-  #str_view_all(words, "^[aeiou][^aeiou]$", match = TRUE) #unfortunately this only gives youthe two letter words that start with a vowel and end with a consonant
+str_detect(words, "^[aeiou][^aeiou]$") #logical output
+  str_view_all(words, "^[aeiou][^aeiou]$", match = TRUE) #unfortunately this only gives youthe two letter words that start with a vowel and end with a consonant
 
 #2. What word has the highest number of vowels? What word has the highest proportion of vowels? (Hint: what is the denominator?)
   df<- tibble(word = words, i = seq_along(word))
@@ -326,12 +324,10 @@ colour_match <- str_c(colours, collapse = "|")
 colour_match
 
 more <- sentences[str_count(sentences, colour_match) > 1]
-#str_view_all(more, colour_match)
+str_view_all(more, colour_match)
 
 #2. From the Harvard sentences data, extract:
-
-  #a. The first word from each sentence.
-  #b. All words ending in ing.
+ #b. All words ending in ing.
 str_extract(sentences, "ing$") #this doesn't apear to do anything
   #c. All plurals.
 # to do this I would need to find all of the words in each sentence that end with s
@@ -371,8 +367,8 @@ c<- c("the quick brown fox","jumped over the lazy dog")
 str_replace_all(c, c("a" = "A", "b" = "B"))
 
 #3. Switch the first and last letters in words. Which of those strings are still words?
-#sentences %>% 
-  #str_replace("([^ ]+) ([^ ]+) ([^ ]+)", "\\1 \\3 \\2") #this is how the r gods switched word placement around
+sentences %>% 
+  str_replace("([^ ]+) ([^ ]+) ([^ ]+)", "\\1 \\3 \\2") #this is how the r gods switched word placement around
 
 str_replace(words, "(.) (.) (.)", "\\1 \\3 \\2")
 ```
@@ -414,7 +410,7 @@ a
 
 #Using a regular expression:
 str_detect(a, "\\\\")
-#str_view_all(a, "\\\\")
+str_view_all(a, "\\\\")
 
 str_detect(a, fixed("\\")) #this does not work!
 str_detect(a, fixed("\\\\")) #this returns all falses :(
@@ -431,11 +427,11 @@ library(stringi)
 
 #2. Count the number of words.
 ```{r}
-#stri_length(sentences) for each string, this is giving the number of characters in each sentence
+stri_length(sentences) #for each string, this is giving the number of characters in each sentence
 
-#stri_width(sentences) 
+stri_width(sentences) 
 
-#stri_subset(sentences, "\\b[words]\\b")
+#stri_subset(sentences, "\\b[words]\\b") This does not work as intended
 #if we just used stringr we would get:
 str_count(sentences, "\\W+")
 str_count(sentences, "\\S+")

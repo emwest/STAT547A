@@ -134,6 +134,7 @@ $(document).ready(function () {
 <h1>PART I:</h1>
 <p>For the first part of this homework adventure I opted to work through the exercises in the strings chapter of R for data science (before Guilio’s public service anouncement on Tues. about not doing the whole thing).</p>
 <p>Some background on regular expressions: a regular expression is simply a pattern describing a string of characters. A regular expression is used to match 0-n characters in a string. A regular expression can include digits and letters which will match to themselves. Metacharacters are characters with special meaning including  $ . [ { etc, to match a metacharacter it must be preceded with a backslash.</p>
+<p>Please note in the section where I work on matching the output in .md is quite ugly so I commented those out with a note about the output :)</p>
 <div id="section" class="section level12">
 <p>14.2.5</p>
 <ol style="list-style-type: decimal">
@@ -213,36 +214,36 @@ str_length(to_str(c)) # a single string with a length of 3</code></pre>
 <p>14.3.1</p>
 <p>Matching is all about indicating and locating a character, or set of characters, you are interested in. examples from the text:</p>
 <pre class="r"><code>x &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;)
-str_view(x, &quot;an&quot;) </code></pre>
-<div id="htmlwidget-d5201fd411e674904011" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d5201fd411e674904011">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code>#in x highlight characters a and n, based on the the output from banana and apple, this suggests str_view will not return redundant strings, that is it only highlights the first &quot;p&quot; in apple and the first instance of &quot;an&quot; in banana 
+str_view_all(x, &quot;an&quot;) </code></pre>
+<div id="htmlwidget-349694941fe472e3fed3" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-349694941fe472e3fed3">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span><span class='match'>an<\/span>a<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>#in x highlight characters a and n, based on the the output from #banana and apple, this suggests str_view will not return #redundant strings, that is it only highlights the first &quot;p&quot; in #apple and the first instance of &quot;an&quot; in banana 
 str_view(x, &quot;.a.&quot;) </code></pre>
-<div id="htmlwidget-fcf9bd41487a5bc83258" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fcf9bd41487a5bc83258">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b60c3cfdbcf9797ef4a3" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b60c3cfdbcf9797ef4a3">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#&quot;.&quot; before and after a character has a special behavior that matches any character around the character you indicate. If you actually want to match a &quot;.&quot; you have to escape it using a backslash</code></pre>
 <p>1.Explain why each of these strings don’t match a : “&quot;,”\“,”\&quot;. A backslash is an extra special character because it has two functions, one used to create regular expressions and the other to escape other special characters like “.”, “’” This is best expressed with a couple of examples, note the original code is from the R for Data Science example, however I have modifided and expanded it to make expressly clear what is happening in each step.</p>
-<pre class="r"><code>str_view(c(&quot;abc&quot;, &quot;a.c&quot;, &quot;bef&quot;), &quot;a.c&quot;)#returns a and c with ANY character in between the two</code></pre>
-<div id="htmlwidget-cf8a6526c06017455105" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cf8a6526c06017455105">{"x":{"html":"<ul>\n  <li><span class='match'>abc<\/span><\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(c(&quot;abc&quot;, &quot;a.c&quot;, &quot;bef&quot;), &quot;a.c&quot;)#returns a and c with #ANY character in between the two</code></pre>
+<div id="htmlwidget-f8998854746b8d50e4a5" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f8998854746b8d50e4a5">{"x":{"html":"<ul>\n  <li><span class='match'>abc<\/span><\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(c(&quot;abc&quot;, &quot;a.c&quot;, &quot;bef&quot;), &quot;a\\.c&quot;) #returns a.c literally, that is, &quot;.&quot; is not being used in its special way of matching any character it is being used as a character itself</code></pre>
-<div id="htmlwidget-25f8c95faf3fd0ec31b2" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-25f8c95faf3fd0ec31b2">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f4f991ed2d4addf0d7c0" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f4f991ed2d4addf0d7c0">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(c(&quot;abc&quot;, &quot;a.c&quot;, &quot;bef&quot;), &quot;\\.&quot;) #returns . as its own character</code></pre>
-<div id="htmlwidget-739cf2b0769b0c3b3bd1" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-739cf2b0769b0c3b3bd1">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a<span class='match'>.<\/span>c<\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code># str_view(c(&quot;abc&quot;, &quot;a\c&quot;, &quot;bef&quot;), &quot;\\\\&quot;) #Yikes, that won't work because R is looking for a special character to escape after the \
+<div id="htmlwidget-ec2a57a00cb4037483f3" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ec2a57a00cb4037483f3">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a<span class='match'>.<\/span>c<\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>#str_view(c(&quot;abc&quot;, &quot;a\c&quot;, &quot;bef&quot;), &quot;\\\\&quot;) #Yikes, that won't work because R is looking for a special character to escape after the \
 str_view(c(&quot;abc&quot;, &quot;a\\c&quot;, &quot;bef&quot;), &quot;\\\\&quot;) # in the string itself we need a \ to escape the backslash and in the parameter we need the double backslash to match the special character \ that is being escaped in the first place.</code></pre>
-<div id="htmlwidget-d311409e089c7a1f7831" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d311409e089c7a1f7831">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a<span class='match'>\\<\/span>c<\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a138005759ec24aa1d4b" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a138005759ec24aa1d4b">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a<span class='match'>\\<\/span>c<\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>2.How would you match the sequence “’? #This requires escaping a string of special characters, which means everyone gets their own backslash:</p>
 <pre class="r"><code>str_view(c(&quot;\&quot;\'\\&quot;), &quot;\\'\\\\&quot;) </code></pre>
-<div id="htmlwidget-923fff6b5dcac0128f39" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-923fff6b5dcac0128f39">{"x":{"html":"<ul>\n  <li>\"<span class='match'>'\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2536e7d3bc51a0351d7b" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2536e7d3bc51a0351d7b">{"x":{"html":"<ul>\n  <li>\"<span class='match'>'\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#something funny is happening, the quotes are being closed so they are not being matched- I tried several iterations of adding backslashes before the &quot; but to no avail :(
 str_view(c(&quot;\'\\&quot;), &quot;\\'\\\\&quot;) </code></pre>
-<div id="htmlwidget-6c333943b98dad6f1845" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6c333943b98dad6f1845">{"x":{"html":"<ul>\n  <li><span class='match'>'\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0573b76d30bdf761375c" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0573b76d30bdf761375c">{"x":{"html":"<ul>\n  <li><span class='match'>'\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#I can get the last two characters to be matched</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>What patterns will the regular expression ...... match? How would you represent it as a string?</li>
@@ -250,7 +251,7 @@ str_view(c(&quot;\'\\&quot;), &quot;\\'\\\\&quot;) </code></pre>
 <pre class="r"><code>c&lt;- &quot;\asdfghjkl&quot;
 #str_view(c, &quot;\..\..\..&quot;) # str_view does not seem to like this type of expression because of the \. which is it designating an &quot;unrecognized escape character&quot;
 c&lt;- &quot;what if i.write a sentence.with lots of periods.init&quot;
-#str_view(c, &quot;\..\..\..&quot;) #hmmm the way I read the expression is: escape the &quot;.&quot; and match any character after it, but that does not appear so. 
+#str_view(c, &quot;\\..\..\..&quot;) #hmmm the way I read the expression is: escape the &quot;.&quot; and match any character after it, but that does not appear so. 
 #c&lt;- &quot;what if i\.write a sentence\.with lots of periods.init&quot;
 #str_view(c, &quot;\\..\\..\\..&quot;) #NOPE</code></pre>
 </div>
@@ -261,8 +262,8 @@ c&lt;- &quot;what if i.write a sentence.with lots of periods.init&quot;
 <li>How would you match the literal string “<span class="math inline">\(^\)</span>”?</li>
 </ol>
 <pre class="r"><code>str_view(c(&quot;$^$&quot;), &quot;\\$\\^\\$&quot;) #escape and match all special characters using \\</code></pre>
-<div id="htmlwidget-4b9a04f981fcec8f0000" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4b9a04f981fcec8f0000">{"x":{"html":"<ul>\n  <li><span class='match'>$^$<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1767293dd42930d20ad7" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1767293dd42930d20ad7">{"x":{"html":"<ul>\n  <li><span class='match'>$^$<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <ol start="2" style="list-style-type: decimal">
 <li>Given the corpus of common words in stringr::words, create regular expressions that find all words that: First, what are we dealing with in stringr::words? View(stringr::words), wow 980 words!</li>
 </ol>
@@ -270,26 +271,26 @@ c&lt;- &quot;what if i.write a sentence.with lots of periods.init&quot;
 <li>Start with y:</li>
 </ol>
 <pre class="r"><code>str_view(stringr::words, &quot;^y&quot;, match = TRUE)</code></pre>
-<p><div id="htmlwidget-99f189d675b82bc6ab18" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-99f189d675b82bc6ab18">{"x":{"html":"<ul>\n  <li><span class='match'>y<\/span>ear<\/li>\n  <li><span class='match'>y<\/span>es<\/li>\n  <li><span class='match'>y<\/span>esterday<\/li>\n  <li><span class='match'>y<\/span>et<\/li>\n  <li><span class='match'>y<\/span>ou<\/li>\n  <li><span class='match'>y<\/span>oung<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script> b. End with x:</p>
+<p><div id="htmlwidget-ef330103c5033fcd1a35" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ef330103c5033fcd1a35">{"x":{"html":"<ul>\n  <li><span class='match'>y<\/span>ear<\/li>\n  <li><span class='match'>y<\/span>es<\/li>\n  <li><span class='match'>y<\/span>esterday<\/li>\n  <li><span class='match'>y<\/span>et<\/li>\n  <li><span class='match'>y<\/span>ou<\/li>\n  <li><span class='match'>y<\/span>oung<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script> b. End with x:</p>
 <pre class="r"><code>str_view(stringr::words, &quot;x$&quot;, match = TRUE)</code></pre>
-<div id="htmlwidget-8db88d3b3c4238d788e9" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8db88d3b3c4238d788e9">{"x":{"html":"<ul>\n  <li>bo<span class='match'>x<\/span><\/li>\n  <li>se<span class='match'>x<\/span><\/li>\n  <li>si<span class='match'>x<\/span><\/li>\n  <li>ta<span class='match'>x<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-11102df754bbdf6d5502" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-11102df754bbdf6d5502">{"x":{"html":"<ul>\n  <li>bo<span class='match'>x<\/span><\/li>\n  <li>se<span class='match'>x<\/span><\/li>\n  <li>si<span class='match'>x<\/span><\/li>\n  <li>ta<span class='match'>x<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_subset(stringr::words, &quot;x$&quot;) #something funky is happening in my viewer and I can't scroll so this is a check to see if the code actually work and it looks like it does!</code></pre>
 <pre><code>## [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Are exactly three letters long. (Don’t cheat by using str_length()!) str_view(stringr::words, “^…”) #gives you the first 3 letters of each word</li>
 </ol>
 <pre class="r"><code>str_view(stringr::words, &quot;\\b[a-zA-Z0-9]{3,3}\\b&quot;, match = TRUE)</code></pre>
-<div id="htmlwidget-042c2ab8aa015e507d77" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-042c2ab8aa015e507d77">{"x":{"html":"<ul>\n  <li><span class='match'>act<\/span><\/li>\n  <li><span class='match'>add<\/span><\/li>\n  <li><span class='match'>age<\/span><\/li>\n  <li><span class='match'>ago<\/span><\/li>\n  <li><span class='match'>air<\/span><\/li>\n  <li><span class='match'>all<\/span><\/li>\n  <li><span class='match'>and<\/span><\/li>\n  <li><span class='match'>any<\/span><\/li>\n  <li><span class='match'>arm<\/span><\/li>\n  <li><span class='match'>art<\/span><\/li>\n  <li><span class='match'>ask<\/span><\/li>\n  <li><span class='match'>bad<\/span><\/li>\n  <li><span class='match'>bag<\/span><\/li>\n  <li><span class='match'>bar<\/span><\/li>\n  <li><span class='match'>bed<\/span><\/li>\n  <li><span class='match'>bet<\/span><\/li>\n  <li><span class='match'>big<\/span><\/li>\n  <li><span class='match'>bit<\/span><\/li>\n  <li><span class='match'>box<\/span><\/li>\n  <li><span class='match'>boy<\/span><\/li>\n  <li><span class='match'>bus<\/span><\/li>\n  <li><span class='match'>but<\/span><\/li>\n  <li><span class='match'>buy<\/span><\/li>\n  <li><span class='match'>can<\/span><\/li>\n  <li><span class='match'>car<\/span><\/li>\n  <li><span class='match'>cat<\/span><\/li>\n  <li><span class='match'>cup<\/span><\/li>\n  <li><span class='match'>cut<\/span><\/li>\n  <li><span class='match'>dad<\/span><\/li>\n  <li><span class='match'>day<\/span><\/li>\n  <li><span class='match'>die<\/span><\/li>\n  <li><span class='match'>dog<\/span><\/li>\n  <li><span class='match'>dry<\/span><\/li>\n  <li><span class='match'>due<\/span><\/li>\n  <li><span class='match'>eat<\/span><\/li>\n  <li><span class='match'>egg<\/span><\/li>\n  <li><span class='match'>end<\/span><\/li>\n  <li><span class='match'>eye<\/span><\/li>\n  <li><span class='match'>far<\/span><\/li>\n  <li><span class='match'>few<\/span><\/li>\n  <li><span class='match'>fit<\/span><\/li>\n  <li><span class='match'>fly<\/span><\/li>\n  <li><span class='match'>for<\/span><\/li>\n  <li><span class='match'>fun<\/span><\/li>\n  <li><span class='match'>gas<\/span><\/li>\n  <li><span class='match'>get<\/span><\/li>\n  <li><span class='match'>god<\/span><\/li>\n  <li><span class='match'>guy<\/span><\/li>\n  <li><span class='match'>hit<\/span><\/li>\n  <li><span class='match'>hot<\/span><\/li>\n  <li><span class='match'>how<\/span><\/li>\n  <li><span class='match'>job<\/span><\/li>\n  <li><span class='match'>key<\/span><\/li>\n  <li><span class='match'>kid<\/span><\/li>\n  <li><span class='match'>lad<\/span><\/li>\n  <li><span class='match'>law<\/span><\/li>\n  <li><span class='match'>lay<\/span><\/li>\n  <li><span class='match'>leg<\/span><\/li>\n  <li><span class='match'>let<\/span><\/li>\n  <li><span class='match'>lie<\/span><\/li>\n  <li><span class='match'>lot<\/span><\/li>\n  <li><span class='match'>low<\/span><\/li>\n  <li><span class='match'>man<\/span><\/li>\n  <li><span class='match'>may<\/span><\/li>\n  <li><span class='match'>mrs<\/span><\/li>\n  <li><span class='match'>new<\/span><\/li>\n  <li><span class='match'>non<\/span><\/li>\n  <li><span class='match'>not<\/span><\/li>\n  <li><span class='match'>now<\/span><\/li>\n  <li><span class='match'>odd<\/span><\/li>\n  <li><span class='match'>off<\/span><\/li>\n  <li><span class='match'>old<\/span><\/li>\n  <li><span class='match'>one<\/span><\/li>\n  <li><span class='match'>out<\/span><\/li>\n  <li><span class='match'>own<\/span><\/li>\n  <li><span class='match'>pay<\/span><\/li>\n  <li><span class='match'>per<\/span><\/li>\n  <li><span class='match'>put<\/span><\/li>\n  <li><span class='match'>red<\/span><\/li>\n  <li><span class='match'>rid<\/span><\/li>\n  <li><span class='match'>run<\/span><\/li>\n  <li><span class='match'>say<\/span><\/li>\n  <li><span class='match'>see<\/span><\/li>\n  <li><span class='match'>set<\/span><\/li>\n  <li><span class='match'>sex<\/span><\/li>\n  <li><span class='match'>she<\/span><\/li>\n  <li><span class='match'>sir<\/span><\/li>\n  <li><span class='match'>sit<\/span><\/li>\n  <li><span class='match'>six<\/span><\/li>\n  <li><span class='match'>son<\/span><\/li>\n  <li><span class='match'>sun<\/span><\/li>\n  <li><span class='match'>tax<\/span><\/li>\n  <li><span class='match'>tea<\/span><\/li>\n  <li><span class='match'>ten<\/span><\/li>\n  <li><span class='match'>the<\/span><\/li>\n  <li><span class='match'>tie<\/span><\/li>\n  <li><span class='match'>too<\/span><\/li>\n  <li><span class='match'>top<\/span><\/li>\n  <li><span class='match'>try<\/span><\/li>\n  <li><span class='match'>two<\/span><\/li>\n  <li><span class='match'>use<\/span><\/li>\n  <li><span class='match'>war<\/span><\/li>\n  <li><span class='match'>way<\/span><\/li>\n  <li><span class='match'>wee<\/span><\/li>\n  <li><span class='match'>who<\/span><\/li>\n  <li><span class='match'>why<\/span><\/li>\n  <li><span class='match'>win<\/span><\/li>\n  <li><span class='match'>yes<\/span><\/li>\n  <li><span class='match'>yet<\/span><\/li>\n  <li><span class='match'>you<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code># SWEET, using the boundary &quot;\b&quot; expression you designate what you want selected, here it is alpha numeric, then {min,max} length of words</code></pre>
+<div id="htmlwidget-616eb5f20482dfff744e" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-616eb5f20482dfff744e">{"x":{"html":"<ul>\n  <li><span class='match'>act<\/span><\/li>\n  <li><span class='match'>add<\/span><\/li>\n  <li><span class='match'>age<\/span><\/li>\n  <li><span class='match'>ago<\/span><\/li>\n  <li><span class='match'>air<\/span><\/li>\n  <li><span class='match'>all<\/span><\/li>\n  <li><span class='match'>and<\/span><\/li>\n  <li><span class='match'>any<\/span><\/li>\n  <li><span class='match'>arm<\/span><\/li>\n  <li><span class='match'>art<\/span><\/li>\n  <li><span class='match'>ask<\/span><\/li>\n  <li><span class='match'>bad<\/span><\/li>\n  <li><span class='match'>bag<\/span><\/li>\n  <li><span class='match'>bar<\/span><\/li>\n  <li><span class='match'>bed<\/span><\/li>\n  <li><span class='match'>bet<\/span><\/li>\n  <li><span class='match'>big<\/span><\/li>\n  <li><span class='match'>bit<\/span><\/li>\n  <li><span class='match'>box<\/span><\/li>\n  <li><span class='match'>boy<\/span><\/li>\n  <li><span class='match'>bus<\/span><\/li>\n  <li><span class='match'>but<\/span><\/li>\n  <li><span class='match'>buy<\/span><\/li>\n  <li><span class='match'>can<\/span><\/li>\n  <li><span class='match'>car<\/span><\/li>\n  <li><span class='match'>cat<\/span><\/li>\n  <li><span class='match'>cup<\/span><\/li>\n  <li><span class='match'>cut<\/span><\/li>\n  <li><span class='match'>dad<\/span><\/li>\n  <li><span class='match'>day<\/span><\/li>\n  <li><span class='match'>die<\/span><\/li>\n  <li><span class='match'>dog<\/span><\/li>\n  <li><span class='match'>dry<\/span><\/li>\n  <li><span class='match'>due<\/span><\/li>\n  <li><span class='match'>eat<\/span><\/li>\n  <li><span class='match'>egg<\/span><\/li>\n  <li><span class='match'>end<\/span><\/li>\n  <li><span class='match'>eye<\/span><\/li>\n  <li><span class='match'>far<\/span><\/li>\n  <li><span class='match'>few<\/span><\/li>\n  <li><span class='match'>fit<\/span><\/li>\n  <li><span class='match'>fly<\/span><\/li>\n  <li><span class='match'>for<\/span><\/li>\n  <li><span class='match'>fun<\/span><\/li>\n  <li><span class='match'>gas<\/span><\/li>\n  <li><span class='match'>get<\/span><\/li>\n  <li><span class='match'>god<\/span><\/li>\n  <li><span class='match'>guy<\/span><\/li>\n  <li><span class='match'>hit<\/span><\/li>\n  <li><span class='match'>hot<\/span><\/li>\n  <li><span class='match'>how<\/span><\/li>\n  <li><span class='match'>job<\/span><\/li>\n  <li><span class='match'>key<\/span><\/li>\n  <li><span class='match'>kid<\/span><\/li>\n  <li><span class='match'>lad<\/span><\/li>\n  <li><span class='match'>law<\/span><\/li>\n  <li><span class='match'>lay<\/span><\/li>\n  <li><span class='match'>leg<\/span><\/li>\n  <li><span class='match'>let<\/span><\/li>\n  <li><span class='match'>lie<\/span><\/li>\n  <li><span class='match'>lot<\/span><\/li>\n  <li><span class='match'>low<\/span><\/li>\n  <li><span class='match'>man<\/span><\/li>\n  <li><span class='match'>may<\/span><\/li>\n  <li><span class='match'>mrs<\/span><\/li>\n  <li><span class='match'>new<\/span><\/li>\n  <li><span class='match'>non<\/span><\/li>\n  <li><span class='match'>not<\/span><\/li>\n  <li><span class='match'>now<\/span><\/li>\n  <li><span class='match'>odd<\/span><\/li>\n  <li><span class='match'>off<\/span><\/li>\n  <li><span class='match'>old<\/span><\/li>\n  <li><span class='match'>one<\/span><\/li>\n  <li><span class='match'>out<\/span><\/li>\n  <li><span class='match'>own<\/span><\/li>\n  <li><span class='match'>pay<\/span><\/li>\n  <li><span class='match'>per<\/span><\/li>\n  <li><span class='match'>put<\/span><\/li>\n  <li><span class='match'>red<\/span><\/li>\n  <li><span class='match'>rid<\/span><\/li>\n  <li><span class='match'>run<\/span><\/li>\n  <li><span class='match'>say<\/span><\/li>\n  <li><span class='match'>see<\/span><\/li>\n  <li><span class='match'>set<\/span><\/li>\n  <li><span class='match'>sex<\/span><\/li>\n  <li><span class='match'>she<\/span><\/li>\n  <li><span class='match'>sir<\/span><\/li>\n  <li><span class='match'>sit<\/span><\/li>\n  <li><span class='match'>six<\/span><\/li>\n  <li><span class='match'>son<\/span><\/li>\n  <li><span class='match'>sun<\/span><\/li>\n  <li><span class='match'>tax<\/span><\/li>\n  <li><span class='match'>tea<\/span><\/li>\n  <li><span class='match'>ten<\/span><\/li>\n  <li><span class='match'>the<\/span><\/li>\n  <li><span class='match'>tie<\/span><\/li>\n  <li><span class='match'>too<\/span><\/li>\n  <li><span class='match'>top<\/span><\/li>\n  <li><span class='match'>try<\/span><\/li>\n  <li><span class='match'>two<\/span><\/li>\n  <li><span class='match'>use<\/span><\/li>\n  <li><span class='match'>war<\/span><\/li>\n  <li><span class='match'>way<\/span><\/li>\n  <li><span class='match'>wee<\/span><\/li>\n  <li><span class='match'>who<\/span><\/li>\n  <li><span class='match'>why<\/span><\/li>\n  <li><span class='match'>win<\/span><\/li>\n  <li><span class='match'>yes<\/span><\/li>\n  <li><span class='match'>yet<\/span><\/li>\n  <li><span class='match'>you<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code># SWEET, using the boundary &quot;\b&quot; expression you designate what #you want selected, here it is alpha numeric, then {min,max} #length of words</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Have seven letters or more</li>
 </ol>
 <pre class="r"><code>str_view(stringr::words, &quot;.......&quot;, match = TRUE) </code></pre>
-<div id="htmlwidget-656f5e52a58cad54cf6e" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-656f5e52a58cad54cf6e">{"x":{"html":"<ul>\n  <li><span class='match'>absolut<\/span>e<\/li>\n  <li><span class='match'>account<\/span><\/li>\n  <li><span class='match'>achieve<\/span><\/li>\n  <li><span class='match'>address<\/span><\/li>\n  <li><span class='match'>adverti<\/span>se<\/li>\n  <li><span class='match'>afterno<\/span>on<\/li>\n  <li><span class='match'>against<\/span><\/li>\n  <li><span class='match'>already<\/span><\/li>\n  <li><span class='match'>alright<\/span><\/li>\n  <li><span class='match'>althoug<\/span>h<\/li>\n  <li><span class='match'>america<\/span><\/li>\n  <li><span class='match'>another<\/span><\/li>\n  <li><span class='match'>apparen<\/span>t<\/li>\n  <li><span class='match'>appoint<\/span><\/li>\n  <li><span class='match'>approac<\/span>h<\/li>\n  <li><span class='match'>appropr<\/span>iate<\/li>\n  <li><span class='match'>arrange<\/span><\/li>\n  <li><span class='match'>associa<\/span>te<\/li>\n  <li><span class='match'>authori<\/span>ty<\/li>\n  <li><span class='match'>availab<\/span>le<\/li>\n  <li><span class='match'>balance<\/span><\/li>\n  <li><span class='match'>because<\/span><\/li>\n  <li><span class='match'>believe<\/span><\/li>\n  <li><span class='match'>benefit<\/span><\/li>\n  <li><span class='match'>between<\/span><\/li>\n  <li><span class='match'>brillia<\/span>nt<\/li>\n  <li><span class='match'>britain<\/span><\/li>\n  <li><span class='match'>brother<\/span><\/li>\n  <li><span class='match'>busines<\/span>s<\/li>\n  <li><span class='match'>certain<\/span><\/li>\n  <li><span class='match'>chairma<\/span>n<\/li>\n  <li><span class='match'>charact<\/span>er<\/li>\n  <li><span class='match'>Christm<\/span>as<\/li>\n  <li><span class='match'>colleag<\/span>ue<\/li>\n  <li><span class='match'>collect<\/span><\/li>\n  <li><span class='match'>college<\/span><\/li>\n  <li><span class='match'>comment<\/span><\/li>\n  <li><span class='match'>committ<\/span>ee<\/li>\n  <li><span class='match'>communi<\/span>ty<\/li>\n  <li><span class='match'>company<\/span><\/li>\n  <li><span class='match'>compare<\/span><\/li>\n  <li><span class='match'>complet<\/span>e<\/li>\n  <li><span class='match'>compute<\/span><\/li>\n  <li><span class='match'>concern<\/span><\/li>\n  <li><span class='match'>conditi<\/span>on<\/li>\n  <li><span class='match'>conside<\/span>r<\/li>\n  <li><span class='match'>consult<\/span><\/li>\n  <li><span class='match'>contact<\/span><\/li>\n  <li><span class='match'>continu<\/span>e<\/li>\n  <li><span class='match'>contrac<\/span>t<\/li>\n  <li><span class='match'>control<\/span><\/li>\n  <li><span class='match'>convers<\/span>e<\/li>\n  <li><span class='match'>correct<\/span><\/li>\n  <li><span class='match'>council<\/span><\/li>\n  <li><span class='match'>country<\/span><\/li>\n  <li><span class='match'>current<\/span><\/li>\n  <li><span class='match'>decisio<\/span>n<\/li>\n  <li><span class='match'>definit<\/span>e<\/li>\n  <li><span class='match'>departm<\/span>ent<\/li>\n  <li><span class='match'>describ<\/span>e<\/li>\n  <li><span class='match'>develop<\/span><\/li>\n  <li><span class='match'>differe<\/span>nce<\/li>\n  <li><span class='match'>difficu<\/span>lt<\/li>\n  <li><span class='match'>discuss<\/span><\/li>\n  <li><span class='match'>distric<\/span>t<\/li>\n  <li><span class='match'>documen<\/span>t<\/li>\n  <li><span class='match'>economy<\/span><\/li>\n  <li><span class='match'>educate<\/span><\/li>\n  <li><span class='match'>electri<\/span>c<\/li>\n  <li><span class='match'>encoura<\/span>ge<\/li>\n  <li><span class='match'>english<\/span><\/li>\n  <li><span class='match'>environ<\/span>ment<\/li>\n  <li><span class='match'>especia<\/span>l<\/li>\n  <li><span class='match'>evening<\/span><\/li>\n  <li><span class='match'>evidenc<\/span>e<\/li>\n  <li><span class='match'>example<\/span><\/li>\n  <li><span class='match'>exercis<\/span>e<\/li>\n  <li><span class='match'>expense<\/span><\/li>\n  <li><span class='match'>experie<\/span>nce<\/li>\n  <li><span class='match'>explain<\/span><\/li>\n  <li><span class='match'>express<\/span><\/li>\n  <li><span class='match'>finance<\/span><\/li>\n  <li><span class='match'>fortune<\/span><\/li>\n  <li><span class='match'>forward<\/span><\/li>\n  <li><span class='match'>functio<\/span>n<\/li>\n  <li><span class='match'>further<\/span><\/li>\n  <li><span class='match'>general<\/span><\/li>\n  <li><span class='match'>germany<\/span><\/li>\n  <li><span class='match'>goodbye<\/span><\/li>\n  <li><span class='match'>history<\/span><\/li>\n  <li><span class='match'>holiday<\/span><\/li>\n  <li><span class='match'>hospita<\/span>l<\/li>\n  <li><span class='match'>however<\/span><\/li>\n  <li><span class='match'>hundred<\/span><\/li>\n  <li><span class='match'>husband<\/span><\/li>\n  <li><span class='match'>identif<\/span>y<\/li>\n  <li><span class='match'>imagine<\/span><\/li>\n  <li><span class='match'>importa<\/span>nt<\/li>\n  <li><span class='match'>improve<\/span><\/li>\n  <li><span class='match'>include<\/span><\/li>\n  <li><span class='match'>increas<\/span>e<\/li>\n  <li><span class='match'>individ<\/span>ual<\/li>\n  <li><span class='match'>industr<\/span>y<\/li>\n  <li><span class='match'>instead<\/span><\/li>\n  <li><span class='match'>interes<\/span>t<\/li>\n  <li><span class='match'>introdu<\/span>ce<\/li>\n  <li><span class='match'>involve<\/span><\/li>\n  <li><span class='match'>kitchen<\/span><\/li>\n  <li><span class='match'>languag<\/span>e<\/li>\n  <li><span class='match'>machine<\/span><\/li>\n  <li><span class='match'>meaning<\/span><\/li>\n  <li><span class='match'>measure<\/span><\/li>\n  <li><span class='match'>mention<\/span><\/li>\n  <li><span class='match'>million<\/span><\/li>\n  <li><span class='match'>ministe<\/span>r<\/li>\n  <li><span class='match'>morning<\/span><\/li>\n  <li><span class='match'>necessa<\/span>ry<\/li>\n  <li><span class='match'>obvious<\/span><\/li>\n  <li><span class='match'>occasio<\/span>n<\/li>\n  <li><span class='match'>operate<\/span><\/li>\n  <li><span class='match'>opportu<\/span>nity<\/li>\n  <li><span class='match'>organiz<\/span>e<\/li>\n  <li><span class='match'>origina<\/span>l<\/li>\n  <li><span class='match'>otherwi<\/span>se<\/li>\n  <li><span class='match'>paragra<\/span>ph<\/li>\n  <li><span class='match'>particu<\/span>lar<\/li>\n  <li><span class='match'>pension<\/span><\/li>\n  <li><span class='match'>percent<\/span><\/li>\n  <li><span class='match'>perfect<\/span><\/li>\n  <li><span class='match'>perhaps<\/span><\/li>\n  <li><span class='match'>photogr<\/span>aph<\/li>\n  <li><span class='match'>picture<\/span><\/li>\n  <li><span class='match'>politic<\/span><\/li>\n  <li><span class='match'>positio<\/span>n<\/li>\n  <li><span class='match'>positiv<\/span>e<\/li>\n  <li><span class='match'>possibl<\/span>e<\/li>\n  <li><span class='match'>practis<\/span>e<\/li>\n  <li><span class='match'>prepare<\/span><\/li>\n  <li><span class='match'>present<\/span><\/li>\n  <li><span class='match'>pressur<\/span>e<\/li>\n  <li><span class='match'>presume<\/span><\/li>\n  <li><span class='match'>previou<\/span>s<\/li>\n  <li><span class='match'>private<\/span><\/li>\n  <li><span class='match'>probabl<\/span>e<\/li>\n  <li><span class='match'>problem<\/span><\/li>\n  <li><span class='match'>proceed<\/span><\/li>\n  <li><span class='match'>process<\/span><\/li>\n  <li><span class='match'>produce<\/span><\/li>\n  <li><span class='match'>product<\/span><\/li>\n  <li><span class='match'>program<\/span>me<\/li>\n  <li><span class='match'>project<\/span><\/li>\n  <li><span class='match'>propose<\/span><\/li>\n  <li><span class='match'>protect<\/span><\/li>\n  <li><span class='match'>provide<\/span><\/li>\n  <li><span class='match'>purpose<\/span><\/li>\n  <li><span class='match'>quality<\/span><\/li>\n  <li><span class='match'>quarter<\/span><\/li>\n  <li><span class='match'>questio<\/span>n<\/li>\n  <li><span class='match'>realise<\/span><\/li>\n  <li><span class='match'>receive<\/span><\/li>\n  <li><span class='match'>recogni<\/span>ze<\/li>\n  <li><span class='match'>recomme<\/span>nd<\/li>\n  <li><span class='match'>relatio<\/span>n<\/li>\n  <li><span class='match'>remembe<\/span>r<\/li>\n  <li><span class='match'>represe<\/span>nt<\/li>\n  <li><span class='match'>require<\/span><\/li>\n  <li><span class='match'>researc<\/span>h<\/li>\n  <li><span class='match'>resourc<\/span>e<\/li>\n  <li><span class='match'>respect<\/span><\/li>\n  <li><span class='match'>respons<\/span>ible<\/li>\n  <li><span class='match'>saturda<\/span>y<\/li>\n  <li><span class='match'>science<\/span><\/li>\n  <li><span class='match'>scotlan<\/span>d<\/li>\n  <li><span class='match'>secreta<\/span>ry<\/li>\n  <li><span class='match'>section<\/span><\/li>\n  <li><span class='match'>separat<\/span>e<\/li>\n  <li><span class='match'>serious<\/span><\/li>\n  <li><span class='match'>service<\/span><\/li>\n  <li><span class='match'>similar<\/span><\/li>\n  <li><span class='match'>situate<\/span><\/li>\n  <li><span class='match'>society<\/span><\/li>\n  <li><span class='match'>special<\/span><\/li>\n  <li><span class='match'>specifi<\/span>c<\/li>\n  <li><span class='match'>standar<\/span>d<\/li>\n  <li><span class='match'>station<\/span><\/li>\n  <li><span class='match'>straigh<\/span>t<\/li>\n  <li><span class='match'>strateg<\/span>y<\/li>\n  <li><span class='match'>structu<\/span>re<\/li>\n  <li><span class='match'>student<\/span><\/li>\n  <li><span class='match'>subject<\/span><\/li>\n  <li><span class='match'>succeed<\/span><\/li>\n  <li><span class='match'>suggest<\/span><\/li>\n  <li><span class='match'>support<\/span><\/li>\n  <li><span class='match'>suppose<\/span><\/li>\n  <li><span class='match'>surpris<\/span>e<\/li>\n  <li><span class='match'>telepho<\/span>ne<\/li>\n  <li><span class='match'>televis<\/span>ion<\/li>\n  <li><span class='match'>terribl<\/span>e<\/li>\n  <li><span class='match'>therefo<\/span>re<\/li>\n  <li><span class='match'>thirtee<\/span>n<\/li>\n  <li><span class='match'>thousan<\/span>d<\/li>\n  <li><span class='match'>through<\/span><\/li>\n  <li><span class='match'>thursda<\/span>y<\/li>\n  <li><span class='match'>togethe<\/span>r<\/li>\n  <li><span class='match'>tomorro<\/span>w<\/li>\n  <li><span class='match'>tonight<\/span><\/li>\n  <li><span class='match'>traffic<\/span><\/li>\n  <li><span class='match'>transpo<\/span>rt<\/li>\n  <li><span class='match'>trouble<\/span><\/li>\n  <li><span class='match'>tuesday<\/span><\/li>\n  <li><span class='match'>underst<\/span>and<\/li>\n  <li><span class='match'>univers<\/span>ity<\/li>\n  <li><span class='match'>various<\/span><\/li>\n  <li><span class='match'>village<\/span><\/li>\n  <li><span class='match'>wednesd<\/span>ay<\/li>\n  <li><span class='match'>welcome<\/span><\/li>\n  <li><span class='match'>whether<\/span><\/li>\n  <li><span class='match'>without<\/span><\/li>\n  <li><span class='match'>yesterd<\/span>ay<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7af42c14481a877bcdf1" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7af42c14481a877bcdf1">{"x":{"html":"<ul>\n  <li><span class='match'>absolut<\/span>e<\/li>\n  <li><span class='match'>account<\/span><\/li>\n  <li><span class='match'>achieve<\/span><\/li>\n  <li><span class='match'>address<\/span><\/li>\n  <li><span class='match'>adverti<\/span>se<\/li>\n  <li><span class='match'>afterno<\/span>on<\/li>\n  <li><span class='match'>against<\/span><\/li>\n  <li><span class='match'>already<\/span><\/li>\n  <li><span class='match'>alright<\/span><\/li>\n  <li><span class='match'>althoug<\/span>h<\/li>\n  <li><span class='match'>america<\/span><\/li>\n  <li><span class='match'>another<\/span><\/li>\n  <li><span class='match'>apparen<\/span>t<\/li>\n  <li><span class='match'>appoint<\/span><\/li>\n  <li><span class='match'>approac<\/span>h<\/li>\n  <li><span class='match'>appropr<\/span>iate<\/li>\n  <li><span class='match'>arrange<\/span><\/li>\n  <li><span class='match'>associa<\/span>te<\/li>\n  <li><span class='match'>authori<\/span>ty<\/li>\n  <li><span class='match'>availab<\/span>le<\/li>\n  <li><span class='match'>balance<\/span><\/li>\n  <li><span class='match'>because<\/span><\/li>\n  <li><span class='match'>believe<\/span><\/li>\n  <li><span class='match'>benefit<\/span><\/li>\n  <li><span class='match'>between<\/span><\/li>\n  <li><span class='match'>brillia<\/span>nt<\/li>\n  <li><span class='match'>britain<\/span><\/li>\n  <li><span class='match'>brother<\/span><\/li>\n  <li><span class='match'>busines<\/span>s<\/li>\n  <li><span class='match'>certain<\/span><\/li>\n  <li><span class='match'>chairma<\/span>n<\/li>\n  <li><span class='match'>charact<\/span>er<\/li>\n  <li><span class='match'>Christm<\/span>as<\/li>\n  <li><span class='match'>colleag<\/span>ue<\/li>\n  <li><span class='match'>collect<\/span><\/li>\n  <li><span class='match'>college<\/span><\/li>\n  <li><span class='match'>comment<\/span><\/li>\n  <li><span class='match'>committ<\/span>ee<\/li>\n  <li><span class='match'>communi<\/span>ty<\/li>\n  <li><span class='match'>company<\/span><\/li>\n  <li><span class='match'>compare<\/span><\/li>\n  <li><span class='match'>complet<\/span>e<\/li>\n  <li><span class='match'>compute<\/span><\/li>\n  <li><span class='match'>concern<\/span><\/li>\n  <li><span class='match'>conditi<\/span>on<\/li>\n  <li><span class='match'>conside<\/span>r<\/li>\n  <li><span class='match'>consult<\/span><\/li>\n  <li><span class='match'>contact<\/span><\/li>\n  <li><span class='match'>continu<\/span>e<\/li>\n  <li><span class='match'>contrac<\/span>t<\/li>\n  <li><span class='match'>control<\/span><\/li>\n  <li><span class='match'>convers<\/span>e<\/li>\n  <li><span class='match'>correct<\/span><\/li>\n  <li><span class='match'>council<\/span><\/li>\n  <li><span class='match'>country<\/span><\/li>\n  <li><span class='match'>current<\/span><\/li>\n  <li><span class='match'>decisio<\/span>n<\/li>\n  <li><span class='match'>definit<\/span>e<\/li>\n  <li><span class='match'>departm<\/span>ent<\/li>\n  <li><span class='match'>describ<\/span>e<\/li>\n  <li><span class='match'>develop<\/span><\/li>\n  <li><span class='match'>differe<\/span>nce<\/li>\n  <li><span class='match'>difficu<\/span>lt<\/li>\n  <li><span class='match'>discuss<\/span><\/li>\n  <li><span class='match'>distric<\/span>t<\/li>\n  <li><span class='match'>documen<\/span>t<\/li>\n  <li><span class='match'>economy<\/span><\/li>\n  <li><span class='match'>educate<\/span><\/li>\n  <li><span class='match'>electri<\/span>c<\/li>\n  <li><span class='match'>encoura<\/span>ge<\/li>\n  <li><span class='match'>english<\/span><\/li>\n  <li><span class='match'>environ<\/span>ment<\/li>\n  <li><span class='match'>especia<\/span>l<\/li>\n  <li><span class='match'>evening<\/span><\/li>\n  <li><span class='match'>evidenc<\/span>e<\/li>\n  <li><span class='match'>example<\/span><\/li>\n  <li><span class='match'>exercis<\/span>e<\/li>\n  <li><span class='match'>expense<\/span><\/li>\n  <li><span class='match'>experie<\/span>nce<\/li>\n  <li><span class='match'>explain<\/span><\/li>\n  <li><span class='match'>express<\/span><\/li>\n  <li><span class='match'>finance<\/span><\/li>\n  <li><span class='match'>fortune<\/span><\/li>\n  <li><span class='match'>forward<\/span><\/li>\n  <li><span class='match'>functio<\/span>n<\/li>\n  <li><span class='match'>further<\/span><\/li>\n  <li><span class='match'>general<\/span><\/li>\n  <li><span class='match'>germany<\/span><\/li>\n  <li><span class='match'>goodbye<\/span><\/li>\n  <li><span class='match'>history<\/span><\/li>\n  <li><span class='match'>holiday<\/span><\/li>\n  <li><span class='match'>hospita<\/span>l<\/li>\n  <li><span class='match'>however<\/span><\/li>\n  <li><span class='match'>hundred<\/span><\/li>\n  <li><span class='match'>husband<\/span><\/li>\n  <li><span class='match'>identif<\/span>y<\/li>\n  <li><span class='match'>imagine<\/span><\/li>\n  <li><span class='match'>importa<\/span>nt<\/li>\n  <li><span class='match'>improve<\/span><\/li>\n  <li><span class='match'>include<\/span><\/li>\n  <li><span class='match'>increas<\/span>e<\/li>\n  <li><span class='match'>individ<\/span>ual<\/li>\n  <li><span class='match'>industr<\/span>y<\/li>\n  <li><span class='match'>instead<\/span><\/li>\n  <li><span class='match'>interes<\/span>t<\/li>\n  <li><span class='match'>introdu<\/span>ce<\/li>\n  <li><span class='match'>involve<\/span><\/li>\n  <li><span class='match'>kitchen<\/span><\/li>\n  <li><span class='match'>languag<\/span>e<\/li>\n  <li><span class='match'>machine<\/span><\/li>\n  <li><span class='match'>meaning<\/span><\/li>\n  <li><span class='match'>measure<\/span><\/li>\n  <li><span class='match'>mention<\/span><\/li>\n  <li><span class='match'>million<\/span><\/li>\n  <li><span class='match'>ministe<\/span>r<\/li>\n  <li><span class='match'>morning<\/span><\/li>\n  <li><span class='match'>necessa<\/span>ry<\/li>\n  <li><span class='match'>obvious<\/span><\/li>\n  <li><span class='match'>occasio<\/span>n<\/li>\n  <li><span class='match'>operate<\/span><\/li>\n  <li><span class='match'>opportu<\/span>nity<\/li>\n  <li><span class='match'>organiz<\/span>e<\/li>\n  <li><span class='match'>origina<\/span>l<\/li>\n  <li><span class='match'>otherwi<\/span>se<\/li>\n  <li><span class='match'>paragra<\/span>ph<\/li>\n  <li><span class='match'>particu<\/span>lar<\/li>\n  <li><span class='match'>pension<\/span><\/li>\n  <li><span class='match'>percent<\/span><\/li>\n  <li><span class='match'>perfect<\/span><\/li>\n  <li><span class='match'>perhaps<\/span><\/li>\n  <li><span class='match'>photogr<\/span>aph<\/li>\n  <li><span class='match'>picture<\/span><\/li>\n  <li><span class='match'>politic<\/span><\/li>\n  <li><span class='match'>positio<\/span>n<\/li>\n  <li><span class='match'>positiv<\/span>e<\/li>\n  <li><span class='match'>possibl<\/span>e<\/li>\n  <li><span class='match'>practis<\/span>e<\/li>\n  <li><span class='match'>prepare<\/span><\/li>\n  <li><span class='match'>present<\/span><\/li>\n  <li><span class='match'>pressur<\/span>e<\/li>\n  <li><span class='match'>presume<\/span><\/li>\n  <li><span class='match'>previou<\/span>s<\/li>\n  <li><span class='match'>private<\/span><\/li>\n  <li><span class='match'>probabl<\/span>e<\/li>\n  <li><span class='match'>problem<\/span><\/li>\n  <li><span class='match'>proceed<\/span><\/li>\n  <li><span class='match'>process<\/span><\/li>\n  <li><span class='match'>produce<\/span><\/li>\n  <li><span class='match'>product<\/span><\/li>\n  <li><span class='match'>program<\/span>me<\/li>\n  <li><span class='match'>project<\/span><\/li>\n  <li><span class='match'>propose<\/span><\/li>\n  <li><span class='match'>protect<\/span><\/li>\n  <li><span class='match'>provide<\/span><\/li>\n  <li><span class='match'>purpose<\/span><\/li>\n  <li><span class='match'>quality<\/span><\/li>\n  <li><span class='match'>quarter<\/span><\/li>\n  <li><span class='match'>questio<\/span>n<\/li>\n  <li><span class='match'>realise<\/span><\/li>\n  <li><span class='match'>receive<\/span><\/li>\n  <li><span class='match'>recogni<\/span>ze<\/li>\n  <li><span class='match'>recomme<\/span>nd<\/li>\n  <li><span class='match'>relatio<\/span>n<\/li>\n  <li><span class='match'>remembe<\/span>r<\/li>\n  <li><span class='match'>represe<\/span>nt<\/li>\n  <li><span class='match'>require<\/span><\/li>\n  <li><span class='match'>researc<\/span>h<\/li>\n  <li><span class='match'>resourc<\/span>e<\/li>\n  <li><span class='match'>respect<\/span><\/li>\n  <li><span class='match'>respons<\/span>ible<\/li>\n  <li><span class='match'>saturda<\/span>y<\/li>\n  <li><span class='match'>science<\/span><\/li>\n  <li><span class='match'>scotlan<\/span>d<\/li>\n  <li><span class='match'>secreta<\/span>ry<\/li>\n  <li><span class='match'>section<\/span><\/li>\n  <li><span class='match'>separat<\/span>e<\/li>\n  <li><span class='match'>serious<\/span><\/li>\n  <li><span class='match'>service<\/span><\/li>\n  <li><span class='match'>similar<\/span><\/li>\n  <li><span class='match'>situate<\/span><\/li>\n  <li><span class='match'>society<\/span><\/li>\n  <li><span class='match'>special<\/span><\/li>\n  <li><span class='match'>specifi<\/span>c<\/li>\n  <li><span class='match'>standar<\/span>d<\/li>\n  <li><span class='match'>station<\/span><\/li>\n  <li><span class='match'>straigh<\/span>t<\/li>\n  <li><span class='match'>strateg<\/span>y<\/li>\n  <li><span class='match'>structu<\/span>re<\/li>\n  <li><span class='match'>student<\/span><\/li>\n  <li><span class='match'>subject<\/span><\/li>\n  <li><span class='match'>succeed<\/span><\/li>\n  <li><span class='match'>suggest<\/span><\/li>\n  <li><span class='match'>support<\/span><\/li>\n  <li><span class='match'>suppose<\/span><\/li>\n  <li><span class='match'>surpris<\/span>e<\/li>\n  <li><span class='match'>telepho<\/span>ne<\/li>\n  <li><span class='match'>televis<\/span>ion<\/li>\n  <li><span class='match'>terribl<\/span>e<\/li>\n  <li><span class='match'>therefo<\/span>re<\/li>\n  <li><span class='match'>thirtee<\/span>n<\/li>\n  <li><span class='match'>thousan<\/span>d<\/li>\n  <li><span class='match'>through<\/span><\/li>\n  <li><span class='match'>thursda<\/span>y<\/li>\n  <li><span class='match'>togethe<\/span>r<\/li>\n  <li><span class='match'>tomorro<\/span>w<\/li>\n  <li><span class='match'>tonight<\/span><\/li>\n  <li><span class='match'>traffic<\/span><\/li>\n  <li><span class='match'>transpo<\/span>rt<\/li>\n  <li><span class='match'>trouble<\/span><\/li>\n  <li><span class='match'>tuesday<\/span><\/li>\n  <li><span class='match'>underst<\/span>and<\/li>\n  <li><span class='match'>univers<\/span>ity<\/li>\n  <li><span class='match'>various<\/span><\/li>\n  <li><span class='match'>village<\/span><\/li>\n  <li><span class='match'>wednesd<\/span>ay<\/li>\n  <li><span class='match'>welcome<\/span><\/li>\n  <li><span class='match'>whether<\/span><\/li>\n  <li><span class='match'>without<\/span><\/li>\n  <li><span class='match'>yesterd<\/span>ay<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#Match = true resolves earlier issue, it highlights in the viewer only the matches</code></pre>
 </div>
 <div id="section-3" class="section level12">
@@ -299,58 +300,57 @@ c&lt;- &quot;what if i.write a sentence.with lots of periods.init&quot;
 </ol>
 <pre class="r"><code> #a. starts with a vowel:
 str_view(stringr::words, &quot;^a|^e|^i|^o|^u&quot;, match = TRUE) </code></pre>
-<div id="htmlwidget-cd4f2a4a637768059e5c" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cd4f2a4a637768059e5c">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span><\/li>\n  <li><span class='match'>a<\/span>ble<\/li>\n  <li><span class='match'>a<\/span>bout<\/li>\n  <li><span class='match'>a<\/span>bsolute<\/li>\n  <li><span class='match'>a<\/span>ccept<\/li>\n  <li><span class='match'>a<\/span>ccount<\/li>\n  <li><span class='match'>a<\/span>chieve<\/li>\n  <li><span class='match'>a<\/span>cross<\/li>\n  <li><span class='match'>a<\/span>ct<\/li>\n  <li><span class='match'>a<\/span>ctive<\/li>\n  <li><span class='match'>a<\/span>ctual<\/li>\n  <li><span class='match'>a<\/span>dd<\/li>\n  <li><span class='match'>a<\/span>ddress<\/li>\n  <li><span class='match'>a<\/span>dmit<\/li>\n  <li><span class='match'>a<\/span>dvertise<\/li>\n  <li><span class='match'>a<\/span>ffect<\/li>\n  <li><span class='match'>a<\/span>fford<\/li>\n  <li><span class='match'>a<\/span>fter<\/li>\n  <li><span class='match'>a<\/span>fternoon<\/li>\n  <li><span class='match'>a<\/span>gain<\/li>\n  <li><span class='match'>a<\/span>gainst<\/li>\n  <li><span class='match'>a<\/span>ge<\/li>\n  <li><span class='match'>a<\/span>gent<\/li>\n  <li><span class='match'>a<\/span>go<\/li>\n  <li><span class='match'>a<\/span>gree<\/li>\n  <li><span class='match'>a<\/span>ir<\/li>\n  <li><span class='match'>a<\/span>ll<\/li>\n  <li><span class='match'>a<\/span>llow<\/li>\n  <li><span class='match'>a<\/span>lmost<\/li>\n  <li><span class='match'>a<\/span>long<\/li>\n  <li><span class='match'>a<\/span>lready<\/li>\n  <li><span class='match'>a<\/span>lright<\/li>\n  <li><span class='match'>a<\/span>lso<\/li>\n  <li><span class='match'>a<\/span>lthough<\/li>\n  <li><span class='match'>a<\/span>lways<\/li>\n  <li><span class='match'>a<\/span>merica<\/li>\n  <li><span class='match'>a<\/span>mount<\/li>\n  <li><span class='match'>a<\/span>nd<\/li>\n  <li><span class='match'>a<\/span>nother<\/li>\n  <li><span class='match'>a<\/span>nswer<\/li>\n  <li><span class='match'>a<\/span>ny<\/li>\n  <li><span class='match'>a<\/span>part<\/li>\n  <li><span class='match'>a<\/span>pparent<\/li>\n  <li><span class='match'>a<\/span>ppear<\/li>\n  <li><span class='match'>a<\/span>pply<\/li>\n  <li><span class='match'>a<\/span>ppoint<\/li>\n  <li><span class='match'>a<\/span>pproach<\/li>\n  <li><span class='match'>a<\/span>ppropriate<\/li>\n  <li><span class='match'>a<\/span>rea<\/li>\n  <li><span class='match'>a<\/span>rgue<\/li>\n  <li><span class='match'>a<\/span>rm<\/li>\n  <li><span class='match'>a<\/span>round<\/li>\n  <li><span class='match'>a<\/span>rrange<\/li>\n  <li><span class='match'>a<\/span>rt<\/li>\n  <li><span class='match'>a<\/span>s<\/li>\n  <li><span class='match'>a<\/span>sk<\/li>\n  <li><span class='match'>a<\/span>ssociate<\/li>\n  <li><span class='match'>a<\/span>ssume<\/li>\n  <li><span class='match'>a<\/span>t<\/li>\n  <li><span class='match'>a<\/span>ttend<\/li>\n  <li><span class='match'>a<\/span>uthority<\/li>\n  <li><span class='match'>a<\/span>vailable<\/li>\n  <li><span class='match'>a<\/span>ware<\/li>\n  <li><span class='match'>a<\/span>way<\/li>\n  <li><span class='match'>a<\/span>wful<\/li>\n  <li><span class='match'>e<\/span>ach<\/li>\n  <li><span class='match'>e<\/span>arly<\/li>\n  <li><span class='match'>e<\/span>ast<\/li>\n  <li><span class='match'>e<\/span>asy<\/li>\n  <li><span class='match'>e<\/span>at<\/li>\n  <li><span class='match'>e<\/span>conomy<\/li>\n  <li><span class='match'>e<\/span>ducate<\/li>\n  <li><span class='match'>e<\/span>ffect<\/li>\n  <li><span class='match'>e<\/span>gg<\/li>\n  <li><span class='match'>e<\/span>ight<\/li>\n  <li><span class='match'>e<\/span>ither<\/li>\n  <li><span class='match'>e<\/span>lect<\/li>\n  <li><span class='match'>e<\/span>lectric<\/li>\n  <li><span class='match'>e<\/span>leven<\/li>\n  <li><span class='match'>e<\/span>lse<\/li>\n  <li><span class='match'>e<\/span>mploy<\/li>\n  <li><span class='match'>e<\/span>ncourage<\/li>\n  <li><span class='match'>e<\/span>nd<\/li>\n  <li><span class='match'>e<\/span>ngine<\/li>\n  <li><span class='match'>e<\/span>nglish<\/li>\n  <li><span class='match'>e<\/span>njoy<\/li>\n  <li><span class='match'>e<\/span>nough<\/li>\n  <li><span class='match'>e<\/span>nter<\/li>\n  <li><span class='match'>e<\/span>nvironment<\/li>\n  <li><span class='match'>e<\/span>qual<\/li>\n  <li><span class='match'>e<\/span>special<\/li>\n  <li><span class='match'>e<\/span>urope<\/li>\n  <li><span class='match'>e<\/span>ven<\/li>\n  <li><span class='match'>e<\/span>vening<\/li>\n  <li><span class='match'>e<\/span>ver<\/li>\n  <li><span class='match'>e<\/span>very<\/li>\n  <li><span class='match'>e<\/span>vidence<\/li>\n  <li><span class='match'>e<\/span>xact<\/li>\n  <li><span class='match'>e<\/span>xample<\/li>\n  <li><span class='match'>e<\/span>xcept<\/li>\n  <li><span class='match'>e<\/span>xcuse<\/li>\n  <li><span class='match'>e<\/span>xercise<\/li>\n  <li><span class='match'>e<\/span>xist<\/li>\n  <li><span class='match'>e<\/span>xpect<\/li>\n  <li><span class='match'>e<\/span>xpense<\/li>\n  <li><span class='match'>e<\/span>xperience<\/li>\n  <li><span class='match'>e<\/span>xplain<\/li>\n  <li><span class='match'>e<\/span>xpress<\/li>\n  <li><span class='match'>e<\/span>xtra<\/li>\n  <li><span class='match'>e<\/span>ye<\/li>\n  <li><span class='match'>i<\/span>dea<\/li>\n  <li><span class='match'>i<\/span>dentify<\/li>\n  <li><span class='match'>i<\/span>f<\/li>\n  <li><span class='match'>i<\/span>magine<\/li>\n  <li><span class='match'>i<\/span>mportant<\/li>\n  <li><span class='match'>i<\/span>mprove<\/li>\n  <li><span class='match'>i<\/span>n<\/li>\n  <li><span class='match'>i<\/span>nclude<\/li>\n  <li><span class='match'>i<\/span>ncome<\/li>\n  <li><span class='match'>i<\/span>ncrease<\/li>\n  <li><span class='match'>i<\/span>ndeed<\/li>\n  <li><span class='match'>i<\/span>ndividual<\/li>\n  <li><span class='match'>i<\/span>ndustry<\/li>\n  <li><span class='match'>i<\/span>nform<\/li>\n  <li><span class='match'>i<\/span>nside<\/li>\n  <li><span class='match'>i<\/span>nstead<\/li>\n  <li><span class='match'>i<\/span>nsure<\/li>\n  <li><span class='match'>i<\/span>nterest<\/li>\n  <li><span class='match'>i<\/span>nto<\/li>\n  <li><span class='match'>i<\/span>ntroduce<\/li>\n  <li><span class='match'>i<\/span>nvest<\/li>\n  <li><span class='match'>i<\/span>nvolve<\/li>\n  <li><span class='match'>i<\/span>ssue<\/li>\n  <li><span class='match'>i<\/span>t<\/li>\n  <li><span class='match'>i<\/span>tem<\/li>\n  <li><span class='match'>o<\/span>bvious<\/li>\n  <li><span class='match'>o<\/span>ccasion<\/li>\n  <li><span class='match'>o<\/span>dd<\/li>\n  <li><span class='match'>o<\/span>f<\/li>\n  <li><span class='match'>o<\/span>ff<\/li>\n  <li><span class='match'>o<\/span>ffer<\/li>\n  <li><span class='match'>o<\/span>ffice<\/li>\n  <li><span class='match'>o<\/span>ften<\/li>\n  <li><span class='match'>o<\/span>kay<\/li>\n  <li><span class='match'>o<\/span>ld<\/li>\n  <li><span class='match'>o<\/span>n<\/li>\n  <li><span class='match'>o<\/span>nce<\/li>\n  <li><span class='match'>o<\/span>ne<\/li>\n  <li><span class='match'>o<\/span>nly<\/li>\n  <li><span class='match'>o<\/span>pen<\/li>\n  <li><span class='match'>o<\/span>perate<\/li>\n  <li><span class='match'>o<\/span>pportunity<\/li>\n  <li><span class='match'>o<\/span>ppose<\/li>\n  <li><span class='match'>o<\/span>r<\/li>\n  <li><span class='match'>o<\/span>rder<\/li>\n  <li><span class='match'>o<\/span>rganize<\/li>\n  <li><span class='match'>o<\/span>riginal<\/li>\n  <li><span class='match'>o<\/span>ther<\/li>\n  <li><span class='match'>o<\/span>therwise<\/li>\n  <li><span class='match'>o<\/span>ught<\/li>\n  <li><span class='match'>o<\/span>ut<\/li>\n  <li><span class='match'>o<\/span>ver<\/li>\n  <li><span class='match'>o<\/span>wn<\/li>\n  <li><span class='match'>u<\/span>nder<\/li>\n  <li><span class='match'>u<\/span>nderstand<\/li>\n  <li><span class='match'>u<\/span>nion<\/li>\n  <li><span class='match'>u<\/span>nit<\/li>\n  <li><span class='match'>u<\/span>nite<\/li>\n  <li><span class='match'>u<\/span>niversity<\/li>\n  <li><span class='match'>u<\/span>nless<\/li>\n  <li><span class='match'>u<\/span>ntil<\/li>\n  <li><span class='match'>u<\/span>p<\/li>\n  <li><span class='match'>u<\/span>pon<\/li>\n  <li><span class='match'>u<\/span>se<\/li>\n  <li><span class='match'>u<\/span>sual<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5ee81df4c363babed755" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5ee81df4c363babed755">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span><\/li>\n  <li><span class='match'>a<\/span>ble<\/li>\n  <li><span class='match'>a<\/span>bout<\/li>\n  <li><span class='match'>a<\/span>bsolute<\/li>\n  <li><span class='match'>a<\/span>ccept<\/li>\n  <li><span class='match'>a<\/span>ccount<\/li>\n  <li><span class='match'>a<\/span>chieve<\/li>\n  <li><span class='match'>a<\/span>cross<\/li>\n  <li><span class='match'>a<\/span>ct<\/li>\n  <li><span class='match'>a<\/span>ctive<\/li>\n  <li><span class='match'>a<\/span>ctual<\/li>\n  <li><span class='match'>a<\/span>dd<\/li>\n  <li><span class='match'>a<\/span>ddress<\/li>\n  <li><span class='match'>a<\/span>dmit<\/li>\n  <li><span class='match'>a<\/span>dvertise<\/li>\n  <li><span class='match'>a<\/span>ffect<\/li>\n  <li><span class='match'>a<\/span>fford<\/li>\n  <li><span class='match'>a<\/span>fter<\/li>\n  <li><span class='match'>a<\/span>fternoon<\/li>\n  <li><span class='match'>a<\/span>gain<\/li>\n  <li><span class='match'>a<\/span>gainst<\/li>\n  <li><span class='match'>a<\/span>ge<\/li>\n  <li><span class='match'>a<\/span>gent<\/li>\n  <li><span class='match'>a<\/span>go<\/li>\n  <li><span class='match'>a<\/span>gree<\/li>\n  <li><span class='match'>a<\/span>ir<\/li>\n  <li><span class='match'>a<\/span>ll<\/li>\n  <li><span class='match'>a<\/span>llow<\/li>\n  <li><span class='match'>a<\/span>lmost<\/li>\n  <li><span class='match'>a<\/span>long<\/li>\n  <li><span class='match'>a<\/span>lready<\/li>\n  <li><span class='match'>a<\/span>lright<\/li>\n  <li><span class='match'>a<\/span>lso<\/li>\n  <li><span class='match'>a<\/span>lthough<\/li>\n  <li><span class='match'>a<\/span>lways<\/li>\n  <li><span class='match'>a<\/span>merica<\/li>\n  <li><span class='match'>a<\/span>mount<\/li>\n  <li><span class='match'>a<\/span>nd<\/li>\n  <li><span class='match'>a<\/span>nother<\/li>\n  <li><span class='match'>a<\/span>nswer<\/li>\n  <li><span class='match'>a<\/span>ny<\/li>\n  <li><span class='match'>a<\/span>part<\/li>\n  <li><span class='match'>a<\/span>pparent<\/li>\n  <li><span class='match'>a<\/span>ppear<\/li>\n  <li><span class='match'>a<\/span>pply<\/li>\n  <li><span class='match'>a<\/span>ppoint<\/li>\n  <li><span class='match'>a<\/span>pproach<\/li>\n  <li><span class='match'>a<\/span>ppropriate<\/li>\n  <li><span class='match'>a<\/span>rea<\/li>\n  <li><span class='match'>a<\/span>rgue<\/li>\n  <li><span class='match'>a<\/span>rm<\/li>\n  <li><span class='match'>a<\/span>round<\/li>\n  <li><span class='match'>a<\/span>rrange<\/li>\n  <li><span class='match'>a<\/span>rt<\/li>\n  <li><span class='match'>a<\/span>s<\/li>\n  <li><span class='match'>a<\/span>sk<\/li>\n  <li><span class='match'>a<\/span>ssociate<\/li>\n  <li><span class='match'>a<\/span>ssume<\/li>\n  <li><span class='match'>a<\/span>t<\/li>\n  <li><span class='match'>a<\/span>ttend<\/li>\n  <li><span class='match'>a<\/span>uthority<\/li>\n  <li><span class='match'>a<\/span>vailable<\/li>\n  <li><span class='match'>a<\/span>ware<\/li>\n  <li><span class='match'>a<\/span>way<\/li>\n  <li><span class='match'>a<\/span>wful<\/li>\n  <li><span class='match'>e<\/span>ach<\/li>\n  <li><span class='match'>e<\/span>arly<\/li>\n  <li><span class='match'>e<\/span>ast<\/li>\n  <li><span class='match'>e<\/span>asy<\/li>\n  <li><span class='match'>e<\/span>at<\/li>\n  <li><span class='match'>e<\/span>conomy<\/li>\n  <li><span class='match'>e<\/span>ducate<\/li>\n  <li><span class='match'>e<\/span>ffect<\/li>\n  <li><span class='match'>e<\/span>gg<\/li>\n  <li><span class='match'>e<\/span>ight<\/li>\n  <li><span class='match'>e<\/span>ither<\/li>\n  <li><span class='match'>e<\/span>lect<\/li>\n  <li><span class='match'>e<\/span>lectric<\/li>\n  <li><span class='match'>e<\/span>leven<\/li>\n  <li><span class='match'>e<\/span>lse<\/li>\n  <li><span class='match'>e<\/span>mploy<\/li>\n  <li><span class='match'>e<\/span>ncourage<\/li>\n  <li><span class='match'>e<\/span>nd<\/li>\n  <li><span class='match'>e<\/span>ngine<\/li>\n  <li><span class='match'>e<\/span>nglish<\/li>\n  <li><span class='match'>e<\/span>njoy<\/li>\n  <li><span class='match'>e<\/span>nough<\/li>\n  <li><span class='match'>e<\/span>nter<\/li>\n  <li><span class='match'>e<\/span>nvironment<\/li>\n  <li><span class='match'>e<\/span>qual<\/li>\n  <li><span class='match'>e<\/span>special<\/li>\n  <li><span class='match'>e<\/span>urope<\/li>\n  <li><span class='match'>e<\/span>ven<\/li>\n  <li><span class='match'>e<\/span>vening<\/li>\n  <li><span class='match'>e<\/span>ver<\/li>\n  <li><span class='match'>e<\/span>very<\/li>\n  <li><span class='match'>e<\/span>vidence<\/li>\n  <li><span class='match'>e<\/span>xact<\/li>\n  <li><span class='match'>e<\/span>xample<\/li>\n  <li><span class='match'>e<\/span>xcept<\/li>\n  <li><span class='match'>e<\/span>xcuse<\/li>\n  <li><span class='match'>e<\/span>xercise<\/li>\n  <li><span class='match'>e<\/span>xist<\/li>\n  <li><span class='match'>e<\/span>xpect<\/li>\n  <li><span class='match'>e<\/span>xpense<\/li>\n  <li><span class='match'>e<\/span>xperience<\/li>\n  <li><span class='match'>e<\/span>xplain<\/li>\n  <li><span class='match'>e<\/span>xpress<\/li>\n  <li><span class='match'>e<\/span>xtra<\/li>\n  <li><span class='match'>e<\/span>ye<\/li>\n  <li><span class='match'>i<\/span>dea<\/li>\n  <li><span class='match'>i<\/span>dentify<\/li>\n  <li><span class='match'>i<\/span>f<\/li>\n  <li><span class='match'>i<\/span>magine<\/li>\n  <li><span class='match'>i<\/span>mportant<\/li>\n  <li><span class='match'>i<\/span>mprove<\/li>\n  <li><span class='match'>i<\/span>n<\/li>\n  <li><span class='match'>i<\/span>nclude<\/li>\n  <li><span class='match'>i<\/span>ncome<\/li>\n  <li><span class='match'>i<\/span>ncrease<\/li>\n  <li><span class='match'>i<\/span>ndeed<\/li>\n  <li><span class='match'>i<\/span>ndividual<\/li>\n  <li><span class='match'>i<\/span>ndustry<\/li>\n  <li><span class='match'>i<\/span>nform<\/li>\n  <li><span class='match'>i<\/span>nside<\/li>\n  <li><span class='match'>i<\/span>nstead<\/li>\n  <li><span class='match'>i<\/span>nsure<\/li>\n  <li><span class='match'>i<\/span>nterest<\/li>\n  <li><span class='match'>i<\/span>nto<\/li>\n  <li><span class='match'>i<\/span>ntroduce<\/li>\n  <li><span class='match'>i<\/span>nvest<\/li>\n  <li><span class='match'>i<\/span>nvolve<\/li>\n  <li><span class='match'>i<\/span>ssue<\/li>\n  <li><span class='match'>i<\/span>t<\/li>\n  <li><span class='match'>i<\/span>tem<\/li>\n  <li><span class='match'>o<\/span>bvious<\/li>\n  <li><span class='match'>o<\/span>ccasion<\/li>\n  <li><span class='match'>o<\/span>dd<\/li>\n  <li><span class='match'>o<\/span>f<\/li>\n  <li><span class='match'>o<\/span>ff<\/li>\n  <li><span class='match'>o<\/span>ffer<\/li>\n  <li><span class='match'>o<\/span>ffice<\/li>\n  <li><span class='match'>o<\/span>ften<\/li>\n  <li><span class='match'>o<\/span>kay<\/li>\n  <li><span class='match'>o<\/span>ld<\/li>\n  <li><span class='match'>o<\/span>n<\/li>\n  <li><span class='match'>o<\/span>nce<\/li>\n  <li><span class='match'>o<\/span>ne<\/li>\n  <li><span class='match'>o<\/span>nly<\/li>\n  <li><span class='match'>o<\/span>pen<\/li>\n  <li><span class='match'>o<\/span>perate<\/li>\n  <li><span class='match'>o<\/span>pportunity<\/li>\n  <li><span class='match'>o<\/span>ppose<\/li>\n  <li><span class='match'>o<\/span>r<\/li>\n  <li><span class='match'>o<\/span>rder<\/li>\n  <li><span class='match'>o<\/span>rganize<\/li>\n  <li><span class='match'>o<\/span>riginal<\/li>\n  <li><span class='match'>o<\/span>ther<\/li>\n  <li><span class='match'>o<\/span>therwise<\/li>\n  <li><span class='match'>o<\/span>ught<\/li>\n  <li><span class='match'>o<\/span>ut<\/li>\n  <li><span class='match'>o<\/span>ver<\/li>\n  <li><span class='match'>o<\/span>wn<\/li>\n  <li><span class='match'>u<\/span>nder<\/li>\n  <li><span class='match'>u<\/span>nderstand<\/li>\n  <li><span class='match'>u<\/span>nion<\/li>\n  <li><span class='match'>u<\/span>nit<\/li>\n  <li><span class='match'>u<\/span>nite<\/li>\n  <li><span class='match'>u<\/span>niversity<\/li>\n  <li><span class='match'>u<\/span>nless<\/li>\n  <li><span class='match'>u<\/span>ntil<\/li>\n  <li><span class='match'>u<\/span>p<\/li>\n  <li><span class='match'>u<\/span>pon<\/li>\n  <li><span class='match'>u<\/span>se<\/li>\n  <li><span class='match'>u<\/span>sual<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#the | indicates &quot;or&quot; between each matching option, early attemps show 
 #that you must have ^ for each vowel, that is you must designate position after 
 #every or otherwise it will pick any ol' word with an e,i,o,u
  #b. only contain consonants
-str_view(stringr::words, &quot;!a|!e|!i|!o|!u&quot;, match = TRUE) </code></pre>
-<div id="htmlwidget-f022db08c6778201a5bd" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f022db08c6778201a5bd">{"x":{"html":"<ul>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code>#it does not appear there are any all consonant words
+#str_view(stringr::words, &quot;!a|!e|!i|!o|!u&quot;, match = TRUE) 
+#it does not appear there are any all consonant words
  #c. end with ed, but not eed
 str_view(stringr::words, &quot;ed$&quot;, match = TRUE) </code></pre>
-<div id="htmlwidget-c29e86f16f186070bfbf" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c29e86f16f186070bfbf">{"x":{"html":"<ul>\n  <li>b<span class='match'>ed<\/span><\/li>\n  <li>fe<span class='match'>ed<\/span><\/li>\n  <li>hundr<span class='match'>ed<\/span><\/li>\n  <li>inde<span class='match'>ed<\/span><\/li>\n  <li>ne<span class='match'>ed<\/span><\/li>\n  <li>proce<span class='match'>ed<\/span><\/li>\n  <li>r<span class='match'>ed<\/span><\/li>\n  <li>spe<span class='match'>ed<\/span><\/li>\n  <li>succe<span class='match'>ed<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-05d70e6c3dfb1f2ce772" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-05d70e6c3dfb1f2ce772">{"x":{"html":"<ul>\n  <li>b<span class='match'>ed<\/span><\/li>\n  <li>fe<span class='match'>ed<\/span><\/li>\n  <li>hundr<span class='match'>ed<\/span><\/li>\n  <li>inde<span class='match'>ed<\/span><\/li>\n  <li>ne<span class='match'>ed<\/span><\/li>\n  <li>proce<span class='match'>ed<\/span><\/li>\n  <li>r<span class='match'>ed<\/span><\/li>\n  <li>spe<span class='match'>ed<\/span><\/li>\n  <li>succe<span class='match'>ed<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#grabs all that end in -ed AND eed, but how to get rid of those eed?</code></pre>
 <pre class="r"><code>########str_view(stringr::words, &quot;\\b[a-zA-Z0-9]{3,3}\\bed$&quot;, match = TRUE)
 #str_view(stringr::words, &quot;[&quot;ed$&quot;]&quot;, match = TRUE) #I have struggled through several iterations of modifying this approach :(
   #d. ending with -ing or -ise
 str_view(stringr::words, &quot;ing$|ise&quot;, match = TRUE)</code></pre>
-<div id="htmlwidget-3ad66635a0b8acbbf584" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3ad66635a0b8acbbf584">{"x":{"html":"<ul>\n  <li>advert<span class='match'>ise<\/span><\/li>\n  <li>br<span class='match'>ing<\/span><\/li>\n  <li>dur<span class='match'>ing<\/span><\/li>\n  <li>even<span class='match'>ing<\/span><\/li>\n  <li>exerc<span class='match'>ise<\/span><\/li>\n  <li>k<span class='match'>ing<\/span><\/li>\n  <li>mean<span class='match'>ing<\/span><\/li>\n  <li>morn<span class='match'>ing<\/span><\/li>\n  <li>otherw<span class='match'>ise<\/span><\/li>\n  <li>pract<span class='match'>ise<\/span><\/li>\n  <li>ra<span class='match'>ise<\/span><\/li>\n  <li>real<span class='match'>ise<\/span><\/li>\n  <li>r<span class='match'>ing<\/span><\/li>\n  <li>r<span class='match'>ise<\/span><\/li>\n  <li>s<span class='match'>ing<\/span><\/li>\n  <li>surpr<span class='match'>ise<\/span><\/li>\n  <li>th<span class='match'>ing<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-57d73e818777779cff82" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-57d73e818777779cff82">{"x":{"html":"<ul>\n  <li>advert<span class='match'>ise<\/span><\/li>\n  <li>br<span class='match'>ing<\/span><\/li>\n  <li>dur<span class='match'>ing<\/span><\/li>\n  <li>even<span class='match'>ing<\/span><\/li>\n  <li>exerc<span class='match'>ise<\/span><\/li>\n  <li>k<span class='match'>ing<\/span><\/li>\n  <li>mean<span class='match'>ing<\/span><\/li>\n  <li>morn<span class='match'>ing<\/span><\/li>\n  <li>otherw<span class='match'>ise<\/span><\/li>\n  <li>pract<span class='match'>ise<\/span><\/li>\n  <li>ra<span class='match'>ise<\/span><\/li>\n  <li>real<span class='match'>ise<\/span><\/li>\n  <li>r<span class='match'>ing<\/span><\/li>\n  <li>r<span class='match'>ise<\/span><\/li>\n  <li>s<span class='match'>ing<\/span><\/li>\n  <li>surpr<span class='match'>ise<\/span><\/li>\n  <li>th<span class='match'>ing<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#2. Empirically verify the rule &quot;i before e except after c&quot;
 str_view(stringr::words, &quot;cei&quot;, match = TRUE)</code></pre>
-<div id="htmlwidget-d9477698f25201c5759c" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d9477698f25201c5759c">{"x":{"html":"<ul>\n  <li>re<span class='match'>cei<\/span>ve<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-497d861be630ace4b908" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-497d861be630ace4b908">{"x":{"html":"<ul>\n  <li>re<span class='match'>cei<\/span>ve<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#3. Is &quot;q&quot; always followed by &quot;u&quot;? 
   #Yes.
 str_view(stringr::words, &quot;qu&quot;, match = TRUE) # there are 10 occurences where q comes directly before u</code></pre>
-<div id="htmlwidget-1997a5e84a321f13dbed" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1997a5e84a321f13dbed">{"x":{"html":"<ul>\n  <li>e<span class='match'>qu<\/span>al<\/li>\n  <li><span class='match'>qu<\/span>ality<\/li>\n  <li><span class='match'>qu<\/span>arter<\/li>\n  <li><span class='match'>qu<\/span>estion<\/li>\n  <li><span class='match'>qu<\/span>ick<\/li>\n  <li><span class='match'>qu<\/span>id<\/li>\n  <li><span class='match'>qu<\/span>iet<\/li>\n  <li><span class='match'>qu<\/span>ite<\/li>\n  <li>re<span class='match'>qu<\/span>ire<\/li>\n  <li>s<span class='match'>qu<\/span>are<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6d633d8bd42649cac191" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6d633d8bd42649cac191">{"x":{"html":"<ul>\n  <li>e<span class='match'>qu<\/span>al<\/li>\n  <li><span class='match'>qu<\/span>ality<\/li>\n  <li><span class='match'>qu<\/span>arter<\/li>\n  <li><span class='match'>qu<\/span>estion<\/li>\n  <li><span class='match'>qu<\/span>ick<\/li>\n  <li><span class='match'>qu<\/span>id<\/li>\n  <li><span class='match'>qu<\/span>iet<\/li>\n  <li><span class='match'>qu<\/span>ite<\/li>\n  <li>re<span class='match'>qu<\/span>ire<\/li>\n  <li>s<span class='match'>qu<\/span>are<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(stringr::words, &quot;q.u&quot;, match = TRUE) # there are no occurence where q is seperated by some character then followed by u</code></pre>
-<div id="htmlwidget-75f2391b23d3d66b8b3c" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-75f2391b23d3d66b8b3c">{"x":{"html":"<ul>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-81c0f94ef4f696f72f98" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-81c0f94ef4f696f72f98">{"x":{"html":"<ul>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(stringr::words, &quot;uq&quot;, match = TRUE) #no occurences where u is directly before q</code></pre>
-<div id="htmlwidget-6bd118855cd2e3a5df59" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6bd118855cd2e3a5df59">{"x":{"html":"<ul>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-31cde447becea2d8de71" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-31cde447becea2d8de71">{"x":{"html":"<ul>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(stringr::words, &quot;u.q&quot;, match = TRUE) </code></pre>
-<div id="htmlwidget-1c867448066bbcab4774" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1c867448066bbcab4774">{"x":{"html":"<ul>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-066d0635fa0126eb4b7b" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-066d0635fa0126eb4b7b">{"x":{"html":"<ul>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#4. Write a regular expression that matches a word if its probably written in British English, not American English:
 
 str_view(stringr::words, &quot;..our$&quot;, match = TRUE) #the ... gets rid of any 4 and 5 letter words that are ubiquitous to both American and British english like four and flour</code></pre>
-<div id="htmlwidget-c63bd1025e8e9e31b53b" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c63bd1025e8e9e31b53b">{"x":{"html":"<ul>\n  <li>c<span class='match'>olour<\/span><\/li>\n  <li>f<span class='match'>avour<\/span><\/li>\n  <li>l<span class='match'>abour<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-407c0be55a7699f4857e" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-407c0be55a7699f4857e">{"x":{"html":"<ul>\n  <li>c<span class='match'>olour<\/span><\/li>\n  <li>f<span class='match'>avour<\/span><\/li>\n  <li>l<span class='match'>abour<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#5. Create a regular expression that will match telephone numbers as commonly written in your country
 c&lt;- c(&quot;555-555-5555&quot;, &quot;home 555-555-5551&quot;, &quot;mobile555-555-5552&quot;)
 
 str_view(c, &quot;...\\-...\\-....&quot;) </code></pre>
-<div id="htmlwidget-c1803f45ec6d8cc66eb3" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c1803f45ec6d8cc66eb3">{"x":{"html":"<ul>\n  <li><span class='match'>555-555-5555<\/span><\/li>\n  <li>home <span class='match'>555-555-5551<\/span><\/li>\n  <li>mobile<span class='match'>555-555-5552<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6b683a58c1778d31106c" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6b683a58c1778d31106c">{"x":{"html":"<ul>\n  <li><span class='match'>555-555-5555<\/span><\/li>\n  <li>home <span class='match'>555-555-5551<\/span><\/li>\n  <li>mobile<span class='match'>555-555-5552<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_subset(c, &quot;...\\-...\\-....&quot;) # we could subset all the strings with a phone number</code></pre>
 <pre><code>## [1] &quot;555-555-5555&quot;       &quot;home 555-555-5551&quot;  &quot;mobile555-555-5552&quot;</code></pre>
+<pre class="r"><code>#This feels like a party trick!</code></pre>
 </div>
 <div id="section-4" class="section level12">
 <p>14.3.4</p>
@@ -358,96 +358,94 @@ str_view(c, &quot;...\\-...\\-....&quot;) </code></pre>
   #Take R for data science's example:
 x &lt;- &quot;1888 is the longest year in Roman numerals: MDCCCLXXXVIII&quot;
 str_view(x, &quot;CC?&quot;)</code></pre>
-<div id="htmlwidget-67f20fdff986813ecfbd" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-67f20fdff986813ecfbd">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0d821c845332d0d864a5" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0d821c845332d0d864a5">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(x, &quot;C{1,2}&quot;)</code></pre>
-<div id="htmlwidget-3923d780a17de267e8ac" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3923d780a17de267e8ac">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-78b7ef73377ff4616f42" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-78b7ef73377ff4616f42">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>  #? picks up the repition at the minimum length, that is {1,2}
 str_view(x, &quot;CC+&quot;)</code></pre>
-<div id="htmlwidget-709e11dc9f796136e49e" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-709e11dc9f796136e49e">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a2fcf01bb1f91d5e238b" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a2fcf01bb1f91d5e238b">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(x, &quot;CC{1,3}&quot;)</code></pre>
-<div id="htmlwidget-8de16af9e81bc5ab0a77" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8de16af9e81bc5ab0a77">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9958271acb91f5c20425" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9958271acb91f5c20425">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>  # + picks up all repeated characters starting with a length of 1 and will match all repetitions to n equivalent to {1,n}
-str_view(x, &quot;MD*&quot;) # * will pick up character strings even if the repition is 0</code></pre>
-<div id="htmlwidget-bde37fff1b0c220ad232" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bde37fff1b0c220ad232">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: <span class='match'>MD<\/span>CCCLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+str_view(x, &quot;MD*&quot;) # * will pick up character strings even if #the repition is 0</code></pre>
+<div id="htmlwidget-a86d61f4c2f51a6b315d" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a86d61f4c2f51a6b315d">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: <span class='match'>MD<\/span>CCCLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(x, &quot;MD{0,1}&quot;)</code></pre>
-<div id="htmlwidget-04aeecdc49ade3157a63" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-04aeecdc49ade3157a63">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: <span class='match'>MD<\/span>CCCLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-af1e30ba4a1becc3dbe3" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-af1e30ba4a1becc3dbe3">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: <span class='match'>MD<\/span>CCCLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#2. a. ^.*$ - I'm totally baffled by this string...^indicates the beginning anchor, $ is the ending anchor, . expresses any character, and * highlights repetition of 0 or more times... none of the characters have been escaped
 
 
   #b. &quot;\\{.+\\}&quot; This is an equally confusing expression. match any character that repeats more than once?
 str_view(x, &quot;\\{.+\\}&quot;)</code></pre>
-<div id="htmlwidget-b7c92cc34acb9e402ed3" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b7c92cc34acb9e402ed3">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCCCLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c1fae74658f31274d558" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c1fae74658f31274d558">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCCCLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>  #c. \d{4}-\d{2}-\d{2} This expression matches a string that starts with 4 digits, is seperated by - followed by two digits, another - and lastly 2 more digits
 y&lt;- c(&quot;home 1234-12-12&quot;)
 str_view(y, &quot;\\d{4}-\\d{2}-\\d{2}&quot;)</code></pre>
-<div id="htmlwidget-aaebffdfdaeee70e6665" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-aaebffdfdaeee70e6665">{"x":{"html":"<ul>\n  <li>home <span class='match'>1234-12-12<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f47a13d735ad652b1c5c" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f47a13d735ad652b1c5c">{"x":{"html":"<ul>\n  <li>home <span class='match'>1234-12-12<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#d. &quot;\\\\{4}&quot; This expression escapes the \ and give the proceeding characters, was there maybe a \d that was supposed to be in here?
 z&lt;- c(&quot;\\123456&quot;)
 z&lt;- c(&quot;\\ancsdfs&quot;)
 str_view(z, &quot;\\\\{4}&quot;)</code></pre>
-<div id="htmlwidget-abf820c70ad299ed6da9" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-abf820c70ad299ed6da9">{"x":{"html":"<ul>\n  <li>\\ancsdfs<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fc6af50d0a94d5472902" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fc6af50d0a94d5472902">{"x":{"html":"<ul>\n  <li>\\ancsdfs<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#3. Create regular expressions to find all words that:
   #a.start with three consonants 
 str_view(words, &quot;^[^aeiou]{3,3}&quot;, match = TRUE)</code></pre>
-<div id="htmlwidget-f7c0594311843b79c293" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f7c0594311843b79c293">{"x":{"html":"<ul>\n  <li><span class='match'>Chr<\/span>ist<\/li>\n  <li><span class='match'>Chr<\/span>istmas<\/li>\n  <li><span class='match'>dry<\/span><\/li>\n  <li><span class='match'>fly<\/span><\/li>\n  <li><span class='match'>mrs<\/span><\/li>\n  <li><span class='match'>sch<\/span>eme<\/li>\n  <li><span class='match'>sch<\/span>ool<\/li>\n  <li><span class='match'>str<\/span>aight<\/li>\n  <li><span class='match'>str<\/span>ategy<\/li>\n  <li><span class='match'>str<\/span>eet<\/li>\n  <li><span class='match'>str<\/span>ike<\/li>\n  <li><span class='match'>str<\/span>ong<\/li>\n  <li><span class='match'>str<\/span>ucture<\/li>\n  <li><span class='match'>sys<\/span>tem<\/li>\n  <li><span class='match'>thr<\/span>ee<\/li>\n  <li><span class='match'>thr<\/span>ough<\/li>\n  <li><span class='match'>thr<\/span>ow<\/li>\n  <li><span class='match'>try<\/span><\/li>\n  <li><span class='match'>typ<\/span>e<\/li>\n  <li><span class='match'>why<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-dffba26a2e79d130b962" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dffba26a2e79d130b962">{"x":{"html":"<ul>\n  <li><span class='match'>Chr<\/span>ist<\/li>\n  <li><span class='match'>Chr<\/span>istmas<\/li>\n  <li><span class='match'>dry<\/span><\/li>\n  <li><span class='match'>fly<\/span><\/li>\n  <li><span class='match'>mrs<\/span><\/li>\n  <li><span class='match'>sch<\/span>eme<\/li>\n  <li><span class='match'>sch<\/span>ool<\/li>\n  <li><span class='match'>str<\/span>aight<\/li>\n  <li><span class='match'>str<\/span>ategy<\/li>\n  <li><span class='match'>str<\/span>eet<\/li>\n  <li><span class='match'>str<\/span>ike<\/li>\n  <li><span class='match'>str<\/span>ong<\/li>\n  <li><span class='match'>str<\/span>ucture<\/li>\n  <li><span class='match'>sys<\/span>tem<\/li>\n  <li><span class='match'>thr<\/span>ee<\/li>\n  <li><span class='match'>thr<\/span>ough<\/li>\n  <li><span class='match'>thr<\/span>ow<\/li>\n  <li><span class='match'>try<\/span><\/li>\n  <li><span class='match'>typ<\/span>e<\/li>\n  <li><span class='match'>why<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>  #b. have three or more vowels in a row
      str_view(stringr::words, &quot;[aeiou]{3,3}&quot;, match = TRUE) </code></pre>
-<div id="htmlwidget-9ff8a9f50497d359e382" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9ff8a9f50497d359e382">{"x":{"html":"<ul>\n  <li>b<span class='match'>eau<\/span>ty<\/li>\n  <li>obv<span class='match'>iou<\/span>s<\/li>\n  <li>prev<span class='match'>iou<\/span>s<\/li>\n  <li>q<span class='match'>uie<\/span>t<\/li>\n  <li>ser<span class='match'>iou<\/span>s<\/li>\n  <li>var<span class='match'>iou<\/span>s<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4210a538ea3b560f5381" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4210a538ea3b560f5381">{"x":{"html":"<ul>\n  <li>b<span class='match'>eau<\/span>ty<\/li>\n  <li>obv<span class='match'>iou<\/span>s<\/li>\n  <li>prev<span class='match'>iou<\/span>s<\/li>\n  <li>q<span class='match'>uie<\/span>t<\/li>\n  <li>ser<span class='match'>iou<\/span>s<\/li>\n  <li>var<span class='match'>iou<\/span>s<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div id="section-5" class="section level13">
 <p>14.3.5</p>
 <pre class="r"><code>#1. describe what the expression below will match:
      #a. (.)\1\1
      c&lt;-c(&quot;aaaaabbbbcccbcbcbcb&quot;, &quot;a&quot;, &quot;b&quot;) 
 str_view(c, &quot;(.)\\1\\1&quot;) #it matches the first group &quot;aaa&quot;</code></pre>
-<div id="htmlwidget-cafdd7ffc1f98c666abe" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cafdd7ffc1f98c666abe">{"x":{"html":"<ul>\n  <li><span class='match'>aaa<\/span>aabbbbcccbcbcbcb<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bbf99d06e93bb84b5b15" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bbf99d06e93bb84b5b15">{"x":{"html":"<ul>\n  <li><span class='match'>aaa<\/span>aabbbbcccbcbcbcb<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>  #b. &quot;(.)(.)\\2\\1&quot;
 str_view(c, &quot;(.)(.)\\2\\1&quot;) #it matches the first group &quot;aaaa&quot;</code></pre>
-<div id="htmlwidget-84e5ca5096c55a834c07" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-84e5ca5096c55a834c07">{"x":{"html":"<ul>\n  <li><span class='match'>aaaa<\/span>abbbbcccbcbcbcb<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ea959631a90ffcfc6b50" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ea959631a90ffcfc6b50">{"x":{"html":"<ul>\n  <li><span class='match'>aaaa<\/span>abbbbcccbcbcbcb<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>  #c. (..)\1
 str_view(c, &quot;(..)\\1&quot;) #same result as &quot;(.)(.)\\2\\1&quot;, 2 characters repeated once </code></pre>
-<div id="htmlwidget-ad067c6bf08a642aa35e" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ad067c6bf08a642aa35e">{"x":{"html":"<ul>\n  <li><span class='match'>aaaa<\/span>abbbbcccbcbcbcb<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f406941c9d7fe105b543" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f406941c9d7fe105b543">{"x":{"html":"<ul>\n  <li><span class='match'>aaaa<\/span>abbbbcccbcbcbcb<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>  #d. &quot;(.).\\1.\\1&quot;
 str_view(c, &quot;(.).\\1.\\1&quot;) #same result as last 2 expressions</code></pre>
-<div id="htmlwidget-dc700ad0cd7b49fe3d39" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dc700ad0cd7b49fe3d39">{"x":{"html":"<ul>\n  <li><span class='match'>aaaaa<\/span>bbbbcccbcbcbcb<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d4fc13e24fcb50ceb300" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d4fc13e24fcb50ceb300">{"x":{"html":"<ul>\n  <li><span class='match'>aaaaa<\/span>bbbbcccbcbcbcb<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>  #e. &quot;(.)(.)(.).*\\3\\2\\1&quot;
 str_view(c, &quot;(.)(.)(.).*\\3\\2\\1&quot;) # I actually have no idea what this expression is saying, other than the fact it pulls out the repetition of &quot;cbcbcbc&quot;, maybe (.)(.)(.) refers to the 3 characters, . refers to the middle character b and * wants the repetition of that sequence, however I am still unsure what the heck the \\3\\2\1 are referring to</code></pre>
-<div id="htmlwidget-a115ddf5b4b40274c857" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a115ddf5b4b40274c857">{"x":{"html":"<ul>\n  <li>aaaaabbbbcc<span class='match'>cbcbcbc<\/span>b<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b0c96dc6eb923b1ea704" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b0c96dc6eb923b1ea704">{"x":{"html":"<ul>\n  <li>aaaaabbbbcc<span class='match'>cbcbcbc<\/span>b<\/li>\n  <li>a<\/li>\n  <li>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#2. Construct regular expressions to match words that:
   #a. start and end with the same character
 c&lt;- c(&quot;bulb&quot;,&quot;toast&quot;, &quot;noun&quot;)
-str_view(c, &quot;^(.)(.)$\\1&quot;) #well that doesn't work</code></pre>
-<div id="htmlwidget-72bd66bb807d4f60acca" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-72bd66bb807d4f60acca">{"x":{"html":"<ul>\n  <li>bulb<\/li>\n  <li>toast<\/li>\n  <li>noun<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code>  #b. Contain a repeated pair of letters (e.g. “church” contains “ch” repeated twice.)
-r&lt;-c(&quot;church&quot;, &quot;fright&quot;)
+#str_view(c, &quot;^(.)(.)$\\1&quot;) #well that doesn't work
+  #b. Contain a repeated pair of letters (e.g. “church” contains “ch” repeated twice.)
+#r&lt;-c(&quot;church&quot;, &quot;fright&quot;)
 #str_view(r, &quot;(..)\\2&quot;)
 #str_view(r, &quot;(..)\\1&quot;)
-str_view(r, &quot;(..)&quot;) #that just gets the first two letters...</code></pre>
-<div id="htmlwidget-1287cb618caf10105bd0" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1287cb618caf10105bd0">{"x":{"html":"<ul>\n  <li><span class='match'>ch<\/span>urch<\/li>\n  <li><span class='match'>fr<\/span>ight<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code>#but how do we move on to matching repitition
+#str_view(r, &quot;(..)&quot;) #that just gets the first two letters...
+#but how do we move on to matching repitition
 #str_view(r, &quot;(..)\\1&quot;) #nope
 #str_view(r, &quot;(..)*\\6&quot;)
   #c. Contain one letter repeated in at least three places (e.g. “eleven” contains three “e”s.) 
 
 x&lt;- c(&quot;bananana&quot;, &quot;cococonutcoco&quot;, &quot;cucucumber&quot;)
-#str_view(x, &quot;(..)\\1&quot;)</code></pre>
+str_view(x, &quot;(..)\\1&quot;)</code></pre>
+<div id="htmlwidget-63c0032ff79666dfdbb3" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-63c0032ff79666dfdbb3">{"x":{"html":"<ul>\n  <li>b<span class='match'>anan<\/span>ana<\/li>\n  <li><span class='match'>coco<\/span>conutcoco<\/li>\n  <li><span class='match'>cucu<\/span>cumber<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="section-6" class="section level13">
 <p>14.4.2</p>
@@ -551,18 +549,18 @@ str_detect(words, &quot;x$&quot;) #this gives you a logical output of TRUEs and 
 ## [969] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [980] FALSE</code></pre>
 <pre class="r"><code>str_view_all(words, &quot;x$&quot;, match = TRUE) #this shows you the actual words that end with x</code></pre>
-<div id="htmlwidget-ec0f9cdfe905a3bd08ca" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ec0f9cdfe905a3bd08ca">{"x":{"html":"<ul>\n  <li>bo<span class='match'>x<\/span><\/li>\n  <li>se<span class='match'>x<\/span><\/li>\n  <li>si<span class='match'>x<\/span><\/li>\n  <li>ta<span class='match'>x<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b01c76cfe69daf5c6dd6" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b01c76cfe69daf5c6dd6">{"x":{"html":"<ul>\n  <li>bo<span class='match'>x<\/span><\/li>\n  <li>se<span class='match'>x<\/span><\/li>\n  <li>si<span class='match'>x<\/span><\/li>\n  <li>ta<span class='match'>x<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view_all(words, &quot;^x&quot;, match = TRUE) #no words begin with x</code></pre>
-<div id="htmlwidget-a2f24a5de2f3d9cad04c" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a2f24a5de2f3d9cad04c">{"x":{"html":"<ul>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-feac6237c08ae9a9fec9" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-feac6237c08ae9a9fec9">{"x":{"html":"<ul>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#another way to write this:
   words[str_detect(words, &quot;x$&quot;)]</code></pre>
 <pre><code>## [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</code></pre>
 <pre class="r"><code>  str_subset(words, &quot;x$&quot;)</code></pre>
 <pre><code>## [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</code></pre>
 <pre class="r"><code>  #b. Find all words that start with a vowel and end with a consonant
-str_detect(words, &quot;^[aeiou][^aeiou]$&quot;)</code></pre>
+str_detect(words, &quot;^[aeiou][^aeiou]$&quot;) #logical output</code></pre>
 <pre><code>##   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##  [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##  [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -654,8 +652,8 @@ str_detect(words, &quot;^[aeiou][^aeiou]$&quot;)</code></pre>
 ## [969] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [980] FALSE</code></pre>
 <pre class="r"><code>  str_view_all(words, &quot;^[aeiou][^aeiou]$&quot;, match = TRUE) #unfortunately this only gives youthe two letter words that start with a vowel and end with a consonant</code></pre>
-<div id="htmlwidget-bd019b5b2bd6afd25019" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bd019b5b2bd6afd25019">{"x":{"html":"<ul>\n  <li><span class='match'>as<\/span><\/li>\n  <li><span class='match'>at<\/span><\/li>\n  <li><span class='match'>if<\/span><\/li>\n  <li><span class='match'>in<\/span><\/li>\n  <li><span class='match'>it<\/span><\/li>\n  <li><span class='match'>of<\/span><\/li>\n  <li><span class='match'>on<\/span><\/li>\n  <li><span class='match'>or<\/span><\/li>\n  <li><span class='match'>up<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-502ac84a27a0e3b578f9" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-502ac84a27a0e3b578f9">{"x":{"html":"<ul>\n  <li><span class='match'>as<\/span><\/li>\n  <li><span class='match'>at<\/span><\/li>\n  <li><span class='match'>if<\/span><\/li>\n  <li><span class='match'>in<\/span><\/li>\n  <li><span class='match'>it<\/span><\/li>\n  <li><span class='match'>of<\/span><\/li>\n  <li><span class='match'>on<\/span><\/li>\n  <li><span class='match'>or<\/span><\/li>\n  <li><span class='match'>up<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#2. What word has the highest number of vowels? What word has the highest proportion of vowels? (Hint: what is the denominator?)
   df&lt;- tibble(word = words, i = seq_along(word))
 #df %&gt;% mutate(vowels = str_count(word, &quot;[aeiou]&quot;),consonants = str_count(word, &quot;[^aeiou]&quot;))
@@ -671,12 +669,10 @@ colour_match</code></pre>
 <pre><code>## [1] &quot;red|orange|yellow|green|blue|purple&quot;</code></pre>
 <pre class="r"><code>more &lt;- sentences[str_count(sentences, colour_match) &gt; 1]
 str_view_all(more, colour_match)</code></pre>
-<div id="htmlwidget-f58d0838bf7b8b4f89c5" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f58d0838bf7b8b4f89c5">{"x":{"html":"<ul>\n  <li>It is hard to erase <span class='match'>blue<\/span> or <span class='match'>red<\/span> ink.<\/li>\n  <li>The <span class='match'>green<\/span> light in the brown box flicke<span class='match'>red<\/span>.<\/li>\n  <li>The sky in the west is tinged with <span class='match'>orange<\/span> <span class='match'>red<\/span>.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-42e6f0cb39687ad2e570" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-42e6f0cb39687ad2e570">{"x":{"html":"<ul>\n  <li>It is hard to erase <span class='match'>blue<\/span> or <span class='match'>red<\/span> ink.<\/li>\n  <li>The <span class='match'>green<\/span> light in the brown box flicke<span class='match'>red<\/span>.<\/li>\n  <li>The sky in the west is tinged with <span class='match'>orange<\/span> <span class='match'>red<\/span>.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#2. From the Harvard sentences data, extract:
-
-  #a. The first word from each sentence.
-  #b. All words ending in ing.
+ #b. All words ending in ing.
 str_extract(sentences, &quot;ing$&quot;) #this doesn't apear to do anything</code></pre>
 <pre><code>##   [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 ##  [24] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
@@ -754,10 +750,729 @@ c&lt;- c(&quot;the quick brown fox&quot;,&quot;jumped over the lazy dog&quot;)
 str_replace_all(c, c(&quot;a&quot; = &quot;A&quot;, &quot;b&quot; = &quot;B&quot;))</code></pre>
 <pre><code>## [1] &quot;the quick Brown fox&quot;      &quot;jumped over the lAzy dog&quot;</code></pre>
 <pre class="r"><code>#3. Switch the first and last letters in words. Which of those strings are still words?
-#sentences %&gt;% 
-  #str_replace(&quot;([^ ]+) ([^ ]+) ([^ ]+)&quot;, &quot;\\1 \\3 \\2&quot;) #this is how the r gods switched word placement around
-
-str_replace(words, &quot;(.) (.) (.)&quot;, &quot;\\1 \\3 \\2&quot;)</code></pre>
+sentences %&gt;% 
+  str_replace(&quot;([^ ]+) ([^ ]+) ([^ ]+)&quot;, &quot;\\1 \\3 \\2&quot;) #this is how the r gods switched word placement around</code></pre>
+<pre><code>##   [1] &quot;The canoe birch slid on the smooth planks.&quot;               
+##   [2] &quot;Glue sheet the to the dark blue background.&quot;              
+##   [3] &quot;It's to easy tell the depth of a well.&quot;                   
+##   [4] &quot;These a days chicken leg is a rare dish.&quot;                 
+##   [5] &quot;Rice often is served in round bowls.&quot;                     
+##   [6] &quot;The of juice lemons makes fine punch.&quot;                    
+##   [7] &quot;The was box thrown beside the parked truck.&quot;              
+##   [8] &quot;The were hogs fed chopped corn and garbage.&quot;              
+##   [9] &quot;Four of hours steady work faced us.&quot;                      
+##  [10] &quot;Large in size stockings is hard to sell.&quot;                 
+##  [11] &quot;The was boy there when the sun rose.&quot;                     
+##  [12] &quot;A is rod used to catch pink salmon.&quot;                      
+##  [13] &quot;The of source the huge river is the clear spring.&quot;        
+##  [14] &quot;Kick ball the straight and follow through.&quot;               
+##  [15] &quot;Help woman the get back to her feet.&quot;                     
+##  [16] &quot;A of pot tea helps to pass the evening.&quot;                  
+##  [17] &quot;Smoky lack fires flame and heat.&quot;                         
+##  [18] &quot;The cushion soft broke the man's fall.&quot;                   
+##  [19] &quot;The breeze salt came across from the sea.&quot;                
+##  [20] &quot;The at girl the booth sold fifty bonds.&quot;                  
+##  [21] &quot;The pup small gnawed a hole in the sock.&quot;                 
+##  [22] &quot;The twisted fish and turned on the bent hook.&quot;            
+##  [23] &quot;Press pants the and sew a button on the vest.&quot;            
+##  [24] &quot;The dive swan was far short of perfect.&quot;                  
+##  [25] &quot;The of beauty the view stunned the young boy.&quot;            
+##  [26] &quot;Two fish blue swam in the tank.&quot;                          
+##  [27] &quot;Her was purse full of useless trash.&quot;                     
+##  [28] &quot;The reared colt and threw the tall rider.&quot;                
+##  [29] &quot;It rained, snowed, and hailed the same morning.&quot;          
+##  [30] &quot;Read out verse loud for pleasure.&quot;                        
+##  [31] &quot;Hoist load the to your left shoulder.&quot;                    
+##  [32] &quot;Take winding the path to reach the lake.&quot;                 
+##  [33] &quot;Note the closely size of the gas tank.&quot;                   
+##  [34] &quot;Wipe grease the off his dirty face.&quot;                      
+##  [35] &quot;Mend coat the before you go out.&quot;                         
+##  [36] &quot;The was wrist badly strained and hung limp.&quot;              
+##  [37] &quot;The cat stray gave birth to kittens.&quot;                     
+##  [38] &quot;The girl young gave no clear response.&quot;                   
+##  [39] &quot;The was meal cooked before the bell rang.&quot;                
+##  [40] &quot;What there joy is in living.&quot;                             
+##  [41] &quot;A ruled king the state in the early days.&quot;                
+##  [42] &quot;The was ship torn apart on the sharp reef.&quot;               
+##  [43] &quot;Sickness him kept home the third week.&quot;                   
+##  [44] &quot;The road wide shimmered in the hot sun.&quot;                  
+##  [45] &quot;The cow lazy lay in the cool grass.&quot;                      
+##  [46] &quot;Lift square the stone over the fence.&quot;                    
+##  [47] &quot;The will rope bind the seven books at once.&quot;              
+##  [48] &quot;Hop the over fence and plunge in.&quot;                        
+##  [49] &quot;The gang friendly left the drug store.&quot;                   
+##  [50] &quot;Mesh keeps mire chicks inside.&quot;                           
+##  [51] &quot;The air frosty passed through the coat.&quot;                  
+##  [52] &quot;The maze crooked failed to fool the mouse.&quot;               
+##  [53] &quot;Adding leads fast to wrong sums.&quot;                         
+##  [54] &quot;The was show a flop from the very start.&quot;                 
+##  [55] &quot;A is saw a tool used for making boards.&quot;                  
+##  [56] &quot;The moved wagon on well oiled wheels.&quot;                    
+##  [57] &quot;March soldiers the past the next hill.&quot;                   
+##  [58] &quot;A of cup sugar makes sweet fudge.&quot;                        
+##  [59] &quot;Place rosebush a near the porch steps.&quot;                   
+##  [60] &quot;Both their lost lives in the raging storm.&quot;               
+##  [61] &quot;We of talked the slide show in the circus.&quot;               
+##  [62] &quot;Use pencil a to write the first draft.&quot;                   
+##  [63] &quot;He half ran way to the hardware store.&quot;                   
+##  [64] &quot;The struck clock to mark the third period.&quot;               
+##  [65] &quot;A creek small cut across the field.&quot;                      
+##  [66] &quot;Cars busses and stalled in snow drifts.&quot;                  
+##  [67] &quot;The of set china hit, the floor with a crash.&quot;            
+##  [68] &quot;This a is grand season for hikes on the road.&quot;            
+##  [69] &quot;The rose dune from the edge of the water.&quot;                
+##  [70] &quot;Those were words the cue for the actor to leave.&quot;         
+##  [71] &quot;A slid yacht around the point into the bay.&quot;              
+##  [72] &quot;The met two while playing on the sand.&quot;                   
+##  [73] &quot;The stain ink dried on the finished page.&quot;                
+##  [74] &quot;The town walled was seized without a fight.&quot;              
+##  [75] &quot;The ran lease out in sixteen weeks.&quot;                      
+##  [76] &quot;A squirrel tame makes a nice pet.&quot;                        
+##  [77] &quot;The of horn the car woke the sleeping cop.&quot;               
+##  [78] &quot;The beat heart strongly and with firm strokes.&quot;           
+##  [79] &quot;The was pearl worn in a thin silver ring.&quot;                
+##  [80] &quot;The peel fruit was cut in thick slices.&quot;                  
+##  [81] &quot;The attacked Navy the big task force.&quot;                    
+##  [82] &quot;See cat the glaring at the scared mouse.&quot;                 
+##  [83] &quot;There more are than two factors here.&quot;                    
+##  [84] &quot;The brim hat was wide and too droopy.&quot;                    
+##  [85] &quot;The tried lawyer to lose his case.&quot;                       
+##  [86] &quot;The curled grass around the fence post.&quot;                  
+##  [87] &quot;Cut pie the into large parts.&quot;                            
+##  [88] &quot;Men but strive seldom get rich.&quot;                          
+##  [89] &quot;Always the close barn door tight.&quot;                        
+##  [90] &quot;He prone lay and hardly moved a limb.&quot;                    
+##  [91] &quot;The lay slush deep along the street.&quot;                     
+##  [92] &quot;A of wisp cloud hung in the blue air.&quot;                    
+##  [93] &quot;A of pound sugar costs more than eggs.&quot;                   
+##  [94] &quot;The was fin sharp and cut the clear water.&quot;               
+##  [95] &quot;The seems play dull and quite stupid.&quot;                    
+##  [96] &quot;Bail boat, the to stop it from sinking.&quot;                  
+##  [97] &quot;The ended term in late June that year.&quot;                   
+##  [98] &quot;A is tusk used to make costly gifts.&quot;                     
+##  [99] &quot;Ten were pins set in order.&quot;                              
+## [100] &quot;The as bill paid every third week.&quot;                       
+## [101] &quot;Oak strong is and also gives shade.&quot;                      
+## [102] &quot;Cats dogs and each hate the other.&quot;                       
+## [103] &quot;The began pipe to rust while new.&quot;                        
+## [104] &quot;Open crate the but don't break the glass.&quot;                
+## [105] &quot;Add sum the to the product of these three.&quot;               
+## [106] &quot;Thieves rob who friends deserve jail.&quot;                    
+## [107] &quot;The taste ripe of cheese improves with age.&quot;              
+## [108] &quot;Act these on orders with great speed.&quot;                    
+## [109] &quot;The crawled hog under the high fence.&quot;                    
+## [110] &quot;Move vat the over the hot fire.&quot;                          
+## [111] &quot;The of bark the pine tree was shiny and dark.&quot;            
+## [112] &quot;Leaves brown turn and yellow in the fall.&quot;                
+## [113] &quot;The waved pennant when the wind blew.&quot;                    
+## [114] &quot;Split log the with a quick, sharp blow.&quot;                  
+## [115] &quot;Burn after peat the logs give out.&quot;                       
+## [116] &quot;He peach ordered pie with ice cream.&quot;                     
+## [117] &quot;Weave carpet the on the right hand side.&quot;                 
+## [118] &quot;Hemp a is weed found in parts of the tropics.&quot;            
+## [119] &quot;A back lame kept his score low.&quot;                          
+## [120] &quot;We joy find in the simplest things.&quot;                      
+## [121] &quot;Type three out lists of orders.&quot;                          
+## [122] &quot;The he harder tried the less he got done.&quot;                
+## [123] &quot;The ran boss the show with a watchful eye.&quot;               
+## [124] &quot;The cracked cup and spilled its contents.&quot;                
+## [125] &quot;Paste cleanse can the most dirty brass.&quot;                  
+## [126] &quot;The word slang for raw whiskey is booze.&quot;                 
+## [127] &quot;It its caught hind paw in a rusty trap.&quot;                  
+## [128] &quot;The could wharf be seen at the farther shore.&quot;            
+## [129] &quot;Feel heat the of the weak dying flame.&quot;                   
+## [130] &quot;The girl tiny took off her hat.&quot;                          
+## [131] &quot;A is cramp no small danger on a swim.&quot;                    
+## [132] &quot;He the said same phrase thirty times.&quot;                    
+## [133] &quot;Pluck bright the rose without leaves.&quot;                    
+## [134] &quot;Two seven plus is less than ten.&quot;                         
+## [135] &quot;The deepened glow in the eyes of the sweet girl.&quot;         
+## [136] &quot;Bring problems your to the wise chief.&quot;                   
+## [137] &quot;Write fond a note to the friend you cherish.&quot;             
+## [138] &quot;Clothes lodging and are free to new men.&quot;                 
+## [139] &quot;We when frown events take a bad turn.&quot;                    
+## [140] &quot;Port a is strong wine with s smoky taste.&quot;                
+## [141] &quot;The kid young jumped the rusty gate.&quot;                     
+## [142] &quot;Guess results the from the first scores.&quot;                 
+## [143] &quot;A pickle salt tastes fine with ham.&quot;                      
+## [144] &quot;The claim just got the right verdict.&quot;                    
+## [145] &quot;These bend thistles in a high wind.&quot;                      
+## [146] &quot;Pure poodles bred have curls.&quot;                            
+## [147] &quot;The top tree waved in a graceful way.&quot;                    
+## [148] &quot;The on spot the blotter was made by green ink.&quot;           
+## [149] &quot;Mud spattered was on the front of his white shirt.&quot;       
+## [150] &quot;The burned cigar a hole in the desk top.&quot;                 
+## [151] &quot;The flask empty stood on the tin tray.&quot;                   
+## [152] &quot;A man speedy can beat this track mark.&quot;                   
+## [153] &quot;He a broke new shoelace that day.&quot;                        
+## [154] &quot;The stand coffee is too high for the couch.&quot;              
+## [155] &quot;The to urge write short stories is rare.&quot;                 
+## [156] &quot;The have pencils all been used.&quot;                          
+## [157] &quot;The seized pirates the crew of the lost ship.&quot;            
+## [158] &quot;We to tried replace the coin but failed.&quot;                 
+## [159] &quot;She the sewed torn coat quite neatly.&quot;                    
+## [160] &quot;The cushion sofa is red and of light weight.&quot;             
+## [161] &quot;The hung jacket on the back of the wide chair.&quot;           
+## [162] &quot;At high that level the air is pure.&quot;                      
+## [163] &quot;Drop two the when you add the figures.&quot;                   
+## [164] &quot;A case filing is now hard to buy.&quot;                        
+## [165] &quot;An start abrupt does not win the prize.&quot;                  
+## [166] &quot;Wood best is for making toys and blocks.&quot;                 
+## [167] &quot;The paint office was a dull sad tan.&quot;                     
+## [168] &quot;He the knew skill of the great young actress.&quot;            
+## [169] &quot;A will rag soak up spilled water.&quot;                        
+## [170] &quot;A of shower dirt fell from the hot pipes.&quot;                
+## [171] &quot;Steam from hissed the broken valve.&quot;                      
+## [172] &quot;The almost child hurt the small dog.&quot;                     
+## [173] &quot;There a was sound of dry leaves outside.&quot;                 
+## [174] &quot;The that sky morning was clear and bright blue.&quot;          
+## [175] &quot;Torn littered scraps the stone floor.&quot;                    
+## [176] &quot;Sunday the is best part of the week.&quot;                     
+## [177] &quot;The cured doctor him with these pills.&quot;                   
+## [178] &quot;The girl new was fired today at noon.&quot;                    
+## [179] &quot;They gay felt when the ship arrived in port.&quot;             
+## [180] &quot;Add store's the account to the last cent.&quot;                
+## [181] &quot;Acid holes burns in wool cloth.&quot;                          
+## [182] &quot;Fairy should tales be fun to write.&quot;                      
+## [183] &quot;Eight of miles woodland burned to waste.&quot;                 
+## [184] &quot;The act third was dull and tired the players.&quot;            
+## [185] &quot;A child young should not suffer fright.&quot;                  
+## [186] &quot;Add column the and put the sum here.&quot;                     
+## [187] &quot;We and admire love a good cook.&quot;                          
+## [188] &quot;There flood the mark is ten inches.&quot;                      
+## [189] &quot;He a carved head from the round block of marble.&quot;         
+## [190] &quot;She st has smart way of wearing clothes.&quot;                 
+## [191] &quot;The of fruit a fig tree is apple-shaped.&quot;                 
+## [192] &quot;Corn can cobs be used to kindle a fire.&quot;                  
+## [193] &quot;Where they were when the noise started.&quot;                  
+## [194] &quot;The box paper is full of thumb tacks.&quot;                    
+## [195] &quot;Sell gift your to a buyer at a good gain.&quot;                
+## [196] &quot;The lay tongs beside the ice pail.&quot;                       
+## [197] &quot;The fall petals with the next puff of wind.&quot;              
+## [198] &quot;Bring best your compass to the third class.&quot;              
+## [199] &quot;They laugh could although they were sad.&quot;                 
+## [200] &quot;Farmers in came to thresh the oat crop.&quot;                  
+## [201] &quot;The house brown was on fire to the attic.&quot;                
+## [202] &quot;The is lure used to catch trout and flounder.&quot;            
+## [203] &quot;Float soap the on top of the bath water.&quot;                 
+## [204] &quot;A crane blue is a tall wading bird.&quot;                      
+## [205] &quot;A start fresh will work such wonders.&quot;                    
+## [206] &quot;The rented club the rink for the fifth night.&quot;            
+## [207] &quot;After dance the they went straight home.&quot;                 
+## [208] &quot;The taught hostess the new maid to serve.&quot;                
+## [209] &quot;He his wrote last novel there at the inn.&quot;                
+## [210] &quot;Even worst the will beat his low score.&quot;                  
+## [211] &quot;The had cement dried when he moved it.&quot;                   
+## [212] &quot;The of loss the second ship was hard to take.&quot;            
+## [213] &quot;The made fly its way along the wall.&quot;                     
+## [214] &quot;Do with that a wooden stick.&quot;                             
+## [215] &quot;Lire should wires be kept covered.&quot;                       
+## [216] &quot;The house large had hot water taps.&quot;                      
+## [217] &quot;It hard is to erase blue or red ink.&quot;                     
+## [218] &quot;Write once at or you may forget it.&quot;                      
+## [219] &quot;The was doorknob made of bright clean brass.&quot;             
+## [220] &quot;The occurred wreck by the bank on Main Street.&quot;           
+## [221] &quot;A with pencil black lead writes best.&quot;                    
+## [222] &quot;Coax young a calf to drink from a bucket.&quot;                
+## [223] &quot;Schools ladies for teach charm and grace.&quot;                
+## [224] &quot;The shone lamp with a steady green flame.&quot;                
+## [225] &quot;They the took axe and the saw to the forest.&quot;             
+## [226] &quot;The coin ancient was quite dull and worn.&quot;                
+## [227] &quot;The barn shaky fell with a loud crash.&quot;                   
+## [228] &quot;Jazz swing and fans like fast music.&quot;                     
+## [229] &quot;Rake rubbish the up and then burn it.&quot;                    
+## [230] &quot;Slash gold the cloth into fine ribbons.&quot;                  
+## [231] &quot;Try have to the court decide the case.&quot;                   
+## [232] &quot;They pushed are back each time they attack.&quot;              
+## [233] &quot;He his broke ties with groups of former friends.&quot;         
+## [234] &quot;They on floated the raft to sun their white backs.&quot;       
+## [235] &quot;The had map an X that meant nothing.&quot;                     
+## [236] &quot;Whitings small are fish caught in nets.&quot;                  
+## [237] &quot;Some serve ads to cheat buyers.&quot;                          
+## [238] &quot;Jerk rope the and the bell rings weakly.&quot;                 
+## [239] &quot;A floor waxed makes us lose balance.&quot;                     
+## [240] &quot;Madam, is this the best brand of corn.&quot;                   
+## [241] &quot;On islands the the sea breeze is soft and mild.&quot;          
+## [242] &quot;The began play as soon as we sat down.&quot;                   
+## [243] &quot;This lead will the world to more sound and fury&quot;          
+## [244] &quot;Add before salt you fry the egg.&quot;                         
+## [245] &quot;The for rush funds reached its peak Tuesday.&quot;             
+## [246] &quot;The looked birch stark white and lonesome.&quot;               
+## [247] &quot;The is box held by a bright red snapper.&quot;                 
+## [248] &quot;To pure make ice, you freeze water.&quot;                      
+## [249] &quot;The worm first gets snapped early.&quot;                       
+## [250] &quot;Jump fence the and hurry up the bank.&quot;                    
+## [251] &quot;Yell clap and as the curtain slides back.&quot;                
+## [252] &quot;They men are nho walk the middle of the road.&quot;            
+## [253] &quot;Both wear brothers the same size.&quot;                        
+## [254] &quot;In forin some or other we need fun.&quot;                      
+## [255] &quot;The ordered prince his head chopped off.&quot;                 
+## [256] &quot;The are houses built of red clay bricks.&quot;                 
+## [257] &quot;Ducks north fly but lack a compass.&quot;                      
+## [258] &quot;Fruit are flavors used in fizz drinks.&quot;                   
+## [259] &quot;These do pills less good than others.&quot;                    
+## [260] &quot;Canned lack pears full flavor.&quot;                           
+## [261] &quot;The pot dark hung in the front closet.&quot;                   
+## [262] &quot;Carry pail the to the wall and spill it there.&quot;           
+## [263] &quot;The brought train our hero to the big town.&quot;              
+## [264] &quot;We sure are that one war is enough.&quot;                      
+## [265] &quot;Gray stretched paint for miles around.&quot;                   
+## [266] &quot;The laugh rude filled the empty room.&quot;                    
+## [267] &quot;High are seats best for football fans.&quot;                   
+## [268] &quot;Tea from served the brown jug is tasty.&quot;                  
+## [269] &quot;A of dash pepper spoils beef stew.&quot;                       
+## [270] &quot;A food zestful is the hot-cross bun.&quot;                     
+## [271] &quot;The trotted horse around the field at a brisk pace.&quot;      
+## [272] &quot;Find twin the who stole the pearl necklace.&quot;              
+## [273] &quot;Cut cord the that binds the box tightly.&quot;                 
+## [274] &quot;The tape red bound the smuggled food.&quot;                    
+## [275] &quot;Look the in corner to find the tan shirt.&quot;                
+## [276] &quot;The drizzle cold will halt the bond drive.&quot;               
+## [277] &quot;Nine were men hired to dig the ruins.&quot;                    
+## [278] &quot;The yard junk had a mouldy smell.&quot;                        
+## [279] &quot;The sputtered flint and lit a pine torch.&quot;                
+## [280] &quot;Soak cloth the and drown the sharp odor.&quot;                 
+## [281] &quot;The were shelves bare of both jam or crackers.&quot;           
+## [282] &quot;A to joy every child is the swan boat.&quot;                   
+## [283] &quot;All frozen sat and watched the screen.&quot;                   
+## [284] &quot;ii of cloud dust stung his tender eyes.&quot;                  
+## [285] &quot;To the reach end he needs much courage.&quot;                  
+## [286] &quot;Shape clay the gently into block form.&quot;                   
+## [287] &quot;The on ridge a smooth surface is a bump or flaw.&quot;         
+## [288] &quot;Hedge may apples stain your hands green.&quot;                 
+## [289] &quot;Quench thirst, your then eat the crackers.&quot;               
+## [290] &quot;Tight get curls limp on rainy days.&quot;                      
+## [291] &quot;The muffled mute the high tones of the horn.&quot;             
+## [292] &quot;The ring gold fits only a pierced ear.&quot;                   
+## [293] &quot;The pan old was covered with hard fudge.&quot;                 
+## [294] &quot;Watch log the float in the wide river.&quot;                   
+## [295] &quot;The on node the stalk of wheat grew daily.&quot;               
+## [296] &quot;The of heap fallen leaves was set on fire.&quot;               
+## [297] &quot;Write if fast, you want to finish early.&quot;                 
+## [298] &quot;His was shirt clean but one button was gone.&quot;             
+## [299] &quot;The of barrel beer was a brew of malt and hops.&quot;          
+## [300] &quot;Tin are cans absent from store shelves.&quot;                  
+## [301] &quot;Slide box the into that empty space.&quot;                     
+## [302] &quot;The grew plant large and green in the window.&quot;            
+## [303] &quot;The dropped beam down on the workmen's head.&quot;             
+## [304] &quot;Pink floated clouds JTith the breeze.&quot;                    
+## [305] &quot;She like danced a swan, tall and graceful.&quot;               
+## [306] &quot;The was tube blown and the tire flat and useless.&quot;        
+## [307] &quot;It late is morning on the old wall clock.&quot;                
+## [308] &quot;Let's join all as we sing the last chorus.&quot;               
+## [309] &quot;The switch last cannot be turned off.&quot;                    
+## [310] &quot;The will fight end in just six minutes.&quot;                  
+## [311] &quot;The walls store were lined with colored frocks.&quot;          
+## [312] &quot;The league peace met to discuss their plans.&quot;             
+## [313] &quot;The to rise fame of a person takes luck.&quot;                 
+## [314] &quot;Paper scarce, is so write with much care.&quot;                
+## [315] &quot;The fox quick jumped on the sleeping cat.&quot;                
+## [316] &quot;The of nozzle the fire hose was bright brass.&quot;            
+## [317] &quot;Screw round the cap on as tight as needed.&quot;               
+## [318] &quot;Time us brings many changes.&quot;                             
+## [319] &quot;The tie purple was ten years old.&quot;                        
+## [320] &quot;Men and think plan and sometimes act.&quot;                    
+## [321] &quot;Fill ink the jar with sticky glue.&quot;                       
+## [322] &quot;He a smoke big pipe with strong contents.&quot;                
+## [323] &quot;We grain need to keep our mules healthy.&quot;                 
+## [324] &quot;Pack records the in a neat thin case.&quot;                    
+## [325] &quot;The of crunch feet in the snow was the only sound.&quot;       
+## [326] &quot;The bowl copper shone in the sun's rays.&quot;                 
+## [327] &quot;Boards warp will unless kept dry.&quot;                        
+## [328] &quot;The chair plush leaned against the wall.&quot;                 
+## [329] &quot;Glass clink will when struck by metal.&quot;                   
+## [330] &quot;Bathe relax and in the cool green grass.&quot;                 
+## [331] &quot;Nine of rows soldiers stood in line.&quot;                     
+## [332] &quot;The is beach dry and shallow at low tide.&quot;                
+## [333] &quot;The is idea to sew both edges straight.&quot;                  
+## [334] &quot;The chased kitten the dog down the street.&quot;               
+## [335] &quot;Pages in bound cloth make a book.&quot;                        
+## [336] &quot;Try trace to the fine lines of the painting.&quot;             
+## [337] &quot;Women less form than half of the group.&quot;                  
+## [338] &quot;The merge zones in the central part of town.&quot;             
+## [339] &quot;A in gem the rough needs work to polish.&quot;                 
+## [340] &quot;Code used is when secrets are sent.&quot;                      
+## [341] &quot;Most the of new is easy for us to hear.&quot;                  
+## [342] &quot;He the used lathe to make brass objects.&quot;                 
+## [343] &quot;The on vane top of the pole revolved in the wind.&quot;        
+## [344] &quot;Mince is pie a dish served to children.&quot;                  
+## [345] &quot;The gathered clan on each dull night.&quot;                    
+## [346] &quot;Let burn, it it gives us warmth and comfort.&quot;             
+## [347] &quot;A built castle from sand fails to endure.&quot;                
+## [348] &quot;A wit child's saved the day for us.&quot;                      
+## [349] &quot;Tack strip the of carpet to the worn floor.&quot;              
+## [350] &quot;Next we Tuesday must vote.&quot;                               
+## [351] &quot;Pour stew the from the pot into the plate.&quot;               
+## [352] &quot;Each shone penny like new.&quot;                               
+## [353] &quot;The went man to the woods to gather sticks.&quot;              
+## [354] &quot;The piles dirt were lines along the road.&quot;                
+## [355] &quot;The fell logs and tumbled into the clear stream.&quot;         
+## [356] &quot;Just it hoist up and take it away,&quot;                       
+## [357] &quot;A plum ripe is fit for a king's palate.&quot;                  
+## [358] &quot;Our right plans now are hazy.&quot;                            
+## [359] &quot;Brass are rings sold by these natives.&quot;                   
+## [360] &quot;It a takes good trap to capture a bear.&quot;                  
+## [361] &quot;Feed white the mouse some flower seeds.&quot;                  
+## [362] &quot;The came thaw early and freed the stream.&quot;                
+## [363] &quot;He the took lead and kept it the whole distance.&quot;         
+## [364] &quot;The you key designed will fit the lock.&quot;                  
+## [365] &quot;Plead the to council to free the poor thief.&quot;             
+## [366] &quot;Better is hash made of rare beef.&quot;                        
+## [367] &quot;This was plank made for walking on.&quot;                      
+## [368] &quot;The sparkled lake in the red hot sun.&quot;                    
+## [369] &quot;He with crawled care along the ledge.&quot;                    
+## [370] &quot;Tend sheep the while the dog wanders.&quot;                    
+## [371] &quot;It a takes lot of help to finish these.&quot;                  
+## [372] &quot;Mark spot the with a sign painted red.&quot;                   
+## [373] &quot;Take shares two as a fair profit.&quot;                        
+## [374] &quot;The of fur cats goes by many names.&quot;                      
+## [375] &quot;North bring winds colds and fevers.&quot;                      
+## [376] &quot;He no asks person to vouch for him.&quot;                      
+## [377] &quot;Go and now come here later.&quot;                              
+## [378] &quot;A of sash gold silk will trim her dress.&quot;                 
+## [379] &quot;Soap wash can most dirt away.&quot;                            
+## [380] &quot;That means move the game is over.&quot;                        
+## [381] &quot;He down wrote a long list of items.&quot;                      
+## [382] &quot;A will siege crack the strong defense.&quot;                   
+## [383] &quot;Grape and juice water mix well.&quot;                          
+## [384] &quot;Roads paved are with sticky tar.&quot;                         
+## [385] &quot;Fake shine &amp;ones but cost little.&quot;                        
+## [386] &quot;The of drip the rain made a pleasant sound.&quot;              
+## [387] &quot;Smoke out poured of every crack.&quot;                         
+## [388] &quot;Serve hot the rum to the tired heroes.&quot;                   
+## [389] &quot;Much the of story makes good sense.&quot;                      
+## [390] &quot;The came sun up to light the eastern sky.&quot;                
+## [391] &quot;Heave line the over the port side.&quot;                       
+## [392] &quot;A cuts lathe and trims any wood.&quot;                         
+## [393] &quot;It's dense a crowd in two distinct ways.&quot;                 
+## [394] &quot;His struck hip the knee of the next player.&quot;              
+## [395] &quot;The smell stale of old beer lingers.&quot;                     
+## [396] &quot;The was desk firm on the shaky floor.&quot;                    
+## [397] &quot;It heat takes to bring out the odor.&quot;                     
+## [398] &quot;Beef scarcer is than some lamb.&quot;                          
+## [399] &quot;Raise sail the and steer the ship northward.&quot;             
+## [400] &quot;The costs cone five cents on Mondays.&quot;                    
+## [401] &quot;A is pod what peas always grow in.&quot;                       
+## [402] &quot;Jerk dart the from the cork target.&quot;                      
+## [403] &quot;No will cement hold hard wood.&quot;                           
+## [404] &quot;We have now a new base for shipping.&quot;                     
+## [405] &quot;The of list names is carved around the base.&quot;             
+## [406] &quot;The were sheep led home by a dog.&quot;                        
+## [407] &quot;Three a for dime, the young peddler cried.&quot;               
+## [408] &quot;The of sense smell is better than that of touch.&quot;         
+## [409] &quot;No seemed hardship to keep him sad.&quot;                      
+## [410] &quot;Grace up makes for lack of beauty.&quot;                       
+## [411] &quot;Nudge but gently wake her now.&quot;                           
+## [412] &quot;The struck news doubt into restless minds.&quot;               
+## [413] &quot;Once stood we beside the shore.&quot;                          
+## [414] &quot;A in chink the wall allowed a draft to blow.&quot;             
+## [415] &quot;Fasten pins two on each side.&quot;                            
+## [416] &quot;A dip cold restores health and zest.&quot;                     
+## [417] &quot;He the takes oath of office each March.&quot;                  
+## [418] &quot;The drifts sand over the sill of the old house.&quot;          
+## [419] &quot;The of point the steel pen was bent and twisted.&quot;         
+## [420] &quot;There a is lag between thought and act.&quot;                  
+## [421] &quot;Seed needed is to plant the spring corn.&quot;                 
+## [422] &quot;Draw chart the with heavy black lines.&quot;                   
+## [423] &quot;The owed boy his pal thirty cents.&quot;                       
+## [424] &quot;The slipped chap into the crowd and was lost.&quot;            
+## [425] &quot;Hats worn are to tea and not to dinner.&quot;                  
+## [426] &quot;The led ramp up to the wide highway.&quot;                     
+## [427] &quot;Beat dust the from the rug onto the lawn.&quot;                
+## [428] &quot;Say slow!y it but make it ring clear.&quot;                    
+## [429] &quot;The nest straw housed five robins.&quot;                       
+## [430] &quot;Screen porch the with woven straw mats.&quot;                  
+## [431] &quot;This will horse nose his way to the finish.&quot;              
+## [432] &quot;The wax dry protects the deep scratch.&quot;                   
+## [433] &quot;He up picked the dice for a second roll.&quot;                 
+## [434] &quot;These will coins be needed to pay his debt.&quot;              
+## [435] &quot;The pulled nag the frail cart along.&quot;                     
+## [436] &quot;Twist valve the and release hot steam.&quot;                   
+## [437] &quot;The of vamp the shoe had a gold buckle.&quot;                  
+## [438] &quot;The of smell burned rags itches my nose.&quot;                 
+## [439] &quot;Xew lack pants cuffs and pockets.&quot;                        
+## [440] &quot;The will marsh freeze when cold enough.&quot;                  
+## [441] &quot;They the slice sausage thin with a knife.&quot;                
+## [442] &quot;The of bloom the rose lasts a few days.&quot;                  
+## [443] &quot;A mare gray walked before the colt.&quot;                      
+## [444] &quot;Breakfast are buns fine with a hot drink.&quot;                
+## [445] &quot;Bottles four hold kinds of rum.&quot;                          
+## [446] &quot;The wore man a feather in his felt hat.&quot;                  
+## [447] &quot;He the wheeled bike past. the winding road.&quot;              
+## [448] &quot;Drop ashes the on the worn old rug.&quot;                      
+## [449] &quot;The and desk both chairs were painted tan.&quot;               
+## [450] &quot;Throw the out used paper cup and plate.&quot;                  
+## [451] &quot;A neck clean means a neat collar.&quot;                        
+## [452] &quot;The cover couch and hall drapes were blue.&quot;               
+## [453] &quot;The of stems the tall glasses cracked and broke.&quot;         
+## [454] &quot;The phone wall rang loud and often.&quot;                      
+## [455] &quot;The dried clothes on a thin wooden rack.&quot;                 
+## [456] &quot;Turn the on lantern which gives us light.&quot;                
+## [457] &quot;The sank cleat deeply into the soft turf.&quot;                
+## [458] &quot;The were bills mailed promptly on the tenth of the month.&quot;
+## [459] &quot;To is have better than to wait and hope.&quot;                 
+## [460] &quot;The is price fair for a good antique clock.&quot;              
+## [461] &quot;The played music on while they talked.&quot;                   
+## [462] &quot;Dispense a with vest on a day like this.&quot;                 
+## [463] &quot;The of bunch grapes was pressed into wine.&quot;               
+## [464] &quot;He the sent figs, but kept the ripe cherries.&quot;            
+## [465] &quot;The on hinge the door creaked with old age.&quot;              
+## [466] &quot;The before screen the fire kept in the sparks.&quot;           
+## [467] &quot;Fly night, by and you waste little time.&quot;                 
+## [468] &quot;Thick helped glasses him read the print.&quot;                 
+## [469] &quot;Birth death and mark the limits of life.&quot;                 
+## [470] &quot;The looked chair strong but had no bottom.&quot;               
+## [471] &quot;The flew kite wildly in the high wind.&quot;                   
+## [472] &quot;A muff fur is stylish once more.&quot;                         
+## [473] &quot;The box tin held priceless stones.&quot;                       
+## [474] &quot;We an need end of all such matter.&quot;                       
+## [475] &quot;The was case puzzling to the old and wise.&quot;               
+## [476] &quot;The lanterns bright were gay on the dark lawn.&quot;           
+## [477] &quot;We get don't much money but we have fun.&quot;                 
+## [478] &quot;The drove youth with zest, but little skill.&quot;             
+## [479] &quot;Five he years lived with a shaggy dog.&quot;                   
+## [480] &quot;A cuts fence through the corner lot.&quot;                     
+## [481] &quot;The to way save money is not to spend much.&quot;              
+## [482] &quot;Shut hatch the before the waves push it in.&quot;              
+## [483] &quot;The of odor spring makes young hearts jump.&quot;              
+## [484] &quot;Crack walnut the with your sharp side teeth.&quot;             
+## [485] &quot;He proof offered in the form of a lsrge chart.&quot;           
+## [486] &quot;Send stuff the in a thick paper bag.&quot;                     
+## [487] &quot;A of quart milk is water for the most part.&quot;              
+## [488] &quot;They wild told tales to frighten him.&quot;                    
+## [489] &quot;The story three house was built of stone.&quot;                
+## [490] &quot;In rear the of the ground floor was a large passage.&quot;     
+## [491] &quot;A in man a blue sweater sat at the desk.&quot;                 
+## [492] &quot;Oats a are food eaten by horse and man.&quot;                  
+## [493] &quot;Their droop eyelids for want. of sleep.&quot;                  
+## [494] &quot;The of sip tea revives his tired friend.&quot;                 
+## [495] &quot;There many are ways to do these things.&quot;                  
+## [496] &quot;Tuck sheet the under the edge of the mat.&quot;                
+## [497] &quot;A equal force to that would move the earth.&quot;              
+## [498] &quot;We to like see clear weather.&quot;                            
+## [499] &quot;The of work the tailor is seen on each side.&quot;             
+## [500] &quot;Take chance a and win a china doll.&quot;                      
+## [501] &quot;Shake dust the from your shoes, stranger.&quot;                
+## [502] &quot;She kind was to sick old people.&quot;                         
+## [503] &quot;The bench dusty stood by the stone wall.&quot;                 
+## [504] &quot;The wooden square crate was packed to be shipped.&quot;        
+## [505] &quot;We to dress suit the weather of most days.&quot;               
+## [506] &quot;Smile you when say nasty words.&quot;                          
+## [507] &quot;A of bowl rice is free with chicken stew.&quot;                
+## [508] &quot;The in water this well is a source of good health.&quot;       
+## [509] &quot;Take in shelter this tent, but keep still.&quot;               
+## [510] &quot;That is guy the writer of a few banned books.&quot;            
+## [511] &quot;The tales little they tell are false.&quot;                    
+## [512] &quot;The was door barred, locked, and bolted as well.&quot;         
+## [513] &quot;Ripe are pears fit for a queen's table.&quot;                  
+## [514] &quot;A wet big stain was on the round carpet.&quot;                 
+## [515] &quot;The dipped kite and swayed, but stayed aloft.&quot;            
+## [516] &quot;The hours pleasant fly by much too soon.&quot;                 
+## [517] &quot;The was room crowded with a wild mob.&quot;                    
+## [518] &quot;This arm strong shall shield your honor.&quot;                 
+## [519] &quot;She when blushed he gave her a white orchid.&quot;             
+## [520] &quot;The droned beetle in the hot June sun.&quot;                   
+## [521] &quot;Press pedal the with your left foot.&quot;                     
+## [522] &quot;Neat fail plans without luck.&quot;                            
+## [523] &quot;The trunk black fell from the landing.&quot;                   
+## [524] &quot;The pressed bank for payment of the debt.&quot;                
+## [525] &quot;The of theft the pearl pin was kept secret.&quot;              
+## [526] &quot;Shake with hands this friendly child.&quot;                    
+## [527] &quot;The space vast stretched into the far distance.&quot;          
+## [528] &quot;A farm rich is rare in this sandy waste.&quot;                 
+## [529] &quot;His grin wide earned many friends.&quot;                       
+## [530] &quot;Flax a makes fine brand of paper.&quot;                        
+## [531] &quot;Hurdle pit the with the aid of a long pole.&quot;              
+## [532] &quot;A bid strong may scare your partner stiff.&quot;               
+## [533] &quot;Even just a cause needs power to win.&quot;                    
+## [534] &quot;Peep the under tent and see the clowns.&quot;                  
+## [535] &quot;The drifts leaf along with a slow spin.&quot;                  
+## [536] &quot;Cheap are clothes flashy but don??????t last.&quot;            
+## [537] &quot;A of thing small note can cause despair.&quot;                 
+## [538] &quot;Flood mails the with requests for this book.&quot;             
+## [539] &quot;A coat thick of black paint covered all.&quot;                 
+## [540] &quot;The was pencil cut to be sharp at both ends.&quot;             
+## [541] &quot;Those words last were a strong statement.&quot;                
+## [542] &quot;He his wrote name boldly at the top of tile sheet.&quot;       
+## [543] &quot;Dill are pickles sour but taste fine.&quot;                    
+## [544] &quot;Down road that is the way to the grain farmer.&quot;           
+## [545] &quot;Either or mud dust are found at all times.&quot;               
+## [546] &quot;The method best is to fix it in place with clips.&quot;        
+## [547] &quot;If mumble you your speech will be lost.&quot;                  
+## [548] &quot;At the night alarm roused him from a deep sleep.&quot;         
+## [549] &quot;Read what just the meter says.&quot;                           
+## [550] &quot;Fill pack your with bright trinkets for the poor.&quot;        
+## [551] &quot;The red small neon lamp went out.&quot;                        
+## [552] &quot;Clams small, are round, soft, and tasty.&quot;                 
+## [553] &quot;The whirled fan its round blades softly.&quot;                 
+## [554] &quot;The where line the edges join was clean.&quot;                 
+## [555] &quot;Breathe and deep smell the piny air.&quot;                     
+## [556] &quot;It not matters if he reads these words or those.&quot;         
+## [557] &quot;A leather brown bag hung from its strap.&quot;                 
+## [558] &quot;A and toad a frog are hard to tell apart.&quot;                
+## [559] &quot;A silk white jacket goes with any shoes.&quot;                 
+## [560] &quot;A in break the dam almost caused a flood.&quot;                
+## [561] &quot;Paint sockets the in the wall dull green.&quot;                
+## [562] &quot;The crawled child into the dense grass.&quot;                  
+## [563] &quot;Bribes where fail honest men work.&quot;                       
+## [564] &quot;Trample spark, the else the flames will spread.&quot;          
+## [565] &quot;The of hilt. the sword was carved with fine designs.&quot;     
+## [566] &quot;A hole round was drilled through the thin board.&quot;         
+## [567] &quot;Footprints the showed path he took up the beach.&quot;         
+## [568] &quot;She waiting was at my front lawn.&quot;                        
+## [569] &quot;A near vent the edge brought in fresh air.&quot;               
+## [570] &quot;Prod old the mule with a crooked stick.&quot;                  
+## [571] &quot;It a is band of steel three inches wide.&quot;                 
+## [572] &quot;The ran pipe almost the length of the ditch.&quot;             
+## [573] &quot;It hidden was from sight by a mass of leaves and shrubs.&quot; 
+## [574] &quot;The of weight. the package was seen on the high scale.&quot;   
+## [575] &quot;Wake rise, and and step into the green outdoors.&quot;         
+## [576] &quot;The light green in the brown box flickered.&quot;              
+## [577] &quot;The tube brass circled the high wall.&quot;                    
+## [578] &quot;The of lobes her ears were pierced to hold rings.&quot;        
+## [579] &quot;Hold hammer the near the end to drive the nail.&quot;          
+## [580] &quot;Next is Sunday the twelfth of the month.&quot;                 
+## [581] &quot;Every and word phrase he speaks is true.&quot;                 
+## [582] &quot;He his put last cartridge into the gun and fired.&quot;        
+## [583] &quot;They their took kids from the public school.&quot;             
+## [584] &quot;Drive screw the straight into the wood.&quot;                  
+## [585] &quot;Keep hatch the tight and the watch constant.&quot;             
+## [586] &quot;Sever twine the with a quick snip of the knife.&quot;          
+## [587] &quot;Paper dry will out when wet.&quot;                             
+## [588] &quot;Slide catch the back and open the desk.&quot;                  
+## [589] &quot;Help weak the to preserve their strength.&quot;                
+## [590] &quot;A smile sullen gets few friends.&quot;                         
+## [591] &quot;Stop and whistling watch the boys march.&quot;                 
+## [592] &quot;Jerk cord, the and out tumbles the gold.&quot;                 
+## [593] &quot;Slidc tray the across the glass top.&quot;                     
+## [594] &quot;The moved cloud in a stately way and was gone.&quot;           
+## [595] &quot;Light makes maple for a swell room.&quot;                      
+## [596] &quot;Set piece the here and say nothing.&quot;                      
+## [597] &quot;Dull make stories her laugh.&quot;                             
+## [598] &quot;A cord stiff will do to fasten your shoe.&quot;                
+## [599] &quot;Get trust the fund to the bank early.&quot;                    
+## [600] &quot;Choose the between high road and the low.&quot;                
+## [601] &quot;A for plea funds seems to come again.&quot;                    
+## [602] &quot;He his lent coat to the tall gaunt stranger.&quot;             
+## [603] &quot;There a is strong chance it will happen once more.&quot;       
+## [604] &quot;The left duke the park in a silver coach.&quot;                
+## [605] &quot;Greet new the guests and leave quickly.&quot;                  
+## [606] &quot;When frost the has come it is time for turkey.&quot;           
+## [607] &quot;Sweet work words better than fierce.&quot;                     
+## [608] &quot;A stripe thin runs down the middle.&quot;                      
+## [609] &quot;A comes six up more often than a ten.&quot;                    
+## [610] &quot;Lush grow fern on the lofty rocks.&quot;                       
+## [611] &quot;The scared ram the school children off.&quot;                  
+## [612] &quot;The with team the best timing looks good.&quot;                
+## [613] &quot;The swapped farmer his horse for a brown ox.&quot;             
+## [614] &quot;Sit the on perch and tell the others what to do.&quot;         
+## [615] &quot;A trail steep is painful for our feet.&quot;                   
+## [616] &quot;The phase early of life moves fast.&quot;                      
+## [617] &quot;Green grows moss on the northern side.&quot;                   
+## [618] &quot;Tea thin in china has a sweet taste.&quot;                     
+## [619] &quot;Pitch straw the through the door of the stable.&quot;          
+## [620] &quot;The on latch the beck gate needed a nail.&quot;                
+## [621] &quot;The was goose brought straight from the old market.&quot;      
+## [622] &quot;The is sink the thing in which we pile dishes.&quot;           
+## [623] &quot;A of whiff it will cure the most stubborn cold.&quot;          
+## [624] &quot;The don\u0092t facts always show who is right.&quot;           
+## [625] &quot;She her flaps cape as she parades the street.&quot;            
+## [626] &quot;The of loss the cruiser was a blow to the fleet.&quot;         
+## [627] &quot;Loop braid the to the left and then over.&quot;                
+## [628] &quot;Plead the with lawyer to drop the lost cause.&quot;            
+## [629] &quot;Calves on thrive tender spring grass.&quot;                    
+## [630] &quot;Post bills no on this office wall.&quot;                       
+## [631] &quot;Tear thin a sheet from the yellow pad.&quot;                   
+## [632] &quot;A in cruise warm waters in a sleek yacht is fun.&quot;         
+## [633] &quot;A of streak color ran down the left edge.&quot;                
+## [634] &quot;It done was before the boy could see it.&quot;                 
+## [635] &quot;Crouch you before jump or miss the mark.&quot;                 
+## [636] &quot;Pack kits the and don\u0092t forget the salt.&quot;            
+## [637] &quot;The peg square will settle in the round hole.&quot;            
+## [638] &quot;Fine saves soap tender skin.&quot;                             
+## [639] &quot;Poached and eggs tea must suffice.&quot;                       
+## [640] &quot;Bad are nerves jangled by a door slam.&quot;                   
+## [641] &quot;Ship are maps different from those for planes.&quot;           
+## [642] &quot;Dimes down showered from all sides.&quot;                      
+## [643] &quot;They the sang same tunes at each party.&quot;                  
+## [644] &quot;The in sky the west is tinged with orange red.&quot;           
+## [645] &quot;The of pods peas ferment in bare fields.&quot;                 
+## [646] &quot;The balked horse and threw the tall rider.&quot;               
+## [647] &quot;The between hitch the horse and cart broke.&quot;              
+## [648] &quot;Pile coal the high in the shed corner.&quot;                   
+## [649] &quot;The vase gold is both rare and costly.&quot;                   
+## [650] &quot;The was knife hung inside its bright sheath.&quot;             
+## [651] &quot;The spice rarest comes from the far East.&quot;                
+## [652] &quot;The should roof be tilted at a sharp slant.&quot;              
+## [653] &quot;A of smatter French is worse than none.&quot;                  
+## [654] &quot;The trod mule the treadmill day and night.&quot;               
+## [655] &quot;The of aim the contest is to raise a great fund.&quot;         
+## [656] &quot;To it. send now in large amounts is bad.&quot;                 
+## [657] &quot;There a is fine hard tang in salty air.&quot;                  
+## [658] &quot;Cod the is main business of the north shore.&quot;             
+## [659] &quot;The was slab hewn from heavy blocks of slat\u0092e.&quot;      
+## [660] &quot;Dunk stale the biscuits into strong drink.&quot;               
+## [661] &quot;Hang from tinsel both branches.&quot;                          
+## [662] &quot;Cap jar the with a tight brass cover.&quot;                    
+## [663] &quot;The boy poor missed the boat again.&quot;                      
+## [664] &quot;Be to sure set the lamp firmly in the hole.&quot;              
+## [665] &quot;Pick card a and slip it. under the pack.&quot;                 
+## [666] &quot;A mat round will cover the dull spot.&quot;                    
+## [667] &quot;The part first of the plan needs changing.&quot;               
+## [668] &quot;The book good informs of what we ought to know.&quot;          
+## [669] &quot;The comes mail in three batches per day.&quot;                 
+## [670] &quot;You brew cannot tea in a cold pot.&quot;                       
+## [671] &quot;Dots light of betrayed the black cat.&quot;                    
+## [672] &quot;Put chart the on the mantel and tack it down.&quot;            
+## [673] &quot;The shift night men rate extra pay.&quot;                      
+## [674] &quot;The paper red brightened the dim stage.&quot;                  
+## [675] &quot;See player the scoot to third base.&quot;                      
+## [676] &quot;Slide bill the between the two leaves.&quot;                   
+## [677] &quot;Many help hands get the job done.&quot;                        
+## [678] &quot;We like don't to admit our small faults.&quot;                 
+## [679] &quot;No about doubt the way the wind blows.&quot;                   
+## [680] &quot;Dig in deep the earth for pirate's gold.&quot;                 
+## [681] &quot;The drip steady is worse than a drenching rain.&quot;          
+## [682] &quot;A pack flat takes less luggage space.&quot;                    
+## [683] &quot;Green frosted ice the punch bowl.&quot;                        
+## [684] &quot;A chair stuffed slipped from the moving van.&quot;             
+## [685] &quot;The will stitch serve but needs to be shortened.&quot;         
+## [686] &quot;A book thin fits in the side pocket.&quot;                     
+## [687] &quot;The on gloss top made it unfit to read.&quot;                  
+## [688] &quot;The pattered hail on the burnt brown grass.&quot;              
+## [689] &quot;Seven were seals stamped on great sheets.&quot;                
+## [690] &quot;Our are troops set to strike heavy blows.&quot;                
+## [691] &quot;The was store jammed before the sale could start.&quot;        
+## [692] &quot;It a was bad error on the part of the new judge.&quot;         
+## [693] &quot;One more step and the board will collapse.&quot;               
+## [694] &quot;Take match the and strike it against your shoe.&quot;          
+## [695] &quot;The boiled, pot but the contents failed to jell.&quot;         
+## [696] &quot;The puts baby his right foot in his mouth.&quot;               
+## [697] &quot;The left bombs most of the town in ruins.&quot;                
+## [698] &quot;Stop stare and at the hard working man.&quot;                  
+## [699] &quot;The are streets narrow and full of sharp turns.&quot;          
+## [700] &quot;The jerked pup the leash as he saw a feline shape.&quot;       
+## [701] &quot;Open book your to the first page.&quot;                        
+## [702] &quot;Fish the evade net, and swim off.&quot;                        
+## [703] &quot;Dip pail the once and let it settle.&quot;                     
+## [704] &quot;Will please you answer that phone.&quot;                       
+## [705] &quot;The red big apple fell to the ground.&quot;                    
+## [706] &quot;The rose curtain and the show was on.&quot;                    
+## [707] &quot;The prince young became heir to the throne.&quot;              
+## [708] &quot;He the sent boy on a short errand.&quot;                       
+## [709] &quot;Leave and now you will arrive on time.&quot;                   
+## [710] &quot;The store corner was robbed last night.&quot;                  
+## [711] &quot;A ring gold will please most any girl.&quot;                   
+## [712] &quot;The journey long home took a year.&quot;                       
+## [713] &quot;She a saw cat in the neighbor's house.&quot;                   
+## [714] &quot;A shell pink was found on the sandy beach.&quot;               
+## [715] &quot;Small came children to see him.&quot;                          
+## [716] &quot;The and grass bushes were wet with dew.&quot;                  
+## [717] &quot;The man blind counted his old coins.&quot;                     
+## [718] &quot;A storm severe tore down the barn.&quot;                       
+## [719] &quot;She his called name many times.&quot;                          
+## [720] &quot;When hear you the bell, come quickly.&quot;</code></pre>
+<pre class="r"><code>str_replace(words, &quot;(.) (.) (.)&quot;, &quot;\\1 \\3 \\2&quot;)</code></pre>
 <pre><code>##   [1] &quot;a&quot;           &quot;able&quot;        &quot;about&quot;       &quot;absolute&quot;    &quot;accept&quot;     
 ##   [6] &quot;account&quot;     &quot;achieve&quot;     &quot;across&quot;      &quot;act&quot;         &quot;active&quot;     
 ##  [11] &quot;actual&quot;      &quot;add&quot;         &quot;address&quot;     &quot;admit&quot;       &quot;advertise&quot;  
@@ -1004,8 +1719,8 @@ a</code></pre>
 str_detect(a, &quot;\\\\&quot;)</code></pre>
 <pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
 <pre class="r"><code>str_view_all(a, &quot;\\\\&quot;)</code></pre>
-<div id="htmlwidget-1ef8e9932093f9c599f4" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1ef8e9932093f9c599f4">{"x":{"html":"<ul>\n  <li>aei<span class='match'>\\<\/span><\/li>\n  <li>x<span class='match'>\\<\/span>y<\/li>\n  <li>'<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ed9167090f91290f7496" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ed9167090f91290f7496">{"x":{"html":"<ul>\n  <li>aei<span class='match'>\\<\/span><\/li>\n  <li>x<span class='match'>\\<\/span>y<\/li>\n  <li>'<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_detect(a, fixed(&quot;\\&quot;)) #this does not work!</code></pre>
 <pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
 <pre class="r"><code>str_detect(a, fixed(&quot;\\\\&quot;)) #this returns all falses :(</code></pre>
@@ -1019,11 +1734,73 @@ library(stringi)</code></pre>
 </div>
 <div id="count-the-number-of-words." class="section level1">
 <h1>2. Count the number of words.</h1>
-<pre class="r"><code>#stri_length(sentences) for each string, this is giving the number of characters in each sentence
-
-#stri_width(sentences) 
-
-#stri_subset(sentences, &quot;\\b[words]\\b&quot;)
+<pre class="r"><code>stri_length(sentences) #for each string, this is giving the number of characters in each sentence</code></pre>
+<pre><code>##   [1] 42 43 38 40 36 37 43 43 35 40 36 35 49 42 36 39 32 38 41 39 40 45 45
+##  [24] 39 45 31 36 41 47 33 37 40 38 35 32 43 36 38 41 28 41 42 38 39 35 37
+##  [47] 43 33 38 30 39 42 32 40 39 37 38 33 38 42 42 38 38 42 35 39 45 45 41
+##  [70] 48 43 38 41 43 35 33 42 46 41 39 37 40 37 37 34 39 29 31 33 37 36 37
+##  [93] 38 42 37 39 38 36 27 34 35 34 33 41 42 37 43 37 37 31 45 41 37 39 34
+## [116] 36 40 45 31 35 31 41 42 41 39 40 39 45 38 31 37 37 37 32 48 38 44 40
+## [139] 37 41 36 40 35 37 35 29 37 46 50 40 38 38 33 43 40 31 45 40 37 44 46
+## [162] 35 38 33 39 40 36 45 33 41 35 36 40 47 37 36 38 37 44 41 31 35 40 45
+## [185] 39 36 31 35 48 40 40 39 39 37 41 34 43 43 40 39 41 45 40 35 37 45 40
+## [208] 41 41 39 38 45 36 28 34 35 36 35 44 46 37 41 41 41 44 41 38 36 37 39
+## [231] 38 43 48 50 36 39 31 40 36 38 47 38 47 32 44 42 40 35 34 37 41 45 33
+## [254] 35 40 40 35 38 37 30 38 46 43 35 38 37 38 39 34 36 51 43 40 37 41 42
+## [277] 37 33 41 40 46 38 38 39 39 38 48 40 42 35 44 38 40 38 42 42 40 44 47
+## [300] 39 36 45 44 37 42 49 41 42 37 39 47 44 40 41 41 45 42 28 33 37 34 41
+## [323] 40 37 50 40 33 40 38 40 36 41 39 42 33 44 39 44 40 35 39 40 49 39 37
+## [346] 44 41 35 43 26 42 26 43 41 48 34 39 29 38 39 39 41 48 39 44 33 35 37
+## [369] 37 37 39 38 33 35 35 35 27 40 29 33 35 38 31 32 33 43 32 38 35 41 34
+## [392] 32 40 43 36 37 36 31 44 37 34 35 30 36 44 33 42 48 35 34 30 42 31 44
+## [415] 29 36 39 47 48 39 40 38 34 45 39 36 41 37 34 39 43 38 40 43 36 38 39
+## [438] 40 33 39 41 39 35 41 31 39 43 35 42 39 33 42 48 35 40 41 41 57 40 43
+## [461] 38 40 42 45 43 46 40 40 40 42 38 32 34 34 42 46 40 44 38 36 43 43 43
+## [484] 44 46 36 43 37 41 52 40 39 39 40 39 41 43 29 44 35 41 32 40 49 42 31
+## [507] 41 50 42 45 37 48 39 40 45 40 37 40 44 38 36 29 38 41 43 37 47 40 34
+## [530] 33 43 42 37 39 39 45 40 44 40 44 41 50 37 46 42 49 39 48 30 49 33 40
+## [553] 40 40 36 48 40 41 40 41 41 39 34 47 52 48 48 33 42 39 40 44 56 54 48
+## [576] 43 37 49 47 40 40 49 44 39 44 47 28 39 41 32 40 40 36 46 35 35 28 41
+## [599] 37 41 37 44 50 41 39 46 36 35 37 34 39 41 44 48 38 35 38 36 47 41 51
+## [622] 46 47 41 45 48 41 45 37 34 38 48 41 40 40 40 45 28 34 38 46 35 39 46
+## [645] 40 42 43 38 38 44 41 43 39 42 48 40 39 44 46 42 31 37 35 43 40 37 42
+## [668] 47 40 34 37 45 35 39 35 38 33 40 38 40 47 37 33 44 48 36 39 43 41 41
+## [691] 49 48 42 47 48 42 41 39 47 50 33 33 36 34 37 37 43 34 38 39 38 34 38
+## [714] 42 31 39 36 34 31 37</code></pre>
+<pre class="r"><code>stri_width(sentences) </code></pre>
+<pre><code>##   [1] 42 43 38 40 36 37 43 43 35 40 36 35 49 42 36 39 32 38 41 39 40 45 45
+##  [24] 39 45 31 36 41 47 33 37 40 38 35 32 43 36 38 41 28 41 42 38 39 35 37
+##  [47] 43 33 38 30 39 42 32 40 39 37 38 33 38 42 42 38 38 42 35 39 45 45 41
+##  [70] 48 43 38 41 43 35 33 42 46 41 39 37 40 37 37 34 39 29 31 33 37 36 37
+##  [93] 38 42 37 39 38 36 27 34 35 34 33 41 42 37 43 37 37 31 45 41 37 39 34
+## [116] 36 40 45 31 35 31 41 42 41 39 40 39 45 38 31 37 37 37 32 48 38 44 40
+## [139] 37 41 36 40 35 37 35 29 37 46 50 40 38 38 33 43 40 31 45 40 37 44 46
+## [162] 35 38 33 39 40 36 45 33 41 35 36 40 47 37 36 38 37 44 41 31 35 40 45
+## [185] 39 36 31 35 48 40 40 39 39 37 41 34 43 43 40 39 41 45 40 35 37 45 40
+## [208] 41 41 39 38 45 36 28 34 35 36 35 44 46 37 41 41 41 44 41 38 36 37 39
+## [231] 38 43 48 50 36 39 31 40 36 38 47 38 47 32 44 42 40 35 34 37 41 45 33
+## [254] 35 40 40 35 38 37 30 38 46 43 35 38 37 38 39 34 36 51 43 40 37 41 42
+## [277] 37 33 41 40 46 38 38 39 39 38 48 40 42 35 44 38 40 38 42 42 40 44 47
+## [300] 39 36 45 44 37 42 49 41 42 37 39 47 44 40 41 41 45 42 28 33 37 34 41
+## [323] 40 37 50 40 33 40 38 40 36 41 39 42 33 44 39 44 40 35 39 40 49 39 37
+## [346] 44 41 35 43 26 42 26 43 41 48 34 39 29 38 39 39 41 48 39 44 33 35 37
+## [369] 37 37 39 38 33 35 35 35 27 40 29 33 35 38 31 32 33 43 32 38 35 41 34
+## [392] 32 40 43 36 37 36 31 44 37 34 35 30 36 44 33 42 48 35 34 30 42 31 44
+## [415] 29 36 39 47 48 39 40 38 34 45 39 36 41 37 34 39 43 38 40 43 36 38 39
+## [438] 40 33 39 41 39 35 41 31 39 43 35 42 39 33 42 48 35 40 41 41 57 40 43
+## [461] 38 40 42 45 43 46 40 40 40 42 38 32 34 34 42 46 40 44 38 36 43 43 43
+## [484] 44 46 36 43 37 41 52 40 39 39 40 39 41 43 29 44 35 41 32 40 49 42 31
+## [507] 41 50 42 45 37 48 39 40 45 40 37 40 44 38 36 29 38 41 43 37 47 40 34
+## [530] 33 43 42 37 39 39 45 40 44 40 44 41 50 37 46 42 49 39 48 30 49 33 40
+## [553] 40 40 36 48 40 41 40 41 41 39 34 47 52 48 48 33 42 39 40 44 56 54 48
+## [576] 43 37 49 47 40 40 49 44 39 44 47 28 39 41 32 40 40 36 46 35 35 28 41
+## [599] 37 41 37 44 50 41 39 46 36 35 37 34 39 41 44 48 38 35 38 36 47 41 51
+## [622] 46 47 40 45 48 41 45 37 34 38 48 41 40 40 39 45 28 34 38 46 35 39 46
+## [645] 40 42 43 38 38 44 41 43 39 42 48 40 39 44 45 42 31 37 35 43 40 37 42
+## [668] 47 40 34 37 45 35 39 35 38 33 40 38 40 47 37 33 44 48 36 39 43 41 41
+## [691] 49 48 42 47 48 42 41 39 47 50 33 33 36 34 37 37 43 34 38 39 38 34 38
+## [714] 42 31 39 36 34 31 37</code></pre>
+<pre class="r"><code>#stri_subset(sentences, &quot;\\b[words]\\b&quot;) This does not work as intended
 #if we just used stringr we would get:
 str_count(sentences, &quot;\\W+&quot;)</code></pre>
 <pre><code>##   [1]  8  8 10  9  7  7  8  8  7  8  8  8 10  7  8  9  6  8  8  8  9  9 10
@@ -1096,12 +1873,12 @@ str_count(sentences, &quot;\\W+&quot;)</code></pre>
 stri_rand_strings(5,5, '[A-Z]')</code></pre>
 <pre><code>## Warning in stri_rand_strings(5, 5, &quot;[A-Z]&quot;): '.Random.seed' is not an
 ## integer vector but of type 'NULL', so ignored</code></pre>
-<pre><code>## [1] &quot;LJDMQ&quot; &quot;BXIGX&quot; &quot;QQRTI&quot; &quot;IUTQR&quot; &quot;EWDTG&quot;</code></pre>
+<pre><code>## [1] &quot;AOGOX&quot; &quot;WTIYO&quot; &quot;FIYYP&quot; &quot;VRBFA&quot; &quot;RYXGA&quot;</code></pre>
 <pre class="r"><code>#stri_rand_strings(x,y, 'matching') where x = number of strings, y = number of characters per string.
 stri_rand_strings(5,4, c('[A-Z]','[1-9]'))</code></pre>
 <pre><code>## Warning in stri_rand_strings(5, 4, c(&quot;[A-Z]&quot;, &quot;[1-9]&quot;)): vector length not
 ## consistent with other arguments</code></pre>
-<pre><code>## [1] &quot;ISIY&quot; &quot;1333&quot; &quot;AHYV&quot; &quot;6477&quot; &quot;GZDE&quot;</code></pre>
+<pre><code>## [1] &quot;TISZ&quot; &quot;7644&quot; &quot;BRXS&quot; &quot;2592&quot; &quot;CEOS&quot;</code></pre>
 <pre class="r"><code>#R does not like this because the vector length is not the same as the arguments...</code></pre>
 </div>
 <div id="part-i-reflection" class="section level1">
