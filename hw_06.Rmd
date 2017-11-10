@@ -2,11 +2,13 @@
 title: 'Homework 6: working with stringr and nested lists'
 author: "Emily West"
 date: "11/5/2017"
-output: github_document
-always_allow_html: yes
+output: html_document
+
 ---
 
 ```{r setup, include=FALSE}
+#always_allow_html: yes
+
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(stringr)
