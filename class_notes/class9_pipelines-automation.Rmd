@@ -1,0 +1,106 @@
+---
+title: "class9 Pipelines and Automation"
+author: "Emily West"
+date: "11/7/2017"-"11/9/2017"
+output: github_document:
+    keep_md: true
+---
+
+YAML
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+GUEST Lecturer: Shaun Jackman
+The dark side of automating: yak shaving
+If you do something more than 3 times, it is worth automating
+Why split up analysis into multiple files?
+  integrating someone into the project becomes more challenging
+  certain steps take a long time- those should be seperated 
+  think "manageable chunks"
+  
+Each stage of a pipeline
+  define stage
+  CLEARLY define input and output (name, type of input/output)
+  do NOT modify inputs, "idempotent", always write out to a different file
+    independent steps mean you can rerun pipelines downstream
+    chunks of analysis can be assigned to different people
+  pipelines can be visual!
+  
+Why automate a pipeline?
+  reproducability
+  recreate results deleted by fat fingas
+  to rerun pipeline with updated software
+  to run the same piepline on a new dataset
+  
+Tools
+R
+shell
+makefile
+
+make
+  A pipeline is a dependency graphy
+  each vertex is a stage
+  each edge is a dependency between stages
+  dependency graphs can be non-linear, making automation so crucial
+  make is visual and programmatic
+  a make file 
+
+shell
+  gives one order
+  
+Syntax of a makefile
+shell:
+  set -euc
+  dot -Tpng -o figure.png figure.gv
+  Rscript
+makefile  
+all:
+  dot -Tpng -o figure.png figure.gv
+  Rscript -e 'knitr::knit("article.Rmd")'
+  pandoc -s -o article.html article.md
+  
+What if you're changing the article between steps?
+all: article.html
+  article.html: article.Rmd
+    dot -Tpng -o figure.png figure.gv
+    Rscript -e 'knitr::knit("article.Rmd")'
+    pandoc -s -o article.html article.md
+  article.html:articl.Rmd is a dependency - you can add dependency to 
+    
+    
+  article.html: article.Rmd
+  figure.png: figure.gv
+    dot -Tpng -o figure.png figure.gv
+    Rscript -e 'knitr::knit("article.Rmd")'
+    pandoc -s -o article.html article.md
+sjackman.ca/makefile-slides
+
+#Guilio takes over 
+eventually you may merge the two analysis paths, but not necessarily
+```{r}
+#install.packages("devtools")
+devtools::install_github("richfitz/remake")
+#make is a program from lynx
+#make does not necessarily need to be used in R
+#must be inside a project
+
+```
+a simple text file is used for a make file
+must open a new make file
+each non indented line corresponds to a rule, you can tell make 
+dependencies - what you have to have already existing to run a certain rule
+commands - what we do with the dependencies
+on the left is the target or name of the rule
+you cannot use R commands in 
+rm -remove
+rmd - must have the rmd already in the project
+PROGRAMMING STARTS ON THE WHITE BOARD, NOT THE KEYBOARD
+remake
+curl - copy the url
+#> right angle operator, the output of the command gets put into the designated
+
+```{r}
+library(remake)
+
+remake::make()

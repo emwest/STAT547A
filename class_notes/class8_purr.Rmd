@@ -1,0 +1,260 @@
+---
+title: "Intro to prr"
+author: "Emily West"
+date: "10/31/2017"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+##vectors
+#an atomic vector is composed of elements all of the same type (within that vector) (pearl necklace )
+(v_log<-c(TRUE, FALSE, FALSE, TRUE)) #all logical
+(v_int<-1:4) #all integers, 
+#each elements has a length of 1
+
+(v_double <- 1:4*1.2) #parentheses short hand the print function
+typeof(v_double)
+(v_char<-letters[1:4])
+typeof(v_char)
+##Index with a logical vector
+v_char[c(FALSE, FALSE,TRUE,TRUE)] #index using logical vector, return only the elements that are true- basically a filter
+
+v_char[v_log]
+
+#index by position
+v_double[2:3]
+v_char[-4] #negative to drop out an element
+
+v_int[1]
+
+typeof(v_int[1])
+v_doub_copy <- v_double
+str(v_doub_copy) #numeric vector
+#It is really easy to mess up a vector by coercing it to a different type
+
+v_doub_copy[3]<-"uhoh"
+str(v_doub_copy) #now a character string! no longer an atomic vector
+```
+
+#Lists
+```{r}
+(x<-list(1:3,c("four","five"))) # a list does not care that the elements are of a different type
+(y<- list(logical = TRUE, integer = 41, double = 4*3.2, character = "character"))
+(z<-list(letters[26:22], transcendental = c(pi, exp(1)), f= function(x) x^2))# you can even have a function in a list
+
+```
+
+#CHALLENGE: in list y pull out the second and third elements, in list z pull out all the transcendental numbers
+
+```{r}
+y[2:3]
+z[2]
+z["transcendental"] #but this returns a list, not an atomic vector! We have no "reached" into the list
+z$transcendental #index by the name of the element
+typeof(z["transcendental"])
+typeof(z[["transcendental"]])
+typeof(z$transcendental) #$ is like double bracket indexing
+#the pepper shaker analogy of indexing into a list which are highly nested
+
+y[["double"]]
+y["double"]
+y$double
+```
+
+prrr
+```{r}
+##consider how to square the integers 1 through n 
+n<-5
+# you could do this by hand, or you could use a for loop
+
+res<- rep(NA_integer_, n) #kills the vector so you have all NAs first
+  for(i in seq_len(n)){
+    res[i]<- i^2
+    }
+  
+res
+
+(1:n)^2 #square all the integers 1 to n
+
+exp(v_double)
+
+(l_doub<- as.list(v_double)) #force the atomic vector into a list
+
+exp(l_doub) #non numeric argument
+#THis is where map functions in purr become really useful!
+
+library(purrr)
+
+map_dbl(l_doub,exp) #even though l_doub is a non-numeric list
+#map function is similar to lapply
+#map_ (x, f, ...) - x = argument, f = funtion, ...= we'll get to this later
+#map_dbl says: take ldoub and exponentiate it
+#maps over all of the elements
+#map returns type list, map_ returns the typr designated after the "_"
+
+library(stringr)
+
+str(fruit)
+
+#use a map function and a stringer function to split all the fruit that have two words in them
+?split()
+
+map_chr(.x=fruit,.f= str_split, " ") #does not like character
+
+fruit %>% 
+  map(str_split, " ")
+
+fruit %>% 
+  map_chr(str_to_upper)
+
+```
+
+Get advanced: Joey Berhardt github
+```{r}
+#install.packages("repurrrsive")
+library(repurrrsive)
+#install.packages("listviewer")
+library(listviewer)
+#install.packages("jsonlit")
+library(jsonlite)
+library(dplyr)
+library(tibble)
+library(purrr)
+```
+
+```{r}
+str(gh_users)
+head(gh_users)
+
+jsonedit(gh_users) #a fun interactive way to view data tht is nested
+
+gh_users[[1]]
+map(gh_users,"login")#index by name
+gh_users %>%map(18) #index by position
+
+#what if we want to get out multiple values
+map(gh_users,'[', c("login","name")) 
+# [ can be used to extract elements of a list!
+
+map(gh_users, magrittr, extract, c("login", "name"))
+
+```
+
+##Guilio takes over
+```{r}
+rm(list=ls(all=TRUE))
+list(letters)
+#nested lists make things ugly
+library(tidyverse)
+library(purrr)
+library(repurrrsive)
+#library(listviewer)
+#jasonedit(gh_users)
+
+```
+
+```{r}
+#An ugly nested dataframe: gh_repos
+#str(gh_repos) - hard to access elements directly
+data("gh_repos") #allows you to explore data in superficial way through the global environment- similare to View(), it is important to always explore your dataset before doing anything else
+gh_repos[[1]]
+View(gh_users)
+```
+
+#Warmup and refresh challenge
+extract information from lists
+```{r}
+#purr allows you to more easily access data in nested lists
+#mapping functions are one of purr's greatest tools
+gh_repos[[2]][[2]][["name"]]
+
+gh_repos %>% 
+  map_chr(c(2,2)) #look at the second element of the second element of the first list 
+
+gh_repos %>% 
+  map_chr(list(2,"name")) #this would give you just the name on the second repo
+
+getNamespaceExports("purrr") #what are the purrr functions availabile - by exploring your data 
+
+gh_repos %>% map_chr(c(1,2))
+gh_repos %>% map_chr(list(1,"name")) #use list() instead of c() to return non-character data
+
+```
+
+#Challenge: extract information from lists:owner ID of fourth repo for each user
+```{r}
+gh_repos %>% 
+  map_int(list(4,"owner","id")) #each comma represents next step...map_XXX XXX indicates the type of element you are selecting
+
+#dataframes are preferred, gh_repos is a nested list
+
+```
+
+```{r}
+library(tibble)
+enframe() #search for a variable name and translate it to a variable in a dataframe
+u_id <- gh_repos %>% 
+  map_int(list(1,"owner","id"))
+str(gh_repos, max.level = 1) #stop at the first level of the data, note there are no names for any of the elements
+
+#we want to set names 
+gh_repos_named <-gh_repos %>% 
+  set_names(u_id)
+
+str(gh_repos_named, max.level = 1) #now lists are named based on user ID
+
+#get a dataframe for gh_repos
+gh_repos_df<- gh_repos_named %>% enframe("user_id", "repository_stuff") #enframe, give column names
+
+gh_repos_df
+enframe()
+```
+
+#Challenges continue: create an enframed df of repos with rownames being their login
+```{r}
+#MODIFY existing code
+login<-gh_repos %>% 
+  map_chr(list(1,"owner","login"))
+
+gh_repos_named2 <-gh_repos %>% 
+  set_names(login)
+
+gh_repos_df2<- gh_repos_named2 %>% enframe("user_login", "repository_stuff")
+gh_repos_df2
+View(gh_repos_df2)
+```
+
+```{r}
+gh_repos_df2  %>% filter(user_login %in% c("masalmon", "leeper")) %>% mutate(number_of_repositories = length(repository_stuff))
+
+gh_repos_df2  %>% filter(user_login %in% c("masalmon", "leeper")) %>% mutate(number_of_repositories = map_l(repository_stuff))#??????
+```
+
+```{r}
+got_chars
+
+map(got_chars, "name")
+
+aliases_named<-set_names(map(got_chars, "aliases"), map(got_chars, "name")) #make a list with all the names and aliases from got dataset
+
+View(aliases_named)
+length(aliases_named)#number of elements in the list, but does not go deeper into nested list
+map_int(aliases_named, length) #for each element how many occurrences
+
+collapse_by_comma<- function(x){
+  paste(x, collapse = ", ")
+}
+
+collapse_by_comma(c("first string,", "second string"))
+
+map(aliases_named, collapse_by_comma)
+map(aliases_named, function(x) paste(x, collapse= ", ")) #define function inside the map function
+map(aliases_named, paste, collapse = ", ")
+map(aliases_named, ~paste(.x, collapse = ", ")) # ~ special character, .x 
+
+```
+
