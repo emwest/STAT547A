@@ -1,0 +1,1705 @@
+"","continent","country","lifeExp","year"
+"1","Asia","Afghanistan",28.801,1952
+"2","Africa","Gambia",30,1952
+"3","Africa","Angola",30.015,1952
+"4","Africa","Sierra Leone",30.331,1952
+"5","Africa","Mozambique",31.286,1952
+"6","Africa","Burkina Faso",31.975,1952
+"7","Africa","Guinea-Bissau",32.5,1952
+"8","Asia","Yemen, Rep.",32.548,1952
+"9","Africa","Somalia",32.978,1952
+"10","Africa","Guinea",33.609,1952
+"11","Africa","Mali",33.685,1952
+"12","Africa","Ethiopia",34.078,1952
+"13","Africa","Equatorial Guinea",34.482,1952
+"14","Africa","Djibouti",34.812,1952
+"15","Africa","Central African Republic",35.463,1952
+"16","Africa","Eritrea",35.928,1952
+"17","Asia","Nepal",36.157,1952
+"18","Africa","Malawi",36.256,1952
+"19","Asia","Myanmar",36.319,1952
+"20","Africa","Nigeria",36.324,1952
+"21","Africa","Madagascar",36.681,1952
+"22","Africa","Gabon",37.003,1952
+"23","Africa","Senegal",37.278,1952
+"24","Asia","India",37.373,1952
+"25","Africa","Niger",37.444,1952
+"26","Asia","Indonesia",37.468,1952
+"27","Asia","Bangladesh",37.484,1952
+"28","Asia","Oman",37.578,1952
+"29","Americas","Haiti",37.579,1952
+"30","Africa","Chad",38.092,1952
+"31","Africa","Benin",38.223,1952
+"32","Africa","Liberia",38.48,1952
+"33","Africa","Cameroon",38.523,1952
+"34","Africa","Togo",38.596,1952
+"35","Africa","Sudan",38.635,1952
+"36","Africa","Burundi",39.031,1952
+"37","Africa","Congo, Dem. Rep.",39.143,1952
+"38","Asia","Cambodia",39.417,1952
+"39","Asia","Saudi Arabia",39.875,1952
+"40","Africa","Uganda",39.978,1952
+"41","Africa","Rwanda",40,1952
+"42","Asia","Vietnam",40.412,1952
+"43","Americas","Bolivia",40.414,1952
+"44","Africa","Cote d'Ivoire",40.477,1952
+"45","Africa","Mauritania",40.543,1952
+"46","Africa","Comoros",40.715,1952
+"47","Africa","Tanzania",41.215,1952
+"48","Africa","Swaziland",41.407,1952
+"49","Africa","Namibia",41.725,1952
+"50","Africa","Egypt",41.893,1952
+"51","Americas","Honduras",41.912,1952
+"52","Americas","Guatemala",42.023,1952
+"53","Africa","Zambia",42.038,1952
+"54","Africa","Congo, Rep.",42.111,1952
+"55","Africa","Lesotho",42.138,1952
+"56","Asia","Mongolia",42.244,1952
+"57","Africa","Kenya",42.27,1952
+"58","Americas","Nicaragua",42.314,1952
+"59","Africa","Libya",42.723,1952
+"60","Africa","Morocco",42.873,1952
+"61","Africa","Algeria",43.077,1952
+"62","Africa","Ghana",43.149,1952
+"63","Asia","Jordan",43.158,1952
+"64","Asia","West Bank and Gaza",43.16,1952
+"65","Asia","Pakistan",43.436,1952
+"66","Europe","Turkey",43.585,1952
+"67","Americas","Peru",43.902,1952
+"68","Asia","China",44,1952
+"69","Africa","Tunisia",44.6,1952
+"70","Asia","Iran",44.869,1952
+"71","Africa","South Africa",45.009,1952
+"72","Americas","El Salvador",45.262,1952
+"73","Asia","Iraq",45.32,1952
+"74","Asia","Syria",45.883,1952
+"75","Americas","Dominican Republic",45.928,1952
+"76","Africa","Sao Tome and Principe",46.471,1952
+"77","Asia","Korea, Rep.",47.453,1952
+"78","Africa","Botswana",47.622,1952
+"79","Asia","Philippines",47.752,1952
+"80","Americas","Ecuador",48.357,1952
+"81","Africa","Zimbabwe",48.451,1952
+"82","Asia","Malaysia",48.463,1952
+"83","Asia","Korea, Dem. Rep.",50.056,1952
+"84","Americas","Colombia",50.643,1952
+"85","Americas","Mexico",50.789,1952
+"86","Asia","Thailand",50.848,1952
+"87","Americas","Brazil",50.917,1952
+"88","Asia","Bahrain",50.939,1952
+"89","Africa","Mauritius",50.986,1952
+"90","Africa","Reunion",52.724,1952
+"91","Europe","Bosnia and Herzegovina",53.82,1952
+"92","Americas","Chile",54.745,1952
+"93","Americas","Venezuela",55.088,1952
+"94","Americas","Panama",55.191,1952
+"95","Europe","Albania",55.23,1952
+"96","Asia","Kuwait",55.565,1952
+"97","Asia","Lebanon",55.928,1952
+"98","Americas","Costa Rica",57.206,1952
+"99","Asia","Sri Lanka",57.593,1952
+"100","Europe","Serbia",57.996,1952
+"101","Asia","Taiwan",58.5,1952
+"102","Americas","Jamaica",58.53,1952
+"103","Americas","Trinidad and Tobago",59.1,1952
+"104","Europe","Montenegro",59.164,1952
+"105","Americas","Cuba",59.421,1952
+"106","Europe","Bulgaria",59.6,1952
+"107","Europe","Portugal",59.82,1952
+"108","Asia","Singapore",60.396,1952
+"109","Asia","Hong Kong, China",60.96,1952
+"110","Europe","Romania",61.05,1952
+"111","Europe","Croatia",61.21,1952
+"112","Europe","Poland",61.31,1952
+"113","Americas","Argentina",62.485,1952
+"114","Americas","Paraguay",62.649,1952
+"115","Asia","Japan",63.03,1952
+"116","Europe","Hungary",64.03,1952
+"117","Americas","Puerto Rico",64.28,1952
+"118","Europe","Slovak Republic",64.36,1952
+"119","Europe","Spain",64.94,1952
+"120","Asia","Israel",65.39,1952
+"121","Europe","Slovenia",65.57,1952
+"122","Europe","Greece",65.86,1952
+"123","Europe","Italy",65.94,1952
+"124","Americas","Uruguay",66.071,1952
+"125","Europe","Finland",66.55,1952
+"126","Europe","Austria",66.8,1952
+"127","Europe","Czech Republic",66.87,1952
+"128","Europe","Ireland",66.91,1952
+"129","Europe","France",67.41,1952
+"130","Europe","Germany",67.5,1952
+"131","Europe","Belgium",68,1952
+"132","Americas","United States",68.44,1952
+"133","Americas","Canada",68.75,1952
+"134","Oceania","Australia",69.12,1952
+"135","Europe","United Kingdom",69.18,1952
+"136","Oceania","New Zealand",69.39,1952
+"137","Europe","Switzerland",69.62,1952
+"138","Europe","Denmark",70.78,1952
+"139","Europe","Sweden",71.86,1952
+"140","Europe","Netherlands",72.13,1952
+"141","Europe","Iceland",72.49,1952
+"142","Europe","Norway",72.67,1952
+"143","Asia","Afghanistan",30.332,1957
+"144","Africa","Sierra Leone",31.57,1957
+"145","Africa","Angola",31.999,1957
+"146","Africa","Gambia",32.065,1957
+"147","Africa","Guinea-Bissau",33.489,1957
+"148","Africa","Mozambique",33.779,1957
+"149","Asia","Yemen, Rep.",33.97,1957
+"150","Africa","Guinea",34.558,1957
+"151","Africa","Burkina Faso",34.906,1957
+"152","Africa","Somalia",34.977,1957
+"153","Africa","Mali",35.307,1957
+"154","Africa","Equatorial Guinea",35.983,1957
+"155","Africa","Ethiopia",36.667,1957
+"156","Africa","Malawi",37.207,1957
+"157","Africa","Djibouti",37.328,1957
+"158","Africa","Central African Republic",37.464,1957
+"159","Asia","Nepal",37.686,1957
+"160","Africa","Nigeria",37.802,1957
+"161","Africa","Eritrea",38.047,1957
+"162","Africa","Niger",38.598,1957
+"163","Africa","Madagascar",38.865,1957
+"164","Africa","Gabon",38.999,1957
+"165","Africa","Senegal",39.329,1957
+"166","Asia","Bangladesh",39.348,1957
+"167","Africa","Liberia",39.486,1957
+"168","Africa","Sudan",39.624,1957
+"169","Africa","Chad",39.881,1957
+"170","Asia","Indonesia",39.918,1957
+"171","Asia","Oman",40.08,1957
+"172","Asia","India",40.249,1957
+"173","Africa","Benin",40.358,1957
+"174","Africa","Cameroon",40.428,1957
+"175","Africa","Burundi",40.533,1957
+"176","Africa","Congo, Dem. Rep.",40.652,1957
+"177","Americas","Haiti",40.696,1957
+"178","Africa","Togo",41.208,1957
+"179","Asia","Cambodia",41.366,1957
+"180","Africa","Rwanda",41.5,1957
+"181","Americas","Bolivia",41.89,1957
+"182","Asia","Myanmar",41.905,1957
+"183","Africa","Mauritania",42.338,1957
+"184","Africa","Comoros",42.46,1957
+"185","Africa","Cote d'Ivoire",42.469,1957
+"186","Africa","Uganda",42.571,1957
+"187","Asia","Saudi Arabia",42.868,1957
+"188","Asia","Vietnam",42.887,1957
+"189","Africa","Tanzania",42.974,1957
+"190","Africa","Swaziland",43.424,1957
+"191","Africa","Zambia",44.077,1957
+"192","Americas","Guatemala",44.142,1957
+"193","Africa","Egypt",44.444,1957
+"194","Americas","Honduras",44.665,1957
+"195","Africa","Kenya",44.686,1957
+"196","Africa","Ghana",44.779,1957
+"197","Africa","Lesotho",45.047,1957
+"198","Africa","Congo, Rep.",45.053,1957
+"199","Africa","Namibia",45.226,1957
+"200","Asia","Mongolia",45.248,1957
+"201","Africa","Libya",45.289,1957
+"202","Africa","Morocco",45.423,1957
+"203","Americas","Nicaragua",45.432,1957
+"204","Asia","Pakistan",45.557,1957
+"205","Asia","Jordan",45.669,1957
+"206","Asia","West Bank and Gaza",45.671,1957
+"207","Africa","Algeria",45.685,1957
+"208","Americas","Peru",46.263,1957
+"209","Africa","Tunisia",47.1,1957
+"210","Asia","Iran",47.181,1957
+"211","Africa","South Africa",47.985,1957
+"212","Europe","Turkey",48.079,1957
+"213","Asia","Syria",48.284,1957
+"214","Asia","Iraq",48.437,1957
+"215","Americas","El Salvador",48.57,1957
+"216","Africa","Sao Tome and Principe",48.945,1957
+"217","Africa","Botswana",49.618,1957
+"218","Americas","Dominican Republic",49.828,1957
+"219","Africa","Zimbabwe",50.469,1957
+"220","Asia","China",50.54896,1957
+"221","Asia","Philippines",51.334,1957
+"222","Americas","Ecuador",51.356,1957
+"223","Asia","Malaysia",52.102,1957
+"224","Asia","Korea, Rep.",52.681,1957
+"225","Americas","Brazil",53.285,1957
+"226","Asia","Thailand",53.63,1957
+"227","Asia","Bahrain",53.832,1957
+"228","Asia","Korea, Dem. Rep.",54.081,1957
+"229","Africa","Reunion",55.09,1957
+"230","Americas","Colombia",55.118,1957
+"231","Americas","Mexico",55.19,1957
+"232","Americas","Chile",56.074,1957
+"233","Americas","Venezuela",57.907,1957
+"234","Asia","Kuwait",58.033,1957
+"235","Africa","Mauritius",58.089,1957
+"236","Europe","Bosnia and Herzegovina",58.45,1957
+"237","Americas","Panama",59.201,1957
+"238","Europe","Albania",59.28,1957
+"239","Asia","Lebanon",59.489,1957
+"240","Americas","Costa Rica",60.026,1957
+"241","Europe","Montenegro",61.448,1957
+"242","Asia","Sri Lanka",61.456,1957
+"243","Europe","Portugal",61.51,1957
+"244","Europe","Serbia",61.685,1957
+"245","Americas","Trinidad and Tobago",61.8,1957
+"246","Americas","Cuba",62.325,1957
+"247","Asia","Taiwan",62.4,1957
+"248","Americas","Jamaica",62.61,1957
+"249","Asia","Singapore",63.179,1957
+"250","Americas","Paraguay",63.196,1957
+"251","Europe","Romania",64.1,1957
+"252","Americas","Argentina",64.399,1957
+"253","Asia","Hong Kong, China",64.75,1957
+"254","Europe","Croatia",64.77,1957
+"255","Asia","Japan",65.5,1957
+"256","Europe","Poland",65.77,1957
+"257","Europe","Hungary",66.41,1957
+"258","Europe","Bulgaria",66.61,1957
+"259","Europe","Spain",66.66,1957
+"260","Americas","Uruguay",67.044,1957
+"261","Europe","Slovak Republic",67.45,1957
+"262","Europe","Austria",67.48,1957
+"263","Europe","Finland",67.49,1957
+"264","Europe","Italy",67.81,1957
+"265","Asia","Israel",67.84,1957
+"266","Europe","Slovenia",67.85,1957
+"267","Europe","Greece",67.86,1957
+"268","Americas","Puerto Rico",68.54,1957
+"269","Europe","Ireland",68.9,1957
+"270","Europe","France",68.93,1957
+"271","Europe","Czech Republic",69.03,1957
+"272","Europe","Germany",69.1,1957
+"273","Europe","Belgium",69.24,1957
+"274","Americas","United States",69.49,1957
+"275","Americas","Canada",69.96,1957
+"276","Oceania","New Zealand",70.26,1957
+"277","Oceania","Australia",70.33,1957
+"278","Europe","United Kingdom",70.42,1957
+"279","Europe","Switzerland",70.56,1957
+"280","Europe","Denmark",71.81,1957
+"281","Europe","Sweden",72.49,1957
+"282","Europe","Netherlands",72.99,1957
+"283","Europe","Norway",73.44,1957
+"284","Europe","Iceland",73.47,1957
+"285","Asia","Afghanistan",31.997,1962
+"286","Africa","Sierra Leone",32.767,1962
+"287","Africa","Gambia",33.896,1962
+"288","Africa","Angola",34,1962
+"289","Africa","Guinea-Bissau",34.488,1962
+"290","Asia","Yemen, Rep.",35.18,1962
+"291","Africa","Guinea",35.753,1962
+"292","Africa","Mozambique",36.161,1962
+"293","Africa","Mali",36.936,1962
+"294","Africa","Somalia",36.981,1962
+"295","Africa","Equatorial Guinea",37.485,1962
+"296","Africa","Burkina Faso",37.814,1962
+"297","Africa","Malawi",38.41,1962
+"298","Africa","Nigeria",39.36,1962
+"299","Asia","Nepal",39.393,1962
+"300","Africa","Central African Republic",39.475,1962
+"301","Africa","Niger",39.487,1962
+"302","Africa","Djibouti",39.693,1962
+"303","Africa","Ethiopia",40.059,1962
+"304","Africa","Eritrea",40.158,1962
+"305","Africa","Gabon",40.489,1962
+"306","Africa","Liberia",40.502,1962
+"307","Africa","Madagascar",40.848,1962
+"308","Africa","Sudan",40.87,1962
+"309","Asia","Bangladesh",41.216,1962
+"310","Africa","Senegal",41.454,1962
+"311","Africa","Chad",41.716,1962
+"312","Africa","Burundi",42.045,1962
+"313","Africa","Congo, Dem. Rep.",42.122,1962
+"314","Asia","Indonesia",42.518,1962
+"315","Africa","Benin",42.618,1962
+"316","Africa","Cameroon",42.643,1962
+"317","Africa","Rwanda",43,1962
+"318","Asia","Oman",43.165,1962
+"319","Asia","Cambodia",43.415,1962
+"320","Americas","Bolivia",43.428,1962
+"321","Americas","Haiti",43.59,1962
+"322","Asia","India",43.605,1962
+"323","Africa","Togo",43.922,1962
+"324","Africa","Tanzania",44.246,1962
+"325","Africa","Mauritania",44.248,1962
+"326","Africa","Comoros",44.467,1962
+"327","Asia","China",44.50136,1962
+"328","Africa","Cote d'Ivoire",44.93,1962
+"329","Africa","Swaziland",44.992,1962
+"330","Asia","Myanmar",45.108,1962
+"331","Africa","Uganda",45.344,1962
+"332","Asia","Vietnam",45.363,1962
+"333","Asia","Saudi Arabia",45.914,1962
+"334","Africa","Zambia",46.023,1962
+"335","Africa","Ghana",46.452,1962
+"336","Americas","Guatemala",46.954,1962
+"337","Africa","Egypt",46.992,1962
+"338","Asia","Pakistan",47.67,1962
+"339","Africa","Lesotho",47.747,1962
+"340","Africa","Libya",47.808,1962
+"341","Africa","Morocco",47.924,1962
+"342","Africa","Kenya",47.949,1962
+"343","Americas","Honduras",48.041,1962
+"344","Asia","Jordan",48.126,1962
+"345","Asia","West Bank and Gaza",48.127,1962
+"346","Asia","Mongolia",48.251,1962
+"347","Africa","Algeria",48.303,1962
+"348","Africa","Namibia",48.386,1962
+"349","Africa","Congo, Rep.",48.435,1962
+"350","Americas","Nicaragua",48.632,1962
+"351","Americas","Peru",49.096,1962
+"352","Asia","Iran",49.325,1962
+"353","Africa","Tunisia",49.579,1962
+"354","Africa","South Africa",49.951,1962
+"355","Asia","Syria",50.305,1962
+"356","Asia","Iraq",51.457,1962
+"357","Africa","Botswana",51.52,1962
+"358","Africa","Sao Tome and Principe",51.893,1962
+"359","Europe","Turkey",52.098,1962
+"360","Americas","El Salvador",52.307,1962
+"361","Africa","Zimbabwe",52.358,1962
+"362","Americas","Dominican Republic",53.459,1962
+"363","Americas","Ecuador",54.64,1962
+"364","Asia","Philippines",54.757,1962
+"365","Asia","Korea, Rep.",55.292,1962
+"366","Americas","Brazil",55.665,1962
+"367","Asia","Malaysia",55.737,1962
+"368","Asia","Thailand",56.061,1962
+"369","Asia","Korea, Dem. Rep.",56.656,1962
+"370","Asia","Bahrain",56.923,1962
+"371","Africa","Reunion",57.666,1962
+"372","Americas","Colombia",57.863,1962
+"373","Americas","Chile",57.924,1962
+"374","Americas","Mexico",58.299,1962
+"375","Africa","Mauritius",60.246,1962
+"376","Asia","Kuwait",60.47,1962
+"377","Americas","Venezuela",60.77,1962
+"378","Americas","Panama",61.817,1962
+"379","Europe","Bosnia and Herzegovina",61.93,1962
+"380","Asia","Lebanon",62.094,1962
+"381","Asia","Sri Lanka",62.192,1962
+"382","Americas","Costa Rica",62.842,1962
+"383","Europe","Montenegro",63.728,1962
+"384","Americas","Paraguay",64.361,1962
+"385","Europe","Portugal",64.39,1962
+"386","Europe","Serbia",64.531,1962
+"387","Europe","Albania",64.82,1962
+"388","Americas","Trinidad and Tobago",64.9,1962
+"389","Americas","Argentina",65.142,1962
+"390","Asia","Taiwan",65.2,1962
+"391","Americas","Cuba",65.246,1962
+"392","Americas","Jamaica",65.61,1962
+"393","Asia","Singapore",65.798,1962
+"394","Europe","Romania",66.8,1962
+"395","Europe","Croatia",67.13,1962
+"396","Europe","Poland",67.64,1962
+"397","Asia","Hong Kong, China",67.65,1962
+"398","Europe","Hungary",67.96,1962
+"399","Americas","Uruguay",68.253,1962
+"400","Asia","Japan",68.73,1962
+"401","Europe","Finland",68.75,1962
+"402","Europe","Slovenia",69.15,1962
+"403","Europe","Italy",69.24,1962
+"404","Asia","Israel",69.39,1962
+"405","Europe","Bulgaria",69.51,1962
+"406","Europe","Greece",69.51,1962
+"407","Europe","Austria",69.54,1962
+"408","Americas","Puerto Rico",69.62,1962
+"409","Europe","Spain",69.69,1962
+"410","Europe","Czech Republic",69.9,1962
+"411","Americas","United States",70.21,1962
+"412","Europe","Belgium",70.25,1962
+"413","Europe","Ireland",70.29,1962
+"414","Europe","Germany",70.3,1962
+"415","Europe","Slovak Republic",70.33,1962
+"416","Europe","France",70.51,1962
+"417","Europe","United Kingdom",70.76,1962
+"418","Oceania","Australia",70.93,1962
+"419","Oceania","New Zealand",71.24,1962
+"420","Americas","Canada",71.3,1962
+"421","Europe","Switzerland",71.32,1962
+"422","Europe","Denmark",72.35,1962
+"423","Europe","Netherlands",73.23,1962
+"424","Europe","Sweden",73.37,1962
+"425","Europe","Norway",73.47,1962
+"426","Europe","Iceland",73.68,1962
+"427","Asia","Afghanistan",34.02,1967
+"428","Africa","Sierra Leone",34.113,1967
+"429","Africa","Guinea-Bissau",35.492,1967
+"430","Africa","Gambia",35.857,1967
+"431","Africa","Angola",35.985,1967
+"432","Asia","Yemen, Rep.",36.984,1967
+"433","Africa","Guinea",37.197,1967
+"434","Africa","Mozambique",38.113,1967
+"435","Africa","Mali",38.487,1967
+"436","Africa","Somalia",38.977,1967
+"437","Africa","Equatorial Guinea",38.987,1967
+"438","Africa","Malawi",39.487,1967
+"439","Africa","Niger",40.118,1967
+"440","Africa","Burkina Faso",40.697,1967
+"441","Africa","Nigeria",41.04,1967
+"442","Asia","Nepal",41.472,1967
+"443","Africa","Central African Republic",41.478,1967
+"444","Africa","Liberia",41.536,1967
+"445","Africa","Djibouti",42.074,1967
+"446","Africa","Ethiopia",42.115,1967
+"447","Africa","Eritrea",42.189,1967
+"448","Africa","Sudan",42.858,1967
+"449","Africa","Madagascar",42.881,1967
+"450","Asia","Bangladesh",43.453,1967
+"451","Africa","Burundi",43.548,1967
+"452","Africa","Senegal",43.563,1967
+"453","Africa","Chad",43.601,1967
+"454","Africa","Congo, Dem. Rep.",44.056,1967
+"455","Africa","Rwanda",44.1,1967
+"456","Africa","Gabon",44.598,1967
+"457","Africa","Cameroon",44.799,1967
+"458","Africa","Benin",44.885,1967
+"459","Americas","Bolivia",45.032,1967
+"460","Asia","Cambodia",45.415,1967
+"461","Africa","Tanzania",45.757,1967
+"462","Asia","Indonesia",45.964,1967
+"463","Americas","Haiti",46.243,1967
+"464","Africa","Mauritania",46.289,1967
+"465","Africa","Comoros",46.472,1967
+"466","Africa","Swaziland",46.633,1967
+"467","Africa","Togo",46.769,1967
+"468","Asia","Oman",46.988,1967
+"469","Asia","India",47.193,1967
+"470","Africa","Cote d'Ivoire",47.35,1967
+"471","Africa","Zambia",47.768,1967
+"472","Asia","Vietnam",47.838,1967
+"473","Africa","Uganda",48.051,1967
+"474","Africa","Ghana",48.072,1967
+"475","Africa","Lesotho",48.492,1967
+"476","Africa","Egypt",49.293,1967
+"477","Asia","Myanmar",49.379,1967
+"478","Asia","Pakistan",49.8,1967
+"479","Asia","Saudi Arabia",49.901,1967
+"480","Americas","Guatemala",50.016,1967
+"481","Africa","Libya",50.227,1967
+"482","Africa","Morocco",50.335,1967
+"483","Africa","Kenya",50.654,1967
+"484","Americas","Honduras",50.924,1967
+"485","Africa","Namibia",51.159,1967
+"486","Asia","Mongolia",51.253,1967
+"487","Africa","Algeria",51.407,1967
+"488","Americas","Peru",51.445,1967
+"489","Asia","Jordan",51.629,1967
+"490","Asia","West Bank and Gaza",51.631,1967
+"491","Americas","Nicaragua",51.884,1967
+"492","Africa","South Africa",51.927,1967
+"493","Africa","Congo, Rep.",52.04,1967
+"494","Africa","Tunisia",52.053,1967
+"495","Asia","Iran",52.469,1967
+"496","Africa","Botswana",53.298,1967
+"497","Asia","Syria",53.655,1967
+"498","Africa","Zimbabwe",53.995,1967
+"499","Europe","Turkey",54.336,1967
+"500","Africa","Sao Tome and Principe",54.425,1967
+"501","Asia","Iraq",54.459,1967
+"502","Americas","El Salvador",55.855,1967
+"503","Asia","Philippines",56.393,1967
+"504","Americas","Ecuador",56.678,1967
+"505","Americas","Dominican Republic",56.751,1967
+"506","Americas","Brazil",57.632,1967
+"507","Asia","Korea, Rep.",57.716,1967
+"508","Asia","Thailand",58.285,1967
+"509","Asia","China",58.38112,1967
+"510","Asia","Malaysia",59.371,1967
+"511","Asia","Bahrain",59.923,1967
+"512","Asia","Korea, Dem. Rep.",59.942,1967
+"513","Americas","Colombia",59.963,1967
+"514","Americas","Mexico",60.11,1967
+"515","Americas","Chile",60.523,1967
+"516","Africa","Reunion",60.542,1967
+"517","Africa","Mauritius",61.557,1967
+"518","Americas","Venezuela",63.479,1967
+"519","Asia","Lebanon",63.87,1967
+"520","Americas","Panama",64.071,1967
+"521","Asia","Sri Lanka",64.266,1967
+"522","Asia","Kuwait",64.624,1967
+"523","Europe","Bosnia and Herzegovina",64.79,1967
+"524","Americas","Paraguay",64.951,1967
+"525","Americas","Trinidad and Tobago",65.4,1967
+"526","Americas","Costa Rica",65.424,1967
+"527","Americas","Argentina",65.634,1967
+"528","Europe","Albania",66.22,1967
+"529","Europe","Portugal",66.6,1967
+"530","Europe","Romania",66.8,1967
+"531","Europe","Serbia",66.914,1967
+"532","Europe","Montenegro",67.178,1967
+"533","Asia","Taiwan",67.5,1967
+"534","Americas","Jamaica",67.51,1967
+"535","Asia","Singapore",67.946,1967
+"536","Americas","Cuba",68.29,1967
+"537","Americas","Uruguay",68.468,1967
+"538","Europe","Croatia",68.5,1967
+"539","Europe","Slovenia",69.18,1967
+"540","Europe","Hungary",69.5,1967
+"541","Europe","Poland",69.61,1967
+"542","Europe","Finland",69.83,1967
+"543","Asia","Hong Kong, China",70,1967
+"544","Europe","Austria",70.14,1967
+"545","Europe","Czech Republic",70.38,1967
+"546","Europe","Bulgaria",70.42,1967
+"547","Asia","Israel",70.75,1967
+"548","Americas","United States",70.76,1967
+"549","Europe","Germany",70.8,1967
+"550","Europe","Belgium",70.94,1967
+"551","Europe","Slovak Republic",70.98,1967
+"552","Europe","Greece",71,1967
+"553","Europe","Italy",71.06,1967
+"554","Europe","Ireland",71.08,1967
+"555","Oceania","Australia",71.1,1967
+"556","Americas","Puerto Rico",71.1,1967
+"557","Europe","United Kingdom",71.36,1967
+"558","Asia","Japan",71.43,1967
+"559","Europe","Spain",71.44,1967
+"560","Oceania","New Zealand",71.52,1967
+"561","Europe","France",71.55,1967
+"562","Americas","Canada",72.13,1967
+"563","Europe","Switzerland",72.77,1967
+"564","Europe","Denmark",72.96,1967
+"565","Europe","Iceland",73.73,1967
+"566","Europe","Netherlands",73.82,1967
+"567","Europe","Norway",74.08,1967
+"568","Europe","Sweden",74.16,1967
+"569","Africa","Sierra Leone",35.4,1972
+"570","Asia","Afghanistan",36.088,1972
+"571","Africa","Guinea-Bissau",36.486,1972
+"572","Africa","Angola",37.928,1972
+"573","Africa","Gambia",38.308,1972
+"574","Africa","Guinea",38.842,1972
+"575","Asia","Yemen, Rep.",39.848,1972
+"576","Africa","Mali",39.977,1972
+"577","Asia","Cambodia",40.317,1972
+"578","Africa","Mozambique",40.328,1972
+"579","Africa","Equatorial Guinea",40.516,1972
+"580","Africa","Niger",40.546,1972
+"581","Africa","Somalia",40.973,1972
+"582","Africa","Malawi",41.766,1972
+"583","Africa","Liberia",42.614,1972
+"584","Africa","Nigeria",42.821,1972
+"585","Africa","Central African Republic",43.457,1972
+"586","Africa","Ethiopia",43.515,1972
+"587","Africa","Burkina Faso",43.591,1972
+"588","Asia","Nepal",43.971,1972
+"589","Africa","Burundi",44.057,1972
+"590","Africa","Eritrea",44.142,1972
+"591","Africa","Djibouti",44.366,1972
+"592","Africa","Rwanda",44.6,1972
+"593","Africa","Madagascar",44.851,1972
+"594","Africa","Sudan",45.083,1972
+"595","Asia","Bangladesh",45.252,1972
+"596","Africa","Chad",45.569,1972
+"597","Africa","Senegal",45.815,1972
+"598","Africa","Congo, Dem. Rep.",45.989,1972
+"599","Americas","Bolivia",46.714,1972
+"600","Africa","Benin",47.014,1972
+"601","Africa","Cameroon",47.049,1972
+"602","Africa","Tanzania",47.62,1972
+"603","Americas","Haiti",48.042,1972
+"604","Africa","Mauritania",48.437,1972
+"605","Africa","Gabon",48.69,1972
+"606","Africa","Comoros",48.944,1972
+"607","Asia","Indonesia",49.203,1972
+"608","Africa","Swaziland",49.552,1972
+"609","Africa","Togo",49.759,1972
+"610","Africa","Lesotho",49.767,1972
+"611","Africa","Cote d'Ivoire",49.801,1972
+"612","Africa","Ghana",49.875,1972
+"613","Africa","Zambia",50.107,1972
+"614","Asia","Vietnam",50.254,1972
+"615","Asia","India",50.651,1972
+"616","Africa","Uganda",51.016,1972
+"617","Africa","Egypt",51.137,1972
+"618","Asia","Pakistan",51.929,1972
+"619","Asia","Oman",52.143,1972
+"620","Africa","Libya",52.773,1972
+"621","Africa","Morocco",52.862,1972
+"622","Asia","Myanmar",53.07,1972
+"623","Africa","Kenya",53.559,1972
+"624","Africa","South Africa",53.696,1972
+"625","Americas","Guatemala",53.738,1972
+"626","Asia","Mongolia",53.754,1972
+"627","Africa","Namibia",53.867,1972
+"628","Americas","Honduras",53.884,1972
+"629","Asia","Saudi Arabia",53.886,1972
+"630","Africa","Algeria",54.518,1972
+"631","Africa","Congo, Rep.",54.907,1972
+"632","Americas","Nicaragua",55.151,1972
+"633","Asia","Iran",55.234,1972
+"634","Americas","Peru",55.448,1972
+"635","Africa","Tunisia",55.602,1972
+"636","Africa","Zimbabwe",55.635,1972
+"637","Africa","Botswana",56.024,1972
+"638","Africa","Sao Tome and Principe",56.48,1972
+"639","Asia","Jordan",56.528,1972
+"640","Asia","West Bank and Gaza",56.532,1972
+"641","Asia","Iraq",56.95,1972
+"642","Europe","Turkey",57.005,1972
+"643","Asia","Syria",57.296,1972
+"644","Asia","Philippines",58.065,1972
+"645","Americas","El Salvador",58.207,1972
+"646","Americas","Ecuador",58.796,1972
+"647","Americas","Brazil",59.504,1972
+"648","Americas","Dominican Republic",59.631,1972
+"649","Asia","Thailand",60.405,1972
+"650","Americas","Colombia",61.623,1972
+"651","Americas","Mexico",62.361,1972
+"652","Asia","Korea, Rep.",62.612,1972
+"653","Africa","Mauritius",62.944,1972
+"654","Asia","Malaysia",63.01,1972
+"655","Asia","China",63.11888,1972
+"656","Asia","Bahrain",63.3,1972
+"657","Americas","Chile",63.441,1972
+"658","Asia","Korea, Dem. Rep.",63.983,1972
+"659","Africa","Reunion",64.274,1972
+"660","Asia","Sri Lanka",65.042,1972
+"661","Asia","Lebanon",65.421,1972
+"662","Americas","Venezuela",65.712,1972
+"663","Americas","Paraguay",65.815,1972
+"664","Americas","Trinidad and Tobago",65.9,1972
+"665","Americas","Panama",66.216,1972
+"666","Americas","Argentina",67.065,1972
+"667","Europe","Bosnia and Herzegovina",67.45,1972
+"668","Europe","Albania",67.69,1972
+"669","Asia","Kuwait",67.712,1972
+"670","Americas","Costa Rica",67.849,1972
+"671","Americas","Uruguay",68.673,1972
+"672","Europe","Serbia",68.7,1972
+"673","Americas","Jamaica",69,1972
+"674","Europe","Romania",69.21,1972
+"675","Europe","Portugal",69.26,1972
+"676","Asia","Taiwan",69.39,1972
+"677","Asia","Singapore",69.521,1972
+"678","Europe","Croatia",69.61,1972
+"679","Europe","Hungary",69.76,1972
+"680","Europe","Slovenia",69.82,1972
+"681","Europe","Czech Republic",70.29,1972
+"682","Europe","Slovak Republic",70.35,1972
+"683","Europe","Austria",70.63,1972
+"684","Europe","Montenegro",70.636,1972
+"685","Americas","Cuba",70.723,1972
+"686","Europe","Poland",70.85,1972
+"687","Europe","Finland",70.87,1972
+"688","Europe","Bulgaria",70.9,1972
+"689","Europe","Germany",71,1972
+"690","Europe","Ireland",71.28,1972
+"691","Americas","United States",71.34,1972
+"692","Europe","Belgium",71.44,1972
+"693","Asia","Israel",71.63,1972
+"694","Oceania","New Zealand",71.89,1972
+"695","Oceania","Australia",71.93,1972
+"696","Asia","Hong Kong, China",72,1972
+"697","Europe","United Kingdom",72.01,1972
+"698","Americas","Puerto Rico",72.16,1972
+"699","Europe","Italy",72.19,1972
+"700","Europe","Greece",72.34,1972
+"701","Europe","France",72.38,1972
+"702","Americas","Canada",72.88,1972
+"703","Europe","Spain",73.06,1972
+"704","Asia","Japan",73.42,1972
+"705","Europe","Denmark",73.47,1972
+"706","Europe","Netherlands",73.75,1972
+"707","Europe","Switzerland",73.78,1972
+"708","Europe","Norway",74.34,1972
+"709","Europe","Iceland",74.46,1972
+"710","Europe","Sweden",74.72,1972
+"711","Asia","Cambodia",31.22,1977
+"712","Africa","Sierra Leone",36.788,1977
+"713","Africa","Guinea-Bissau",37.465,1977
+"714","Asia","Afghanistan",38.438,1977
+"715","Africa","Angola",39.483,1977
+"716","Africa","Guinea",40.762,1977
+"717","Africa","Niger",41.291,1977
+"718","Africa","Mali",41.714,1977
+"719","Africa","Gambia",41.842,1977
+"720","Africa","Somalia",41.974,1977
+"721","Africa","Equatorial Guinea",42.024,1977
+"722","Africa","Mozambique",42.495,1977
+"723","Africa","Liberia",43.764,1977
+"724","Africa","Malawi",43.767,1977
+"725","Asia","Yemen, Rep.",44.175,1977
+"726","Africa","Ethiopia",44.51,1977
+"727","Africa","Nigeria",44.514,1977
+"728","Africa","Eritrea",44.535,1977
+"729","Africa","Rwanda",45,1977
+"730","Africa","Burundi",45.91,1977
+"731","Africa","Burkina Faso",46.137,1977
+"732","Africa","Djibouti",46.519,1977
+"733","Asia","Nepal",46.748,1977
+"734","Africa","Central African Republic",46.775,1977
+"735","Africa","Madagascar",46.881,1977
+"736","Asia","Bangladesh",46.923,1977
+"737","Africa","Chad",47.383,1977
+"738","Africa","Sudan",47.8,1977
+"739","Africa","Congo, Dem. Rep.",47.804,1977
+"740","Africa","Senegal",48.879,1977
+"741","Africa","Benin",49.19,1977
+"742","Africa","Cameroon",49.355,1977
+"743","Africa","Tanzania",49.919,1977
+"744","Americas","Haiti",49.923,1977
+"745","Americas","Bolivia",50.023,1977
+"746","Africa","Uganda",50.35,1977
+"747","Africa","Mauritania",50.852,1977
+"748","Africa","Comoros",50.939,1977
+"749","Africa","Zambia",51.386,1977
+"750","Africa","Ghana",51.756,1977
+"751","Africa","Lesotho",52.208,1977
+"752","Africa","Cote d'Ivoire",52.374,1977
+"753","Africa","Swaziland",52.537,1977
+"754","Asia","Indonesia",52.702,1977
+"755","Africa","Gabon",52.79,1977
+"756","Africa","Togo",52.887,1977
+"757","Africa","Egypt",53.319,1977
+"758","Asia","Pakistan",54.043,1977
+"759","Asia","India",54.208,1977
+"760","Asia","Mongolia",55.491,1977
+"761","Africa","South Africa",55.527,1977
+"762","Africa","Congo, Rep.",55.625,1977
+"763","Africa","Morocco",55.73,1977
+"764","Asia","Vietnam",55.764,1977
+"765","Americas","Guatemala",56.029,1977
+"766","Asia","Myanmar",56.059,1977
+"767","Africa","Kenya",56.155,1977
+"768","Africa","Namibia",56.437,1977
+"769","Americas","El Salvador",56.696,1977
+"770","Asia","Oman",57.367,1977
+"771","Americas","Honduras",57.402,1977
+"772","Africa","Libya",57.442,1977
+"773","Americas","Nicaragua",57.47,1977
+"774","Africa","Zimbabwe",57.674,1977
+"775","Asia","Iran",57.702,1977
+"776","Africa","Algeria",58.014,1977
+"777","Americas","Peru",58.447,1977
+"778","Africa","Sao Tome and Principe",58.55,1977
+"779","Asia","Saudi Arabia",58.69,1977
+"780","Africa","Botswana",59.319,1977
+"781","Europe","Turkey",59.507,1977
+"782","Africa","Tunisia",59.837,1977
+"783","Asia","Philippines",60.06,1977
+"784","Asia","Iraq",60.413,1977
+"785","Asia","West Bank and Gaza",60.765,1977
+"786","Asia","Jordan",61.134,1977
+"787","Asia","Syria",61.195,1977
+"788","Americas","Ecuador",61.31,1977
+"789","Americas","Brazil",61.489,1977
+"790","Americas","Dominican Republic",61.788,1977
+"791","Asia","Thailand",62.494,1977
+"792","Americas","Colombia",63.837,1977
+"793","Asia","China",63.96736,1977
+"794","Asia","Korea, Rep.",64.766,1977
+"795","Africa","Mauritius",64.93,1977
+"796","Americas","Mexico",65.032,1977
+"797","Asia","Malaysia",65.256,1977
+"798","Asia","Bahrain",65.593,1977
+"799","Asia","Sri Lanka",65.949,1977
+"800","Asia","Lebanon",66.099,1977
+"801","Americas","Paraguay",66.353,1977
+"802","Americas","Chile",67.052,1977
+"803","Africa","Reunion",67.064,1977
+"804","Asia","Korea, Dem. Rep.",67.159,1977
+"805","Americas","Venezuela",67.456,1977
+"806","Americas","Trinidad and Tobago",68.3,1977
+"807","Americas","Argentina",68.481,1977
+"808","Americas","Panama",68.681,1977
+"809","Europe","Albania",68.93,1977
+"810","Asia","Kuwait",69.343,1977
+"811","Europe","Romania",69.46,1977
+"812","Americas","Uruguay",69.481,1977
+"813","Europe","Bosnia and Herzegovina",69.86,1977
+"814","Europe","Hungary",69.95,1977
+"815","Americas","Jamaica",70.11,1977
+"816","Europe","Serbia",70.3,1977
+"817","Europe","Portugal",70.41,1977
+"818","Europe","Slovak Republic",70.45,1977
+"819","Asia","Taiwan",70.59,1977
+"820","Europe","Croatia",70.64,1977
+"821","Europe","Poland",70.67,1977
+"822","Europe","Czech Republic",70.71,1977
+"823","Americas","Costa Rica",70.75,1977
+"824","Asia","Singapore",70.795,1977
+"825","Europe","Bulgaria",70.81,1977
+"826","Europe","Slovenia",70.97,1977
+"827","Europe","Ireland",72.03,1977
+"828","Europe","Austria",72.17,1977
+"829","Oceania","New Zealand",72.22,1977
+"830","Europe","Germany",72.5,1977
+"831","Europe","Finland",72.52,1977
+"832","Americas","Cuba",72.649,1977
+"833","Europe","United Kingdom",72.76,1977
+"834","Europe","Belgium",72.8,1977
+"835","Asia","Israel",73.06,1977
+"836","Europe","Montenegro",73.066,1977
+"837","Americas","United States",73.38,1977
+"838","Americas","Puerto Rico",73.44,1977
+"839","Europe","Italy",73.48,1977
+"840","Oceania","Australia",73.49,1977
+"841","Asia","Hong Kong, China",73.6,1977
+"842","Europe","Greece",73.68,1977
+"843","Europe","France",73.83,1977
+"844","Americas","Canada",74.21,1977
+"845","Europe","Spain",74.39,1977
+"846","Europe","Denmark",74.69,1977
+"847","Europe","Netherlands",75.24,1977
+"848","Europe","Norway",75.37,1977
+"849","Asia","Japan",75.38,1977
+"850","Europe","Switzerland",75.39,1977
+"851","Europe","Sweden",75.44,1977
+"852","Europe","Iceland",76.11,1977
+"853","Africa","Sierra Leone",38.445,1982
+"854","Africa","Guinea-Bissau",39.327,1982
+"855","Asia","Afghanistan",39.854,1982
+"856","Africa","Angola",39.942,1982
+"857","Africa","Niger",42.598,1982
+"858","Africa","Mozambique",42.795,1982
+"859","Africa","Guinea",42.891,1982
+"860","Africa","Somalia",42.955,1982
+"861","Africa","Equatorial Guinea",43.662,1982
+"862","Africa","Eritrea",43.89,1982
+"863","Africa","Mali",43.916,1982
+"864","Africa","Liberia",44.852,1982
+"865","Africa","Ethiopia",44.916,1982
+"866","Africa","Gambia",45.58,1982
+"867","Africa","Malawi",45.642,1982
+"868","Africa","Nigeria",45.826,1982
+"869","Africa","Rwanda",46.218,1982
+"870","Africa","Burundi",47.471,1982
+"871","Africa","Congo, Dem. Rep.",47.784,1982
+"872","Africa","Burkina Faso",48.122,1982
+"873","Africa","Central African Republic",48.295,1982
+"874","Africa","Djibouti",48.812,1982
+"875","Africa","Madagascar",48.969,1982
+"876","Asia","Yemen, Rep.",49.113,1982
+"877","Africa","Chad",49.517,1982
+"878","Asia","Nepal",49.594,1982
+"879","Africa","Uganda",49.849,1982
+"880","Asia","Bangladesh",50.009,1982
+"881","Africa","Sudan",50.338,1982
+"882","Africa","Tanzania",50.608,1982
+"883","Africa","Benin",50.904,1982
+"884","Asia","Cambodia",50.957,1982
+"885","Americas","Haiti",51.461,1982
+"886","Africa","Zambia",51.821,1982
+"887","Africa","Senegal",52.379,1982
+"888","Africa","Comoros",52.933,1982
+"889","Africa","Cameroon",52.961,1982
+"890","Africa","Mauritania",53.599,1982
+"891","Africa","Ghana",53.744,1982
+"892","Americas","Bolivia",53.859,1982
+"893","Africa","Cote d'Ivoire",53.983,1982
+"894","Africa","Lesotho",55.078,1982
+"895","Africa","Togo",55.471,1982
+"896","Africa","Swaziland",55.561,1982
+"897","Africa","Egypt",56.006,1982
+"898","Asia","Pakistan",56.158,1982
+"899","Asia","Indonesia",56.159,1982
+"900","Africa","Gabon",56.564,1982
+"901","Asia","India",56.596,1982
+"902","Americas","El Salvador",56.604,1982
+"903","Africa","Congo, Rep.",56.695,1982
+"904","Asia","Mongolia",57.489,1982
+"905","Asia","Myanmar",58.056,1982
+"906","Americas","Guatemala",58.137,1982
+"907","Africa","South Africa",58.161,1982
+"908","Africa","Kenya",58.766,1982
+"909","Asia","Vietnam",58.816,1982
+"910","Africa","Namibia",58.968,1982
+"911","Americas","Nicaragua",59.298,1982
+"912","Asia","Iran",59.62,1982
+"913","Africa","Morocco",59.65,1982
+"914","Africa","Sao Tome and Principe",60.351,1982
+"915","Africa","Zimbabwe",60.363,1982
+"916","Americas","Honduras",60.909,1982
+"917","Europe","Turkey",61.036,1982
+"918","Africa","Algeria",61.368,1982
+"919","Americas","Peru",61.406,1982
+"920","Africa","Botswana",61.484,1982
+"921","Asia","Iraq",62.038,1982
+"922","Asia","Philippines",62.082,1982
+"923","Africa","Libya",62.155,1982
+"924","Asia","Oman",62.728,1982
+"925","Asia","Saudi Arabia",63.012,1982
+"926","Americas","Brazil",63.336,1982
+"927","Americas","Dominican Republic",63.727,1982
+"928","Asia","Jordan",63.739,1982
+"929","Africa","Tunisia",64.048,1982
+"930","Americas","Ecuador",64.342,1982
+"931","Asia","West Bank and Gaza",64.406,1982
+"932","Asia","Syria",64.59,1982
+"933","Asia","Thailand",64.597,1982
+"934","Asia","China",65.525,1982
+"935","Americas","Colombia",66.653,1982
+"936","Africa","Mauritius",66.711,1982
+"937","Americas","Paraguay",66.874,1982
+"938","Asia","Lebanon",66.983,1982
+"939","Asia","Korea, Rep.",67.123,1982
+"940","Americas","Mexico",67.405,1982
+"941","Asia","Malaysia",68,1982
+"942","Americas","Venezuela",68.557,1982
+"943","Asia","Sri Lanka",68.757,1982
+"944","Americas","Trinidad and Tobago",68.832,1982
+"945","Asia","Bahrain",69.052,1982
+"946","Asia","Korea, Dem. Rep.",69.1,1982
+"947","Europe","Hungary",69.39,1982
+"948","Europe","Romania",69.66,1982
+"949","Africa","Reunion",69.885,1982
+"950","Americas","Argentina",69.942,1982
+"951","Europe","Serbia",70.162,1982
+"952","Europe","Albania",70.42,1982
+"953","Europe","Croatia",70.46,1982
+"954","Americas","Panama",70.472,1982
+"955","Americas","Chile",70.565,1982
+"956","Europe","Bosnia and Herzegovina",70.69,1982
+"957","Europe","Slovak Republic",70.8,1982
+"958","Americas","Uruguay",70.805,1982
+"959","Europe","Czech Republic",70.96,1982
+"960","Europe","Slovenia",71.063,1982
+"961","Europe","Bulgaria",71.08,1982
+"962","Americas","Jamaica",71.21,1982
+"963","Asia","Kuwait",71.309,1982
+"964","Europe","Poland",71.32,1982
+"965","Asia","Singapore",71.76,1982
+"966","Asia","Taiwan",72.16,1982
+"967","Europe","Portugal",72.77,1982
+"968","Europe","Ireland",73.1,1982
+"969","Europe","Austria",73.18,1982
+"970","Americas","Costa Rica",73.45,1982
+"971","Americas","Cuba",73.717,1982
+"972","Americas","Puerto Rico",73.75,1982
+"973","Europe","Germany",73.8,1982
+"974","Oceania","New Zealand",73.84,1982
+"975","Europe","Belgium",73.93,1982
+"976","Europe","United Kingdom",74.04,1982
+"977","Europe","Montenegro",74.101,1982
+"978","Asia","Israel",74.45,1982
+"979","Europe","Finland",74.55,1982
+"980","Europe","Denmark",74.63,1982
+"981","Americas","United States",74.65,1982
+"982","Oceania","Australia",74.74,1982
+"983","Europe","France",74.89,1982
+"984","Europe","Italy",74.98,1982
+"985","Europe","Greece",75.24,1982
+"986","Asia","Hong Kong, China",75.45,1982
+"987","Americas","Canada",75.76,1982
+"988","Europe","Norway",75.97,1982
+"989","Europe","Netherlands",76.05,1982
+"990","Europe","Switzerland",76.21,1982
+"991","Europe","Spain",76.3,1982
+"992","Europe","Sweden",76.42,1982
+"993","Europe","Iceland",76.99,1982
+"994","Asia","Japan",77.11,1982
+"995","Africa","Angola",39.906,1987
+"996","Africa","Sierra Leone",40.006,1987
+"997","Asia","Afghanistan",40.822,1987
+"998","Africa","Guinea-Bissau",41.245,1987
+"999","Africa","Mozambique",42.861,1987
+"1000","Africa","Rwanda",44.02,1987
+"1001","Africa","Somalia",44.501,1987
+"1002","Africa","Niger",44.555,1987
+"1003","Africa","Guinea",45.552,1987
+"1004","Africa","Equatorial Guinea",45.664,1987
+"1005","Africa","Liberia",46.027,1987
+"1006","Africa","Mali",46.364,1987
+"1007","Africa","Eritrea",46.453,1987
+"1008","Africa","Ethiopia",46.684,1987
+"1009","Africa","Nigeria",46.886,1987
+"1010","Africa","Congo, Dem. Rep.",47.412,1987
+"1011","Africa","Malawi",47.457,1987
+"1012","Africa","Burundi",48.211,1987
+"1013","Africa","Gambia",49.265,1987
+"1014","Africa","Madagascar",49.35,1987
+"1015","Africa","Burkina Faso",49.557,1987
+"1016","Africa","Djibouti",50.04,1987
+"1017","Africa","Central African Republic",50.485,1987
+"1018","Africa","Zambia",50.821,1987
+"1019","Africa","Chad",51.051,1987
+"1020","Africa","Uganda",51.509,1987
+"1021","Africa","Tanzania",51.535,1987
+"1022","Africa","Sudan",51.744,1987
+"1023","Africa","Benin",52.337,1987
+"1024","Asia","Nepal",52.537,1987
+"1025","Asia","Bangladesh",52.819,1987
+"1026","Asia","Yemen, Rep.",52.922,1987
+"1027","Americas","Haiti",53.636,1987
+"1028","Asia","Cambodia",53.914,1987
+"1029","Africa","Cote d'Ivoire",54.655,1987
+"1030","Africa","Comoros",54.926,1987
+"1031","Africa","Cameroon",54.985,1987
+"1032","Africa","Ghana",55.729,1987
+"1033","Africa","Senegal",55.769,1987
+"1034","Africa","Mauritania",56.145,1987
+"1035","Africa","Togo",56.941,1987
+"1036","Africa","Lesotho",57.18,1987
+"1037","Americas","Bolivia",57.251,1987
+"1038","Africa","Congo, Rep.",57.47,1987
+"1039","Africa","Swaziland",57.678,1987
+"1040","Asia","Pakistan",58.245,1987
+"1041","Asia","Myanmar",58.339,1987
+"1042","Asia","India",58.553,1987
+"1043","Africa","Kenya",59.339,1987
+"1044","Africa","Egypt",59.797,1987
+"1045","Asia","Indonesia",60.137,1987
+"1046","Africa","Gabon",60.19,1987
+"1047","Asia","Mongolia",60.222,1987
+"1048","Americas","Guatemala",60.782,1987
+"1049","Africa","South Africa",60.834,1987
+"1050","Africa","Namibia",60.835,1987
+"1051","Africa","Sao Tome and Principe",61.728,1987
+"1052","Americas","Nicaragua",62.008,1987
+"1053","Africa","Zimbabwe",62.351,1987
+"1054","Africa","Morocco",62.677,1987
+"1055","Asia","Vietnam",62.82,1987
+"1056","Asia","Iran",63.04,1987
+"1057","Europe","Turkey",63.108,1987
+"1058","Americas","El Salvador",63.154,1987
+"1059","Africa","Botswana",63.622,1987
+"1060","Americas","Peru",64.134,1987
+"1061","Asia","Philippines",64.151,1987
+"1062","Americas","Honduras",64.492,1987
+"1063","Asia","Iraq",65.044,1987
+"1064","Americas","Brazil",65.205,1987
+"1065","Africa","Algeria",65.799,1987
+"1066","Asia","Jordan",65.869,1987
+"1067","Americas","Dominican Republic",66.046,1987
+"1068","Asia","Thailand",66.084,1987
+"1069","Africa","Libya",66.234,1987
+"1070","Asia","Saudi Arabia",66.295,1987
+"1071","Africa","Tunisia",66.894,1987
+"1072","Asia","Syria",66.974,1987
+"1073","Asia","West Bank and Gaza",67.046,1987
+"1074","Americas","Ecuador",67.231,1987
+"1075","Asia","China",67.274,1987
+"1076","Americas","Paraguay",67.378,1987
+"1077","Asia","Oman",67.734,1987
+"1078","Americas","Colombia",67.768,1987
+"1079","Asia","Lebanon",67.926,1987
+"1080","Africa","Mauritius",68.74,1987
+"1081","Asia","Sri Lanka",69.011,1987
+"1082","Americas","Mexico",69.498,1987
+"1083","Asia","Malaysia",69.5,1987
+"1084","Europe","Romania",69.53,1987
+"1085","Europe","Hungary",69.58,1987
+"1086","Americas","Trinidad and Tobago",69.582,1987
+"1087","Asia","Korea, Rep.",69.81,1987
+"1088","Americas","Venezuela",70.19,1987
+"1089","Asia","Korea, Dem. Rep.",70.647,1987
+"1090","Asia","Bahrain",70.75,1987
+"1091","Americas","Argentina",70.774,1987
+"1092","Europe","Poland",70.98,1987
+"1093","Europe","Slovak Republic",71.08,1987
+"1094","Europe","Bosnia and Herzegovina",71.14,1987
+"1095","Europe","Serbia",71.218,1987
+"1096","Europe","Bulgaria",71.34,1987
+"1097","Europe","Croatia",71.52,1987
+"1098","Americas","Panama",71.523,1987
+"1099","Europe","Czech Republic",71.58,1987
+"1100","Americas","Jamaica",71.77,1987
+"1101","Africa","Reunion",71.913,1987
+"1102","Americas","Uruguay",71.918,1987
+"1103","Europe","Albania",72,1987
+"1104","Europe","Slovenia",72.25,1987
+"1105","Americas","Chile",72.492,1987
+"1106","Asia","Taiwan",73.4,1987
+"1107","Asia","Singapore",73.56,1987
+"1108","Europe","Portugal",74.06,1987
+"1109","Americas","Cuba",74.174,1987
+"1110","Asia","Kuwait",74.174,1987
+"1111","Oceania","New Zealand",74.32,1987
+"1112","Europe","Ireland",74.36,1987
+"1113","Americas","Puerto Rico",74.63,1987
+"1114","Americas","Costa Rica",74.752,1987
+"1115","Europe","Denmark",74.8,1987
+"1116","Europe","Finland",74.83,1987
+"1117","Europe","Germany",74.847,1987
+"1118","Europe","Montenegro",74.865,1987
+"1119","Europe","Austria",74.94,1987
+"1120","Europe","United Kingdom",75.007,1987
+"1121","Americas","United States",75.02,1987
+"1122","Europe","Belgium",75.35,1987
+"1123","Asia","Israel",75.6,1987
+"1124","Europe","Norway",75.89,1987
+"1125","Asia","Hong Kong, China",76.2,1987
+"1126","Oceania","Australia",76.32,1987
+"1127","Europe","France",76.34,1987
+"1128","Europe","Italy",76.42,1987
+"1129","Europe","Greece",76.67,1987
+"1130","Europe","Netherlands",76.83,1987
+"1131","Americas","Canada",76.86,1987
+"1132","Europe","Spain",76.9,1987
+"1133","Europe","Sweden",77.19,1987
+"1134","Europe","Iceland",77.23,1987
+"1135","Europe","Switzerland",77.41,1987
+"1136","Asia","Japan",78.67,1987
+"1137","Africa","Rwanda",23.599,1992
+"1138","Africa","Sierra Leone",38.333,1992
+"1139","Africa","Somalia",39.658,1992
+"1140","Africa","Angola",40.647,1992
+"1141","Africa","Liberia",40.802,1992
+"1142","Asia","Afghanistan",41.674,1992
+"1143","Africa","Guinea-Bissau",43.266,1992
+"1144","Africa","Mozambique",44.284,1992
+"1145","Africa","Burundi",44.736,1992
+"1146","Africa","Congo, Dem. Rep.",45.548,1992
+"1147","Africa","Zambia",46.1,1992
+"1148","Africa","Niger",47.391,1992
+"1149","Africa","Nigeria",47.472,1992
+"1150","Africa","Equatorial Guinea",47.545,1992
+"1151","Africa","Ethiopia",48.091,1992
+"1152","Africa","Mali",48.388,1992
+"1153","Africa","Guinea",48.576,1992
+"1154","Africa","Uganda",48.825,1992
+"1155","Africa","Central African Republic",49.396,1992
+"1156","Africa","Malawi",49.42,1992
+"1157","Africa","Eritrea",49.991,1992
+"1158","Africa","Burkina Faso",50.26,1992
+"1159","Africa","Tanzania",50.44,1992
+"1160","Africa","Djibouti",51.604,1992
+"1161","Africa","Chad",51.724,1992
+"1162","Africa","Cote d'Ivoire",52.044,1992
+"1163","Africa","Madagascar",52.214,1992
+"1164","Africa","Gambia",52.644,1992
+"1165","Africa","Sudan",53.556,1992
+"1166","Africa","Benin",53.919,1992
+"1167","Africa","Cameroon",54.314,1992
+"1168","Americas","Haiti",55.089,1992
+"1169","Asia","Yemen, Rep.",55.599,1992
+"1170","Asia","Nepal",55.727,1992
+"1171","Asia","Cambodia",55.803,1992
+"1172","Asia","Bangladesh",56.018,1992
+"1173","Africa","Congo, Rep.",56.433,1992
+"1174","Africa","Ghana",57.501,1992
+"1175","Africa","Comoros",57.939,1992
+"1176","Africa","Togo",58.061,1992
+"1177","Africa","Senegal",58.196,1992
+"1178","Africa","Mauritania",58.333,1992
+"1179","Africa","Swaziland",58.474,1992
+"1180","Africa","Kenya",59.285,1992
+"1181","Asia","Myanmar",59.32,1992
+"1182","Asia","Iraq",59.461,1992
+"1183","Africa","Lesotho",59.685,1992
+"1184","Americas","Bolivia",59.957,1992
+"1185","Asia","India",60.223,1992
+"1186","Africa","Zimbabwe",60.377,1992
+"1187","Asia","Pakistan",60.838,1992
+"1188","Asia","Mongolia",61.271,1992
+"1189","Africa","Gabon",61.366,1992
+"1190","Africa","South Africa",61.888,1992
+"1191","Africa","Namibia",61.999,1992
+"1192","Asia","Indonesia",62.681,1992
+"1193","Africa","Sao Tome and Principe",62.742,1992
+"1194","Africa","Botswana",62.745,1992
+"1195","Americas","Guatemala",63.373,1992
+"1196","Africa","Egypt",63.674,1992
+"1197","Africa","Morocco",65.393,1992
+"1198","Asia","Iran",65.742,1992
+"1199","Americas","Nicaragua",65.843,1992
+"1200","Europe","Turkey",66.146,1992
+"1201","Americas","Honduras",66.399,1992
+"1202","Americas","Peru",66.458,1992
+"1203","Asia","Philippines",66.458,1992
+"1204","Americas","El Salvador",66.798,1992
+"1205","Americas","Brazil",67.057,1992
+"1206","Asia","Thailand",67.298,1992
+"1207","Asia","Vietnam",67.662,1992
+"1208","Africa","Algeria",67.744,1992
+"1209","Asia","Jordan",68.015,1992
+"1210","Americas","Paraguay",68.225,1992
+"1211","Americas","Colombia",68.421,1992
+"1212","Americas","Dominican Republic",68.457,1992
+"1213","Asia","China",68.69,1992
+"1214","Africa","Libya",68.755,1992
+"1215","Asia","Saudi Arabia",68.768,1992
+"1216","Europe","Hungary",69.17,1992
+"1217","Asia","Syria",69.249,1992
+"1218","Asia","Lebanon",69.292,1992
+"1219","Europe","Romania",69.36,1992
+"1220","Americas","Ecuador",69.613,1992
+"1221","Asia","West Bank and Gaza",69.718,1992
+"1222","Africa","Mauritius",69.745,1992
+"1223","Americas","Trinidad and Tobago",69.862,1992
+"1224","Asia","Korea, Dem. Rep.",69.978,1992
+"1225","Africa","Tunisia",70.001,1992
+"1226","Asia","Sri Lanka",70.379,1992
+"1227","Asia","Malaysia",70.693,1992
+"1228","Europe","Poland",70.99,1992
+"1229","Americas","Venezuela",71.15,1992
+"1230","Europe","Bulgaria",71.19,1992
+"1231","Asia","Oman",71.197,1992
+"1232","Europe","Slovak Republic",71.38,1992
+"1233","Americas","Mexico",71.455,1992
+"1234","Europe","Albania",71.581,1992
+"1235","Europe","Serbia",71.659,1992
+"1236","Americas","Jamaica",71.766,1992
+"1237","Americas","Argentina",71.868,1992
+"1238","Europe","Bosnia and Herzegovina",72.178,1992
+"1239","Asia","Korea, Rep.",72.244,1992
+"1240","Europe","Czech Republic",72.4,1992
+"1241","Americas","Panama",72.462,1992
+"1242","Europe","Croatia",72.527,1992
+"1243","Asia","Bahrain",72.601,1992
+"1244","Americas","Uruguay",72.752,1992
+"1245","Africa","Reunion",73.615,1992
+"1246","Europe","Slovenia",73.64,1992
+"1247","Americas","Puerto Rico",73.911,1992
+"1248","Americas","Chile",74.126,1992
+"1249","Asia","Taiwan",74.26,1992
+"1250","Americas","Cuba",74.414,1992
+"1251","Europe","Portugal",74.86,1992
+"1252","Asia","Kuwait",75.19,1992
+"1253","Europe","Denmark",75.33,1992
+"1254","Europe","Montenegro",75.435,1992
+"1255","Europe","Ireland",75.467,1992
+"1256","Europe","Finland",75.7,1992
+"1257","Americas","Costa Rica",75.713,1992
+"1258","Asia","Singapore",75.788,1992
+"1259","Europe","Austria",76.04,1992
+"1260","Europe","Germany",76.07,1992
+"1261","Americas","United States",76.09,1992
+"1262","Oceania","New Zealand",76.33,1992
+"1263","Europe","United Kingdom",76.42,1992
+"1264","Europe","Belgium",76.46,1992
+"1265","Asia","Israel",76.93,1992
+"1266","Europe","Greece",77.03,1992
+"1267","Europe","Norway",77.32,1992
+"1268","Europe","Netherlands",77.42,1992
+"1269","Europe","Italy",77.44,1992
+"1270","Europe","France",77.46,1992
+"1271","Oceania","Australia",77.56,1992
+"1272","Europe","Spain",77.57,1992
+"1273","Asia","Hong Kong, China",77.601,1992
+"1274","Americas","Canada",77.95,1992
+"1275","Europe","Switzerland",78.03,1992
+"1276","Europe","Sweden",78.16,1992
+"1277","Europe","Iceland",78.77,1992
+"1278","Asia","Japan",79.36,1992
+"1279","Africa","Rwanda",36.087,1997
+"1280","Africa","Sierra Leone",39.897,1997
+"1281","Africa","Zambia",40.238,1997
+"1282","Africa","Angola",40.963,1997
+"1283","Asia","Afghanistan",41.763,1997
+"1284","Africa","Liberia",42.221,1997
+"1285","Africa","Congo, Dem. Rep.",42.587,1997
+"1286","Africa","Somalia",43.795,1997
+"1287","Africa","Uganda",44.578,1997
+"1288","Africa","Guinea-Bissau",44.873,1997
+"1289","Africa","Burundi",45.326,1997
+"1290","Africa","Central African Republic",46.066,1997
+"1291","Africa","Mozambique",46.344,1997
+"1292","Africa","Zimbabwe",46.809,1997
+"1293","Africa","Nigeria",47.464,1997
+"1294","Africa","Malawi",47.495,1997
+"1295","Africa","Cote d'Ivoire",47.991,1997
+"1296","Africa","Equatorial Guinea",48.245,1997
+"1297","Africa","Tanzania",48.466,1997
+"1298","Africa","Ethiopia",49.402,1997
+"1299","Africa","Mali",49.903,1997
+"1300","Africa","Burkina Faso",50.324,1997
+"1301","Africa","Niger",51.313,1997
+"1302","Africa","Guinea",51.455,1997
+"1303","Africa","Chad",51.573,1997
+"1304","Africa","Cameroon",52.199,1997
+"1305","Africa","Botswana",52.556,1997
+"1306","Africa","Congo, Rep.",52.962,1997
+"1307","Africa","Djibouti",53.157,1997
+"1308","Africa","Eritrea",53.378,1997
+"1309","Africa","Swaziland",54.289,1997
+"1310","Africa","Kenya",54.407,1997
+"1311","Africa","Benin",54.777,1997
+"1312","Africa","Madagascar",54.978,1997
+"1313","Africa","Sudan",55.373,1997
+"1314","Africa","Lesotho",55.558,1997
+"1315","Africa","Gambia",55.861,1997
+"1316","Asia","Cambodia",56.534,1997
+"1317","Americas","Haiti",56.671,1997
+"1318","Asia","Yemen, Rep.",58.02,1997
+"1319","Africa","Togo",58.39,1997
+"1320","Africa","Ghana",58.556,1997
+"1321","Asia","Iraq",58.811,1997
+"1322","Africa","Namibia",58.909,1997
+"1323","Asia","Bangladesh",59.412,1997
+"1324","Asia","Nepal",59.426,1997
+"1325","Africa","Senegal",60.187,1997
+"1326","Africa","South Africa",60.236,1997
+"1327","Asia","Myanmar",60.328,1997
+"1328","Africa","Mauritania",60.43,1997
+"1329","Africa","Gabon",60.461,1997
+"1330","Africa","Comoros",60.66,1997
+"1331","Asia","India",61.765,1997
+"1332","Asia","Pakistan",61.818,1997
+"1333","Americas","Bolivia",62.05,1997
+"1334","Africa","Sao Tome and Principe",63.306,1997
+"1335","Asia","Mongolia",63.625,1997
+"1336","Asia","Indonesia",66.041,1997
+"1337","Americas","Guatemala",66.322,1997
+"1338","Africa","Egypt",67.217,1997
+"1339","Asia","Thailand",67.521,1997
+"1340","Americas","Honduras",67.659,1997
+"1341","Africa","Morocco",67.66,1997
+"1342","Asia","Korea, Dem. Rep.",67.727,1997
+"1343","Asia","Iran",68.042,1997
+"1344","Americas","Peru",68.386,1997
+"1345","Americas","Nicaragua",68.426,1997
+"1346","Asia","Philippines",68.564,1997
+"1347","Europe","Turkey",68.835,1997
+"1348","Africa","Algeria",69.152,1997
+"1349","Americas","Brazil",69.388,1997
+"1350","Americas","Paraguay",69.4,1997
+"1351","Americas","Trinidad and Tobago",69.465,1997
+"1352","Americas","El Salvador",69.535,1997
+"1353","Europe","Romania",69.72,1997
+"1354","Asia","Jordan",69.772,1997
+"1355","Americas","Dominican Republic",69.957,1997
+"1356","Asia","Lebanon",70.265,1997
+"1357","Americas","Colombia",70.313,1997
+"1358","Europe","Bulgaria",70.32,1997
+"1359","Asia","China",70.426,1997
+"1360","Asia","Sri Lanka",70.457,1997
+"1361","Asia","Saudi Arabia",70.533,1997
+"1362","Asia","Vietnam",70.672,1997
+"1363","Africa","Mauritius",70.736,1997
+"1364","Europe","Hungary",71.04,1997
+"1365","Asia","West Bank and Gaza",71.096,1997
+"1366","Asia","Syria",71.527,1997
+"1367","Africa","Libya",71.555,1997
+"1368","Asia","Malaysia",71.938,1997
+"1369","Africa","Tunisia",71.973,1997
+"1370","Americas","Venezuela",72.146,1997
+"1371","Europe","Serbia",72.232,1997
+"1372","Americas","Jamaica",72.262,1997
+"1373","Americas","Ecuador",72.312,1997
+"1374","Asia","Oman",72.499,1997
+"1375","Europe","Slovak Republic",72.71,1997
+"1376","Europe","Poland",72.75,1997
+"1377","Europe","Albania",72.95,1997
+"1378","Europe","Bosnia and Herzegovina",73.244,1997
+"1379","Americas","Argentina",73.275,1997
+"1380","Americas","Mexico",73.67,1997
+"1381","Europe","Croatia",73.68,1997
+"1382","Americas","Panama",73.738,1997
+"1383","Asia","Bahrain",73.925,1997
+"1384","Europe","Czech Republic",74.01,1997
+"1385","Americas","Uruguay",74.223,1997
+"1386","Asia","Korea, Rep.",74.647,1997
+"1387","Africa","Reunion",74.772,1997
+"1388","Americas","Puerto Rico",74.917,1997
+"1389","Europe","Slovenia",75.13,1997
+"1390","Asia","Taiwan",75.25,1997
+"1391","Europe","Montenegro",75.445,1997
+"1392","Americas","Chile",75.816,1997
+"1393","Europe","Portugal",75.97,1997
+"1394","Europe","Denmark",76.11,1997
+"1395","Europe","Ireland",76.122,1997
+"1396","Americas","Cuba",76.151,1997
+"1397","Asia","Kuwait",76.156,1997
+"1398","Americas","United States",76.81,1997
+"1399","Europe","Finland",77.13,1997
+"1400","Asia","Singapore",77.158,1997
+"1401","Europe","United Kingdom",77.218,1997
+"1402","Americas","Costa Rica",77.26,1997
+"1403","Europe","Germany",77.34,1997
+"1404","Europe","Austria",77.51,1997
+"1405","Europe","Belgium",77.53,1997
+"1406","Oceania","New Zealand",77.55,1997
+"1407","Europe","Greece",77.869,1997
+"1408","Europe","Netherlands",78.03,1997
+"1409","Asia","Israel",78.269,1997
+"1410","Europe","Norway",78.32,1997
+"1411","Americas","Canada",78.61,1997
+"1412","Europe","France",78.64,1997
+"1413","Europe","Spain",78.77,1997
+"1414","Europe","Italy",78.82,1997
+"1415","Oceania","Australia",78.83,1997
+"1416","Europe","Iceland",78.95,1997
+"1417","Europe","Switzerland",79.37,1997
+"1418","Europe","Sweden",79.39,1997
+"1419","Asia","Hong Kong, China",80,1997
+"1420","Asia","Japan",80.69,1997
+"1421","Africa","Zambia",39.193,2002
+"1422","Africa","Zimbabwe",39.989,2002
+"1423","Africa","Angola",41.003,2002
+"1424","Africa","Sierra Leone",41.012,2002
+"1425","Asia","Afghanistan",42.129,2002
+"1426","Africa","Central African Republic",43.308,2002
+"1427","Africa","Rwanda",43.413,2002
+"1428","Africa","Liberia",43.753,2002
+"1429","Africa","Swaziland",43.869,2002
+"1430","Africa","Mozambique",44.026,2002
+"1431","Africa","Lesotho",44.593,2002
+"1432","Africa","Congo, Dem. Rep.",44.966,2002
+"1433","Africa","Malawi",45.009,2002
+"1434","Africa","Guinea-Bissau",45.504,2002
+"1435","Africa","Somalia",45.936,2002
+"1436","Africa","Nigeria",46.608,2002
+"1437","Africa","Botswana",46.634,2002
+"1438","Africa","Cote d'Ivoire",46.832,2002
+"1439","Africa","Burundi",47.36,2002
+"1440","Africa","Uganda",47.813,2002
+"1441","Africa","Equatorial Guinea",49.348,2002
+"1442","Africa","Tanzania",49.651,2002
+"1443","Africa","Cameroon",49.856,2002
+"1444","Africa","Chad",50.525,2002
+"1445","Africa","Burkina Faso",50.65,2002
+"1446","Africa","Ethiopia",50.725,2002
+"1447","Africa","Kenya",50.992,2002
+"1448","Africa","Namibia",51.479,2002
+"1449","Africa","Mali",51.818,2002
+"1450","Africa","Congo, Rep.",52.97,2002
+"1451","Africa","South Africa",53.365,2002
+"1452","Africa","Djibouti",53.373,2002
+"1453","Africa","Guinea",53.676,2002
+"1454","Africa","Benin",54.406,2002
+"1455","Africa","Niger",54.496,2002
+"1456","Africa","Eritrea",55.24,2002
+"1457","Africa","Sudan",56.369,2002
+"1458","Asia","Cambodia",56.752,2002
+"1459","Africa","Gabon",56.761,2002
+"1460","Asia","Iraq",57.046,2002
+"1461","Africa","Madagascar",57.286,2002
+"1462","Africa","Togo",57.561,2002
+"1463","Africa","Gambia",58.041,2002
+"1464","Americas","Haiti",58.137,2002
+"1465","Africa","Ghana",58.453,2002
+"1466","Asia","Myanmar",59.908,2002
+"1467","Asia","Yemen, Rep.",60.308,2002
+"1468","Asia","Nepal",61.34,2002
+"1469","Africa","Senegal",61.6,2002
+"1470","Asia","Bangladesh",62.013,2002
+"1471","Africa","Mauritania",62.247,2002
+"1472","Asia","India",62.879,2002
+"1473","Africa","Comoros",62.974,2002
+"1474","Asia","Pakistan",63.61,2002
+"1475","Americas","Bolivia",63.883,2002
+"1476","Africa","Sao Tome and Principe",64.337,2002
+"1477","Asia","Mongolia",65.033,2002
+"1478","Asia","Korea, Dem. Rep.",66.662,2002
+"1479","Asia","Thailand",68.564,2002
+"1480","Americas","Honduras",68.565,2002
+"1481","Asia","Indonesia",68.588,2002
+"1482","Americas","Trinidad and Tobago",68.976,2002
+"1483","Americas","Guatemala",68.978,2002
+"1484","Asia","Iran",69.451,2002
+"1485","Africa","Morocco",69.615,2002
+"1486","Africa","Egypt",69.806,2002
+"1487","Americas","Peru",69.906,2002
+"1488","Asia","Philippines",70.303,2002
+"1489","Americas","El Salvador",70.734,2002
+"1490","Americas","Paraguay",70.755,2002
+"1491","Asia","Sri Lanka",70.815,2002
+"1492","Americas","Nicaragua",70.836,2002
+"1493","Europe","Turkey",70.845,2002
+"1494","Americas","Dominican Republic",70.847,2002
+"1495","Africa","Algeria",70.994,2002
+"1496","Americas","Brazil",71.006,2002
+"1497","Asia","Lebanon",71.028,2002
+"1498","Asia","Jordan",71.263,2002
+"1499","Europe","Romania",71.322,2002
+"1500","Asia","Saudi Arabia",71.626,2002
+"1501","Americas","Colombia",71.682,2002
+"1502","Africa","Mauritius",71.954,2002
+"1503","Asia","China",72.028,2002
+"1504","Americas","Jamaica",72.047,2002
+"1505","Europe","Bulgaria",72.14,2002
+"1506","Asia","West Bank and Gaza",72.37,2002
+"1507","Europe","Hungary",72.59,2002
+"1508","Africa","Libya",72.737,2002
+"1509","Americas","Venezuela",72.766,2002
+"1510","Asia","Vietnam",73.017,2002
+"1511","Africa","Tunisia",73.042,2002
+"1512","Asia","Malaysia",73.044,2002
+"1513","Asia","Syria",73.053,2002
+"1514","Europe","Serbia",73.213,2002
+"1515","Europe","Slovak Republic",73.8,2002
+"1516","Europe","Montenegro",73.981,2002
+"1517","Europe","Bosnia and Herzegovina",74.09,2002
+"1518","Americas","Ecuador",74.173,2002
+"1519","Asia","Oman",74.193,2002
+"1520","Americas","Argentina",74.34,2002
+"1521","Europe","Poland",74.67,2002
+"1522","Americas","Panama",74.712,2002
+"1523","Asia","Bahrain",74.795,2002
+"1524","Europe","Croatia",74.876,2002
+"1525","Americas","Mexico",74.902,2002
+"1526","Americas","Uruguay",75.307,2002
+"1527","Europe","Czech Republic",75.51,2002
+"1528","Europe","Albania",75.651,2002
+"1529","Africa","Reunion",75.744,2002
+"1530","Europe","Slovenia",76.66,2002
+"1531","Asia","Kuwait",76.904,2002
+"1532","Asia","Taiwan",76.99,2002
+"1533","Asia","Korea, Rep.",77.045,2002
+"1534","Americas","Cuba",77.158,2002
+"1535","Europe","Denmark",77.18,2002
+"1536","Europe","Portugal",77.29,2002
+"1537","Americas","United States",77.31,2002
+"1538","Americas","Puerto Rico",77.778,2002
+"1539","Europe","Ireland",77.783,2002
+"1540","Americas","Chile",77.86,2002
+"1541","Americas","Costa Rica",78.123,2002
+"1542","Europe","Greece",78.256,2002
+"1543","Europe","Belgium",78.32,2002
+"1544","Europe","Finland",78.37,2002
+"1545","Europe","United Kingdom",78.471,2002
+"1546","Europe","Netherlands",78.53,2002
+"1547","Europe","Germany",78.67,2002
+"1548","Asia","Singapore",78.77,2002
+"1549","Europe","Austria",78.98,2002
+"1550","Europe","Norway",79.05,2002
+"1551","Oceania","New Zealand",79.11,2002
+"1552","Europe","France",79.59,2002
+"1553","Asia","Israel",79.696,2002
+"1554","Americas","Canada",79.77,2002
+"1555","Europe","Spain",79.78,2002
+"1556","Europe","Sweden",80.04,2002
+"1557","Europe","Italy",80.24,2002
+"1558","Oceania","Australia",80.37,2002
+"1559","Europe","Iceland",80.5,2002
+"1560","Europe","Switzerland",80.62,2002
+"1561","Asia","Hong Kong, China",81.495,2002
+"1562","Asia","Japan",82,2002
+"1563","Africa","Swaziland",39.613,2007
+"1564","Africa","Mozambique",42.082,2007
+"1565","Africa","Zambia",42.384,2007
+"1566","Africa","Sierra Leone",42.568,2007
+"1567","Africa","Lesotho",42.592,2007
+"1568","Africa","Angola",42.731,2007
+"1569","Africa","Zimbabwe",43.487,2007
+"1570","Asia","Afghanistan",43.828,2007
+"1571","Africa","Central African Republic",44.741,2007
+"1572","Africa","Liberia",45.678,2007
+"1573","Africa","Rwanda",46.242,2007
+"1574","Africa","Guinea-Bissau",46.388,2007
+"1575","Africa","Congo, Dem. Rep.",46.462,2007
+"1576","Africa","Nigeria",46.859,2007
+"1577","Africa","Somalia",48.159,2007
+"1578","Africa","Malawi",48.303,2007
+"1579","Africa","Cote d'Ivoire",48.328,2007
+"1580","Africa","South Africa",49.339,2007
+"1581","Africa","Burundi",49.58,2007
+"1582","Africa","Cameroon",50.43,2007
+"1583","Africa","Chad",50.651,2007
+"1584","Africa","Botswana",50.728,2007
+"1585","Africa","Uganda",51.542,2007
+"1586","Africa","Equatorial Guinea",51.579,2007
+"1587","Africa","Burkina Faso",52.295,2007
+"1588","Africa","Tanzania",52.517,2007
+"1589","Africa","Namibia",52.906,2007
+"1590","Africa","Ethiopia",52.947,2007
+"1591","Africa","Kenya",54.11,2007
+"1592","Africa","Mali",54.467,2007
+"1593","Africa","Djibouti",54.791,2007
+"1594","Africa","Congo, Rep.",55.322,2007
+"1595","Africa","Guinea",56.007,2007
+"1596","Africa","Benin",56.728,2007
+"1597","Africa","Gabon",56.735,2007
+"1598","Africa","Niger",56.867,2007
+"1599","Africa","Eritrea",58.04,2007
+"1600","Africa","Togo",58.42,2007
+"1601","Africa","Sudan",58.556,2007
+"1602","Africa","Madagascar",59.443,2007
+"1603","Africa","Gambia",59.448,2007
+"1604","Asia","Iraq",59.545,2007
+"1605","Asia","Cambodia",59.723,2007
+"1606","Africa","Ghana",60.022,2007
+"1607","Americas","Haiti",60.916,2007
+"1608","Asia","Myanmar",62.069,2007
+"1609","Asia","Yemen, Rep.",62.698,2007
+"1610","Africa","Senegal",63.062,2007
+"1611","Asia","Nepal",63.785,2007
+"1612","Asia","Bangladesh",64.062,2007
+"1613","Africa","Mauritania",64.164,2007
+"1614","Asia","India",64.698,2007
+"1615","Africa","Comoros",65.152,2007
+"1616","Asia","Pakistan",65.483,2007
+"1617","Africa","Sao Tome and Principe",65.528,2007
+"1618","Americas","Bolivia",65.554,2007
+"1619","Asia","Mongolia",66.803,2007
+"1620","Asia","Korea, Dem. Rep.",67.297,2007
+"1621","Americas","Trinidad and Tobago",69.819,2007
+"1622","Americas","Honduras",70.198,2007
+"1623","Americas","Guatemala",70.259,2007
+"1624","Asia","Thailand",70.616,2007
+"1625","Asia","Indonesia",70.65,2007
+"1626","Asia","Iran",70.964,2007
+"1627","Africa","Morocco",71.164,2007
+"1628","Africa","Egypt",71.338,2007
+"1629","Americas","Peru",71.421,2007
+"1630","Asia","Philippines",71.688,2007
+"1631","Americas","Paraguay",71.752,2007
+"1632","Europe","Turkey",71.777,2007
+"1633","Americas","El Salvador",71.878,2007
+"1634","Asia","Lebanon",71.993,2007
+"1635","Americas","Dominican Republic",72.235,2007
+"1636","Africa","Algeria",72.301,2007
+"1637","Americas","Brazil",72.39,2007
+"1638","Asia","Sri Lanka",72.396,2007
+"1639","Europe","Romania",72.476,2007
+"1640","Asia","Jordan",72.535,2007
+"1641","Americas","Jamaica",72.567,2007
+"1642","Asia","Saudi Arabia",72.777,2007
+"1643","Africa","Mauritius",72.801,2007
+"1644","Americas","Colombia",72.889,2007
+"1645","Americas","Nicaragua",72.899,2007
+"1646","Asia","China",72.961,2007
+"1647","Europe","Bulgaria",73.005,2007
+"1648","Europe","Hungary",73.338,2007
+"1649","Asia","West Bank and Gaza",73.422,2007
+"1650","Americas","Venezuela",73.747,2007
+"1651","Africa","Tunisia",73.923,2007
+"1652","Africa","Libya",73.952,2007
+"1653","Europe","Serbia",74.002,2007
+"1654","Asia","Syria",74.143,2007
+"1655","Asia","Malaysia",74.241,2007
+"1656","Asia","Vietnam",74.249,2007
+"1657","Europe","Montenegro",74.543,2007
+"1658","Europe","Slovak Republic",74.663,2007
+"1659","Europe","Bosnia and Herzegovina",74.852,2007
+"1660","Americas","Ecuador",74.994,2007
+"1661","Americas","Argentina",75.32,2007
+"1662","Americas","Panama",75.537,2007
+"1663","Europe","Poland",75.563,2007
+"1664","Asia","Bahrain",75.635,2007
+"1665","Asia","Oman",75.64,2007
+"1666","Europe","Croatia",75.748,2007
+"1667","Americas","Mexico",76.195,2007
+"1668","Americas","Uruguay",76.384,2007
+"1669","Europe","Albania",76.423,2007
+"1670","Africa","Reunion",76.442,2007
+"1671","Europe","Czech Republic",76.486,2007
+"1672","Asia","Kuwait",77.588,2007
+"1673","Europe","Slovenia",77.926,2007
+"1674","Europe","Portugal",78.098,2007
+"1675","Americas","United States",78.242,2007
+"1676","Americas","Cuba",78.273,2007
+"1677","Europe","Denmark",78.332,2007
+"1678","Asia","Taiwan",78.4,2007
+"1679","Americas","Chile",78.553,2007
+"1680","Asia","Korea, Rep.",78.623,2007
+"1681","Americas","Puerto Rico",78.746,2007
+"1682","Americas","Costa Rica",78.782,2007
+"1683","Europe","Ireland",78.885,2007
+"1684","Europe","Finland",79.313,2007
+"1685","Europe","Germany",79.406,2007
+"1686","Europe","United Kingdom",79.425,2007
+"1687","Europe","Belgium",79.441,2007
+"1688","Europe","Greece",79.483,2007
+"1689","Europe","Netherlands",79.762,2007
+"1690","Europe","Austria",79.829,2007
+"1691","Asia","Singapore",79.972,2007
+"1692","Europe","Norway",80.196,2007
+"1693","Oceania","New Zealand",80.204,2007
+"1694","Europe","Italy",80.546,2007
+"1695","Americas","Canada",80.653,2007
+"1696","Europe","France",80.657,2007
+"1697","Asia","Israel",80.745,2007
+"1698","Europe","Sweden",80.884,2007
+"1699","Europe","Spain",80.941,2007
+"1700","Oceania","Australia",81.235,2007
+"1701","Europe","Switzerland",81.701,2007
+"1702","Europe","Iceland",81.757,2007
+"1703","Asia","Hong Kong, China",82.208,2007
+"1704","Asia","Japan",82.603,2007

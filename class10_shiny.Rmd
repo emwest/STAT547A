@@ -1,0 +1,37 @@
+---
+title: "class10_shiny"
+author: "Emily West"
+date: "11/14/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("shiny")
+library(shiny)
+```
+ui - user interface
+server+user interface are what a webpage is based off of.
+
+must save in a seperate folder where everything lives together
+
+```{r}
+runExample("01_hello")
+#listening on http://127.0.0.1:7647 web server is running on your actual computer
+```
+
+the most basic, empty website:
+```{r}
+library(shiny)
+
+my_ui <- fluidPage()
+
+my_server <- function(inputs, outputs){
+  
+}
+shinyApp(ui = my_ui, server = my_server)
+```
+

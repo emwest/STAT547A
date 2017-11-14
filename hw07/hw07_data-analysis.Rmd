@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(dplyr)
+library(forcats)
 ```
 
 In the previous step I created a hw07_datadownload.Rmd, where the gapminder dataset was downloaded and sent to live in my repo as: gapminder.tsv.
@@ -22,28 +23,23 @@ str(gap)
 
 let's continue as if the data download worked:
 ```{r}
-library(gapminder)
-gapr<-gapminder
-str(gapr)
-library(dplyr)
-
 #Instead of re-writing the file path to where figures should be saved I'll #make use of the paste function. Full disclosure, I did not have this stroke #of genius, my roommate is an R goddess.
-plot_loc = "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/"
-csv_loc <- "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/"
+plot_loc = "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07"
+csv_loc <- "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07"
 ```
 
 
 ```{r}
-levels(gapr$continent)
-max(gapr$year) #2007
-min(gapr$year) #1952, 55 years of data
+levels(gap$continent)
+max(gap$year) #2007
+min(gap$year) #1952, 55 years of data
 ```
 
 ```{r fig.height = 6, fig.width = 9}
 #Descritptive plots:
 #plot life expectancy for asian countries from 1952-2007
 
-asia_data<- gapr %>% filter(continent =="Asia")
+asia_data<- gap %>% filter(continent =="Asia")
 
 png(file = paste(plot_loc,"fig_scatter-lifeExp-asia.png",sep=""),width = 600,height = 400)
 ggplot(data = asia_data) +
@@ -66,7 +62,7 @@ ggplot(data = asia_data) +
 #Descritptive plots:
 #plot life expectancy for asian countries from 1952-2007
 
-euro_data<- gapr %>% filter(continent =="Europe")
+euro_data<- gap %>% filter(continent =="Europe")
 
 png(file = paste(plot_loc,"fig_scatter-lifeExp-euro.png",sep=""),width = 600,height = 400)
 ggplot(data = euro_data) +
@@ -81,9 +77,9 @@ ggplot(data = euro_data) +
   ylab("life expectancy")
 
 #For the other 3 continents:
-ams_data<- gapr %>% filter(continent =="Americas")
-oc_data<- gapr %>% filter(continent =="Oceania")
-afr_data<- gapr %>% filter(continent =="Africa")
+ams_data<- gap %>% filter(continent =="Americas")
+oc_data<- gap %>% filter(continent =="Oceania")
+afr_data<- gap %>% filter(continent =="Africa")
 ```
 
 1. Reorder each continent based on life expectancy:
@@ -116,4 +112,39 @@ write.csv(afr_ord, file = paste(csv_loc,"africa_ordered.csv", sep=""))
 ```
 
 
+
+```{r}
+#Reorder continent by lifeExp, the default summarizing function is median(), I chose min
+gap_ord<- fct_reorder(gap$continent, gap$lifeExp, min)
+gap_ord %>% levels() %>% head()
+View(gap_ord)
+View(min_cont)
+min_cont <-gap %>% group_by(continent) %>% summarize(min_life=min(lifeExp))
+min_contord<- fct_reorder(min_cont$continent, min_cont$min_life, min, .desc= TRUE)
+str(min_cont)
+
+gap_ord<-gap %>% select(continent, country, lifeExp, year)%>% mutate (continent = fct_reorder(continent, lifeExp, min)) 
+levels(gap_ord$continent)
+
+View(gap_ord)
+gap_arr<- gap_ord%>% arrange(year, lifeExp)
+View(gap_arr)
+
+png(file = paste(plot_loc,"fig_bar-lifeExp-continent.png",sep=""),width = 600,height = 400)
+ggplot(min_cont, aes(fct_reorder(continent, min_life), min_life))+
+  geom_bar(stat = "Identity")+
+  xlab("continent")+
+  ylab("minimum life expectancy")
+dev.off()
+
+ggplot(gap_ord, aes(fct_reorder(gap_ord$continent, gap_ord$lifeExp), gap_ord$lifeExp))+
+  geom_bar(stat = "Identity")+
+  xlab("continent")+
+  ylab("minimum life expectancy")
+dev.off()
+
+#sort the full dataset by country, then by lifeExp
+gap_sort<-gap %>% arrange(country, desc(lifeExp))
+View(gap_sort)
+```
 
