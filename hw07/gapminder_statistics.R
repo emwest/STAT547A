@@ -2,6 +2,7 @@ library(ggplot2)
 library(dplyr)
 library(broom)
 library(forcats)
+library(knitr)
 plot_loc = "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/figures/"
 csv_loc <- "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/csv/"
 
@@ -49,7 +50,7 @@ is.data.frame(Europe)
 americas_wb<-life_func(mn, "Americas") %>% droplevels
 africa_wb<-life_func(mn, "Africa") %>% droplevels
 
-#subset the data to make facetted graphs for each continent based on best and worst
+#subset the data to make faceted graphs for each continent based on best and worst
 
 View(africa_wb)
 y<-(africa_wb$country)
@@ -58,7 +59,7 @@ str(p)
 View(p)
 
 afr_plot<-ggplot(data = p, aes(x=year, y=lifeExp, color = country))+geom_point()
-afr_plot +facet_grid(country~.) + 
+afr_plot +facet_grid(fct_reorder(country, desc(lifeExp))~.) + 
   geom_smooth(method = lm, color = "black", lwd= 0.2)
 ggsave("afri_figs.png", width = 6, height = 9)
 
@@ -66,7 +67,7 @@ ggsave("afri_figs.png", width = 6, height = 9)
 fig.fun <-function(data,subset,ob_name){
   ym<-(subset$country)
   pm<-subset(data, country %in% ym)
-  ob_name<-ggplot(pm, aes( x = year, y = lifeExp, color = country))+geom_point()
+  ob_name<-ggplot(pm, aes( x = year, y = lifeExp, color = country))+geom_point()+ ylab("life expectancy")
   ob_name + facet_grid(fct_reorder(country, desc(lifeExp))~.)+ 
     geom_smooth(method = lm, color = "black", lwd= 0.2)
 }
@@ -74,9 +75,54 @@ fig.fun <-function(data,subset,ob_name){
 #Make figures for each continent and save to file
 
 euro_figs<-fig.fun(gap_ord, europe_wb, euro_fig)
-ggsave("euro_figs.png", width = 6, height = 9)
+ggsave("/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/figures/euro_figs.png", width = 6, height = 9)
 euro_figs
 amer_figs<-fig.fun(gap_ord, americas_wb, amer_fig)
-ggsave("amer_figs.png", width = 6, height = 9)
+amer_figs
+ggsave("/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/figures/amer_figs.png", width = 6, height = 9)
 asia_figs<-fig.fun(gap_ord, asia_wb, asia_fig)
-ggsave("asia_figs.png", width = 6, height = 9)
+asia_figs
+ggsave("/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/figures/asia_figs.png", width = 6, height = 9)
+
+#But what if I didn't want to have the "best" and "worst" lumped together?
+#I could have approached parsing out and graphing the "best" and "worst" countries another way:
+
+#ASIA
+asia<- mn %>% filter(continent=="Asia") %>% arrange(meanLife)
+View(asia)
+asia_best<-asia[(length(asia$country)-2):length(asia$country),]
+asia_worst<-asia[1:3,]
+asia_wb<-rbind(asia_best, asia_worst) %>% droplevels
+
+#AFRICA
+afr<- mn %>% filter(continent=="Africa") %>% arrange(meanLife)
+View(afr)
+afr_best<-asia[(length(afr$country)-2):length(afr$country),]
+afr_worst<-afr[1:3,]
+afr_wb<-rbind(aft_best, aft_worst) %>% droplevels
+
+#AMERICAS
+amer<- mn %>% filter(continent=="Americas") %>% arrange(meanLife)
+View(amer)
+amer_best<-asia[(length(amer$country)-2):length(amer$country),]
+amer_worst<-afr[1:3,]
+amer_wb<-rbind(amer_best, aft_worst) %>% droplevels
+
+#EUROPE
+euro<- mn %>% filter(continent=="Americas") %>% arrange(meanLife)
+View(euro)
+euro_best<-asia[(length(euro$country)-2):length(euro$country),]
+euro_worst<-euro[1:3,]
+euro_wb<-rbind(euro_best, aft_worst) %>% droplevels
+
+#Using Asia as an example:
+kable(asia_best)
+kable(asia_worst)
+kable(asia_wb)
+
+
+asiab<-fig.fun(gap_ord, asia_best, asiab_fig)
+asiab
+asiaw<-fig.fun(gap_ord, asia_worst, asiab_fig)
+asiaw
+#Visually this is a much more pleasing way to view the data, instead of all squished to accomodate all 6 continental entries.
