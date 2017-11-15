@@ -61,6 +61,7 @@ View(p)
 afr_plot<-ggplot(data = p, aes(x=year, y=lifeExp, color = country))+geom_point()
 afr_plot +facet_grid(country~.) + 
   geom_smooth(method = lm, color = "black", lwd= 0.2)
+ggsave("afri_figs.png", width = 6, height = 9)
 
 #a function might work here as well:
 fig.fun <-function(data,subset,ob_name){
@@ -71,7 +72,12 @@ fig.fun <-function(data,subset,ob_name){
     geom_smooth(method = lm, color = "black", lwd= 0.2)
 }
 
+#Make figures for each continent and save to file
+
 euro_figs<-fig.fun(gap_ord, europe_wb, euro_fig)
+ggsave("euro_figs.png", width = 6, height = 9)
 euro_figs
 amer_figs<-fig.fun(gap_ord, americas_wb, amer_fig)
+ggsave("amer_figs.png", width = 6, height = 9)
 asia_figs<-fig.fun(gap_ord, asia_wb, asia_fig)
+ggsave("asia_figs.png", width = 6, height = 9)
