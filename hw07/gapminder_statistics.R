@@ -2,8 +2,8 @@ library(ggplot2)
 library(dplyr)
 library(broom)
 library(forcats)
-plot_loc = "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/"
-csv_loc <- "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/"
+plot_loc = "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/figures/"
+csv_loc <- "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/csv/"
 
 #import newly created data, note that writing to csv loses the ordering
 gap_ord <- readRDS("/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/gap_ordered-cont-lifeExp.rds")
@@ -42,7 +42,6 @@ life_func<- function(data, place){
   comb <-rbind(place.worst, place.best)
   print(comb)
 }
-
 
 europe_wb<-life_func(mn, "Europe") %>% droplevels
 is.data.frame(Europe)

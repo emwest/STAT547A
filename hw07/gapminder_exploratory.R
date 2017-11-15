@@ -5,8 +5,8 @@ library(forcats)
 #read in the data that was previously downloaded from the internet
 gap<-read.delim("gapminder.tsv")
 
-plot_loc = "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/"
-csv_loc <- "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/"
+plot_loc = "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/figures/"
+csv_loc <- "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/csv/"
 
 #make a couple of exploratory figures and write them to file:
 asia_data<- gap %>% filter(continent =="Asia")
@@ -51,4 +51,5 @@ gap_sort<-gap %>% arrange(country, desc(lifeExp))
 write.csv(gap_ord, file = paste(csv_loc,"gap_ordered-cont-lifeExp.csv", sep=""))
 write.csv(gap_arr, file = paste(csv_loc,"gap_arrange-year-lifeExp.csv", sep=""))
 saveRDS(gap_ord,file = paste(csv_loc, "gap_ordered-cont-lifeExp.rds", sep=""))
-saveRDS(gap_arr,file = paste(csv_loc,"gap_arrange-year-lifeExp.rds", sep=""))
+saveRDS(gap_ord, "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/gap_ordered-cont-lifeExp.rds")
+saveRDS(gap_arr, "/Users/Adelaide/Desktop/UBC_Work/STAT545/stat547/hw07/gap_arrange-year-lifeExp.rds")
