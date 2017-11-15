@@ -50,5 +50,5 @@ gap_sort<-gap %>% arrange(country, desc(lifeExp))
 #save to .csv
 write.csv(gap_ord, file = paste(csv_loc,"gap_ordered-cont-lifeExp.csv", sep=""))
 write.csv(gap_arr, file = paste(csv_loc,"gap_arrange-year-lifeExp.csv", sep=""))
-saveRDS(gap_ord,file = paste(csv_loc,"gap_ordered-cont-lifeExp.rds", sep=""))
+saveRDS(gap_ord,file = paste(csv_loc, "gap_ordered-cont-lifeExp.rds", sep=""))
 saveRDS(gap_arr,file = paste(csv_loc,"gap_arrange-year-lifeExp.rds", sep=""))
