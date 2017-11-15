@@ -99,21 +99,21 @@ afr<- mn %>% filter(continent=="Africa") %>% arrange(meanLife)
 View(afr)
 afr_best<-asia[(length(afr$country)-2):length(afr$country),]
 afr_worst<-afr[1:3,]
-afr_wb<-rbind(aft_best, aft_worst) %>% droplevels
+afr_wb<-rbind(afr_best, afr_worst) %>% droplevels
 
 #AMERICAS
 amer<- mn %>% filter(continent=="Americas") %>% arrange(meanLife)
 View(amer)
-amer_best<-asia[(length(amer$country)-2):length(amer$country),]
-amer_worst<-afr[1:3,]
-amer_wb<-rbind(amer_best, aft_worst) %>% droplevels
+amer_best<-amer[(length(amer$country)-2):length(amer$country),]
+amer_worst<-amer[1:3,]
+amer_wb<-rbind(amer_best, amer_worst) %>% droplevels
 
 #EUROPE
-euro<- mn %>% filter(continent=="Americas") %>% arrange(meanLife)
+euro<- mn %>% filter(continent=="Europe") %>% arrange(meanLife)
 View(euro)
 euro_best<-asia[(length(euro$country)-2):length(euro$country),]
 euro_worst<-euro[1:3,]
-euro_wb<-rbind(euro_best, aft_worst) %>% droplevels
+euro_wb<-rbind(euro_best, euro_worst) %>% droplevels
 
 #Using Asia as an example:
 kable(asia_best)
@@ -125,4 +125,5 @@ asiab<-fig.fun(gap_ord, asia_best, asiab_fig)
 asiab
 asiaw<-fig.fun(gap_ord, asia_worst, asiab_fig)
 asiaw
+
 #Visually this is a much more pleasing way to view the data, instead of all squished to accomodate all 6 continental entries.
