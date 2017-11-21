@@ -3,7 +3,6 @@ library(tidyverse)
 library(dplyr)
 library(DT)
 
-
 shinyUI(fluidPage(
   #Application title
   titlePanel("BC Liquor Store Refreshment Finder"),

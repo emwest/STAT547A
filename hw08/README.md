@@ -2,6 +2,7 @@ Code for this week's homework can be accessed [here](https://github.com/emwest/S
 Please note that my data is originally sourced from OpenDataBC and the code used here has been informed and adapted from the examples provided by Dean Attali.
 
 
+
 #Here are the features I added to the app:
 
 :pencil2: An inspiring image to the sidebar
