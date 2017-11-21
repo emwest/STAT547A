@@ -12,4 +12,4 @@ In an effort to tszuj up my READMEs I stumbled upon a sweet [emoji cheatsheet](h
 
 :ram: [homework 7](https://github.com/emwest/STAT547A/tree/master/hw07)
 
-:ox: [homework 8](https://github.com/emwest/STAT547A/tree/master/hw08) containes my code or select [shinyapp](https://emwest.shinyapps.io/Sample_for_STAT547_emwest_2017/) for a link to my shiny app!
+:ox: [homework 8](https://github.com/emwest/STAT547A/tree/master/hw08) contains my code or select [shinyapp](https://emwest.shinyapps.io/Sample_for_STAT547_emwest_2017/) for a link to my shiny app!

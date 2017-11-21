@@ -15,14 +15,21 @@ Please note that my data is originally sourced from OpenDataBC and the code used
 
 :pencil2: A download button so the user can download their results
 
+:pencil2: A download button so the user can download their results
+
 A few notes to myself about using shiny:
-A shiny app operates based on two primary features, a user interface (ui) that the user interacts with and can manipulate and a server, that houses all of the code and takes the manipulations of the user to generate outputs. In this way there is "reactivity" between the server and the ui. It is a little challenging to wrap ones head around at first. I found it important to keep in mind that you write the ui first, this includes all the things the user will see and interact with. Once you have drawn that out, you build the server.
+A shiny app operates based on two primary features, a user interface (ui) that the user interacts with and can manipulate and a server, that houses all of the code and takes the manipulations of the user to generate outputs. In this way there is "reactivity" between the server and the ui. It is a little challenging to wrap ones head around at first. I found it important to keep in mind that you write the ui first, this includes all the things the user will see and interact with. Once you have figured out what features you want the user to manipulate, you build the server.
+
+This was a challenging assignment because many of the errors that get thrown while running the app are ambiguous and do not identify specific lines, so resolving errors is pretty time consuming.
 
 A few odd notes:
 
-because the server accesses your app folder, only files associate with the app should be included
+KEEP TRACK OF YOUR BRACKETS AND PARENTHESES - this was a real challenge in formatting my ui in particular. Many of the errors encountered had to do with a missing or inappropriately placed bracket.
+
+because the server accesses your app folder, only files associated with the app should be included
 
 create www folder to hold figures/graphics
+
 A quick and simple way to download a file:
 url_kitten<- "url here"
 download.file(url_kitten, "www/kitten.jpg")
