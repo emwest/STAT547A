@@ -8,8 +8,11 @@ In an effort to tszuj up my READMEs I stumbled upon a sweet [emoji cheatsheet](h
 
 :wave:Hey there reviewers! You can find links to my homework pages here:
 
-:water_buffalo: [homework 6](https://github.com/emwest/STAT547A/tree/master/hw6)
+:cow: [homework 9](https://github.com/emwest/stat547HW09). Please click [here](https://github.com/emwest/STAT547A/blob/master/hw09_REFLECTION.Rmd) for a link to my homework 9 reflection
+
+:ox: [homework 8](https://github.com/emwest/STAT547A/tree/master/hw08) contains my code or select [shinyapp](https://emwest.shinyapps.io/Sample_for_STAT547_emwest_2017/) for a link to my shiny app!
 
 :ram: [homework 7](https://github.com/emwest/STAT547A/tree/master/hw07)
 
-:ox: [homework 8](https://github.com/emwest/STAT547A/tree/master/hw08) contains my code or select [shinyapp](https://emwest.shinyapps.io/Sample_for_STAT547_emwest_2017/) for a link to my shiny app!
+:water_buffalo: [homework 6](https://github.com/emwest/STAT547A/tree/master/hw6)
+

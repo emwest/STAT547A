@@ -13,19 +13,19 @@ Description: I decided to build a package that allows the user to visualize the 
 
 In developing this package I followed these steps:
 
-create a unique, (somewhat) helpful function
+:star: create a unique, (somewhat) helpful function
 
-document the function using roxygen2
+:star: document the function using roxygen2
 
-added an accompanying dataset so the user (or peer review) can test out my package
+:star: added an accompanying dataset so the user (or peer review) can test out my package
 
-update the description file to include the developer, brief package description, and package dependencies 
+:star: update the description file to include the developer, brief package description, and package dependencies 
 
-update the licensing information so others can use my package without worry, this includes making a new file in the project repository called LICENSE
+:star: update the licensing information so others can use my package without worry, this includes making a new file in the project repository called LICENSE
 
-create a test file that assures the function actually works
+:star: create a test file that assures the function actually works
 
-Update the vignette file that will accompany my package with useful and necessary information for the user
+:star: Update the vignette file that will accompany my package with useful and necessary information for the user
 
 Reflection: Like voting, I checked and tested my functions early and often. This is a much easier way to find and address errors than waiting until they pile up to address them. Interestingly, I had few errors but several warnings which were more often than not associated with poor documentation. I did my best to alleviate these warnings, however R likes to warn you that it is constantly being updated, so this package relies on R version X.X.X and on packages x,y,z which are actually probably good warnings to keep around in the long run.
 
