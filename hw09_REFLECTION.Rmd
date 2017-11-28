@@ -7,7 +7,7 @@ output: html_document
 
 Hello there and welcome to my very first package!
 
-Admittedly, naming a package [hw09]() is not very inspired, but you get the gist, click on the link to be taken to my r package!
+Admittedly, naming a package [hw09](https://github.com/emwest/stat547HW09) is not very inspired, but you get the gist, click on the link to be taken to my r package!
 
 Description: I decided to build a package that allows the user to visualize the output from a linear model in a very quick and easy way, using the tidy() and qplot() functions. For reference, one should be careful when relying heavily on other non-base r packages. This runs the risk of development changes making your package, or functions contained within, unusable in the future. But because this is something I am doing a lot (inspecting lms) this type of function is actually really useful to me!
 

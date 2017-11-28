@@ -127,16 +127,16 @@ $(document).ready(function () {
 
 
 <p>Hello there and welcome to my very first package!</p>
-<p>Admittedly, naming a package <a href>hw09</a> is not very inspired, but you get the gist, click on the link to be taken to my r package!</p>
+<p>Admittedly, naming a package <a href="https://github.com/emwest/stat547HW09">hw09</a> is not very inspired, but you get the gist, click on the link to be taken to my r package!</p>
 <p>Description: I decided to build a package that allows the user to visualize the output from a linear model in a very quick and easy way, using the tidy() and qplot() functions. For reference, one should be careful when relying heavily on other non-base r packages. This runs the risk of development changes making your package, or functions contained within, unusable in the future. But because this is something I am doing a lot (inspecting lms) this type of function is actually really useful to me!</p>
 <p>In developing this package I followed these steps:</p>
-<p>create a unique, (somewhat) helpful function</p>
-<p>document the function using roxygen2</p>
-<p>added an accompanying dataset so the user (or peer review) can test out my package</p>
-<p>update the description file to include the developer, brief package description, and package dependencies</p>
-<p>update the licensing information so others can use my package without worry, this includes making a new file in the project repository called LICENSE</p>
-<p>create a test file that assures the function actually works</p>
-<p>Update the vignette file that will accompany my package with useful and necessary information for the user</p>
+<p>:star: create a unique, (somewhat) helpful function</p>
+<p>:star: document the function using roxygen2</p>
+<p>:star: added an accompanying dataset so the user (or peer review) can test out my package</p>
+<p>:star: update the description file to include the developer, brief package description, and package dependencies</p>
+<p>:star: update the licensing information so others can use my package without worry, this includes making a new file in the project repository called LICENSE</p>
+<p>:star: create a test file that assures the function actually works</p>
+<p>:star: Update the vignette file that will accompany my package with useful and necessary information for the user</p>
 <p>Reflection: Like voting, I checked and tested my functions early and often. This is a much easier way to find and address errors than waiting until they pile up to address them. Interestingly, I had few errors but several warnings which were more often than not associated with poor documentation. I did my best to alleviate these warnings, however R likes to warn you that it is constantly being updated, so this package relies on R version X.X.X and on packages x,y,z which are actually probably good warnings to keep around in the long run.</p>
 <p>I returned to my package to make a few tweeks and learned that can be a terrible idea if you have it working smoothly. It seems the smallest change can lead to some unintended consequences. For instance, I tried to add a load message with my package however, it seems like it threw everything off and my package would not pass the check without errors. This underscores the need for intention when developing and making changes to a package.</p>
 
