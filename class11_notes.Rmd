@@ -1,0 +1,227 @@
+---
+title: "Web scraping"
+author: "Emily West"
+date: "11/28/2017"
+output: html_document
+---
+
+#All about webscraping
+
+sometimes data available online is not is an easy to use format
+
+
+```{r}
+library(tidyverse)
+library(magrittr)
+library(purrr)
+library(glue)
+library(stringr)
+```
+
+```{r}
+library(rvest)
+library(xml2)
+```
+we'll start by downloading some lyrics from the internet
+navigate to the website of interest, some websites are more amenable to webscraping than others
+
+let's get a list of song titles first
+the inforation we want is here:
+```{r}
+my_url<- "https://www.musixmatch.com/artist/Straight-Line-Stitch"
+page_title<-read_html(my_url)
+```
+
+what's in "page title"" now?
+```{r}
+page_title %>% View
+
+```
+
+xml is a glorified list
+elements of a document:
+<doc> document starts here
+  <head>
+  </head> head ends here
+  <body>
+    <div> is simply a section 
+  </body> body ends here
+</doc> document ends here
+
+what browsers should you use? Not all are created, use firefox developer
+this gives you the developer view of the page
+control shift c in google chrome also gives you the developer view
+
+command alt k to see developer
+select a section within the website
+right click on the object> copy> css selector or css path
+
+```{r}
+page_title %>% 
+  html_nodes(css = ".title") %>% 
+  html_text()
+```
+
+we don't want just the title, we want the lyrics too
+
+```{r}
+SLS_lyrics <- data_frame(Band = "Straight LIne Stitch", Title = page_title %>%
+                          html_nodes(css = ".title") %>% 
+                          html_text(),
+                        Link = glue('https://www.musixmatch.com/lyrics/{Band}/{Title}'))
+
+SLS_lyrics$Link[1] #yikes there is white space!
+
+SLS_lyrics2 <- data_frame(Band = "Straight LIne Stitch", Title = page_title %>%
+                          html_nodes(css = ".title") %>% 
+                          html_text(),
+                        Link = glue('https://www.musixmatch.com/lyrics/{Band}/{Title}') %>% str_replace_all(" ","-"))
+SLS_lyrics2$Link[1] #Perf.
+
+```
+
+```{r}
+#use magrittr operator instead because we are 
+SLS_lyrics2 %<>% 
+  mutate(Lyrics = map(Link, read_html))
+
+View(SLS_lyrics2)#not actually the lyrics - an ugly html
+```
+
+get lyrics, navigate to lyrics page, what class do you get when you hover over them with the cursor
+```{r}
+get_lyrics<- function(lyr_link){
+  lyr_link %>% 
+    read_html() %>% 
+    html_nodes(css = ".mxm-lyrics__content") %>% 
+    html_text() %>% 
+    collapse(sep = "\n") %>% 
+    return()
+}
+
+```
+
+```{r}
+SLS_lyrics2 %<>% 
+  mutate(Lyrics = map_chr(Link, get_lyrics))
+SLS_lyrics2$Link[1] %>% get_lyrics()
+```
+
+CHallenge: repeat code with Angel Haze
+```{r}
+my_url<- "https://www.musixmatch.com/artist/Angel-Haze"
+page_title2<-read_html(my_url)
+```
+
+```{r}
+page_title2 %>% View
+
+```
+
+```{r}
+page_title2 %>% 
+  html_nodes(css = ".title") %>% 
+  html_text()
+```
+
+```{r}
+AH_url<-"https://www.musixmatch.com/search/angel%20haze#"
+AH_lyrics <- data_frame(Band = "Angel Haze",
+                        
+                         Title = AH_url %>%
+                          read_html() %>%
+                           html_nodes(css = ".title") %>%
+                           html_text(),
+                        
+                         Link = AH_url %>%
+                          read_html() %>%
+                           html_nodes(css = ".title") %>%
+                          html_attr("href")
+                        )
+
+```
+
+getting lyrics: use a map_XXX from purr to get the lyrics
+```{r}
+AH_lyrics %<>% 
+  mutate(Lyrics = map(Link, read_html))
+
+View(AH_lyrics)#not actually the lyrics - an ugly html
+```
+
+```{r}
+get_lyrics<- function(lyr_link){
+  lyr_link %>% 
+    collapse("https://www.musixmatch.com/artist/Angel-Haze")
+    read_html() %>% 
+    html_nodes(css = ".mxm-lyrics__content") %>% 
+    html_text() %>% 
+    collapse(sep = "\n") %>% 
+    return()
+}
+
+AH_lyrics %>% if( get_lyrics())
+
+```
+
+```{r}
+AH_lyrics %<>% 
+  mutate(Lyrics = map_chr(Link, get_lyrics))
+AH_lyrics$Link[1] %>% get_lyrics()
+```
+
+```{r}
+#"https://www.musixmatch.com/artist/Angel-Haze" %>% read_html() %>% 
+  #html_nodes(css= ".title") %>% 
+  #html_attr("href")
+```
+
+```{r}
+get_lyrics_safe<-possibly(get_lyrics, "None available") 
+#tries to apply a function, have to give an otherwise argument (NA_character-), possibly is like an if then statement but when it fails you get "none available"
+```
+
+###A Tribe Called Red
+```{r}
+ATCR_url<-"https://www.musixmatch.com/artist/A-Tribe-Called-Red#"
+ATCR_lyrics <- data_frame (Band = "A tribe called red",
+                           Title = ATCR_url %>% 
+                             read_html() %>% 
+                             html_nodes(css = ".title") %>% 
+                             html_text(), 
+                           Link = ATCR_url %>% 
+                             read_html() %>% html_nodes(css = ."title") %>% html_attr("href"),
+Lyrics = map(Link, get_lyrics_safe) %>% unnest()
+  
+```
+
+BONUS SENTIMENT ANALYSIS
+```{r}
+install.packages("tidytext")
+library(tidytext)
+
+```
+
+API
+```{r}
+thor<-GET("http://www.omdbapi.com/?t=thor&y=2017&apikey=c0f86156")
+thor_content<-content(thor)
+View(thor_content)
+```
+
+```{r}
+get_movie_TV<- function (title, year){
+  query_string<- glue("http://www.omdbapi.com/?t={title}&y={year}&apikey=c0f86156")
+movie_result<-GET(query_string)
+movie_content<- content(movie_result)
+return(movie_content)
+}
+```
+
+```{r}
+babe<- get_movie_TV("babe", "1995")
+
+matrix<- get_movie_TV("matrix", "1998")
+View(matrix) #this is ugly, empty spaces are bad!
+```
+

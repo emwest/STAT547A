@@ -1,0 +1,221 @@
+---
+title: "hw10"
+author: "Emily West"
+date: "11/28/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(httr)
+library(jsonlite)
+library(xml2)
+library(rvest)
+library(purrr)
+library(repurrrsive)
+library(listviewer)
+library(stringi)
+library(stringr)
+library(knitr)
+library(tidyverse)
+library(glue)
+```
+
+After tinkering with other much less friendly datasets, I opted to work with the starwars API. My intention is to isolate character data and merge it with planet data
+
+
+In the most basic use of the httr() package, GET() can be used to call data from an API
+```{r}
+swchar<-GET("https://swapi.co/api/people")
+swpla<-GET("https://swapi.co/api/planets")
+```
+
+SWAPI is a friendly API to work with and does not require changing the parameters. For an example of how one would call data from an API requiring an authorization key scroll down to my workflow using the NYTimes API.
+
+If you are making repeated requests using a specific API a function can be used to streamline the aquisition of data:
+
+```{r}
+get_data<-function(info){GET(glue("https://swapi.co/api/{info}/"))}
+
+#function test:
+z<-get_data("starships")
+str(z)
+str(swpla)
+```
+
+
+#######working with starwars character data first:############
+
+```{r}
+str(swchar)
+```
+That's a big ole mess of information, but importantly, it tells me where the data are coming from as well as the status code. A status code value of 200, which we have here, means a successful call!
+
+```{r}
+scres<-content(swchar) 
+scres$results[[2]]$name #subset data using position
+#stringi::stri_enc_detect(content(swchar, "raw"))
+json<-content(swchar, as = "text", encoding = "ISO-8859-1")
+thing<- fromJSON(json) #from JSON puts object into a JSON readable format
+head(thing)
+```
+View(thing) #check out in a "readable" fashion what the swchar looks like
+
+
+jsonedit(thing) #(this function is not Rmd friendly?)
+
+                #but it shows why inspecting your data is so important! 
+                
+                #All the interesting information is nested within results
+                
+                #The data are presented in long format
+
+In order to isolate the interesting stuff and create a dataframe from it, I went down a twisted path, here is a taste of how it started:
+```{r}
+map(thing, "height")
+(ht<-map(thing, "height")) #Within the list I want to isolate the elements associated with each character, i.e. height, gender, eye color etc.
+#unfortunately this mapping function pulls all the elements preceeding $results
+ht<-(ht[4]) #this selection calls only the $results, as a singular vector
+(ht)
+is.vector(ht) #just checking that this is indeed a vector
+```
+
+because I had the uninspired idea to do this for all character attributes, I created a function: 
+```{r}
+esel<-function(data, attribute, selector){
+  x<-map(data, attribute)
+  x[selector]
+}
+
+char<-esel(thing, "name", 4) #map character names
+ht2<-esel(thing, "height", 4) #map character height
+names(ht2)
+str(char) #what do these data look like?
+```
+
+But then I discovered purrr had already solved my troubles with the reduce() function:
+```{r}
+is.data.frame(thing) #nope, not a dataframe
+is.list(thing) #yep, it is a list
+chardf<-reduce(thing,cbind)
+is.data.frame(chardf)
+str(chardf)
+#View(chardf)
+kable(chardf)
+```
+Note: the reduce() function ONLY works because of the shape of the data, where by each list attribute is composed of 10 corresponding elements. That is, all Luke Skywalker's information belongs in the first location of each list element, so when the cbind is used it properly lines up character attributes. This is a dangerous assumption to make when using messier datasets.
+
+Plot Character data
+```{r}
+str(chardf$height) #yikes, height and mass data are both being treated as character strings
+chardf$height<-as.integer(chardf$height)
+chardf$mass<-as.integer(chardf$mass)
+ggplot(chardf, aes(mass, height, colour = gender)) + geom_point()
+```
+
+Yea, we have the character data! But there is still some information that would be nice to know, like where these characters are from. Instead of doing this by hand I created a function that utilizes the web address from the "homeworld" column and calls the information from the API to populate a new column "homeplanet"
+```{r}
+#First, get rid of unnecessary columns:
+charinfo<- chardf %>% select(name, height, mass, hair_color, eye_color,
+                             skin_color, birth_year,gender, homeworld)
+
+#Now, try to get the homeplanet by referencing dataframe location:
+url_planet<-chardf$homeworld[1]
+planets<-GET(url_planet)
+ x<-content(planets, as = "text", encoding = "ISO-8859-1")
+  y<-fromJSON(x)
+  #View(y)
+  #jsonedit(y)
+ y$name
+```
+
+This would work fine if there were only a few characters, but what if there are many, or the dataset is rearranged? Better to query by something more fixed, like character name:
+```{r}
+#This function did not come intuitively and I spent sometime drawing out what I wanted as inputs and outputs:
+get_planet<-function(character){
+  t<-filter(chardf, name==character)
+  url_pl<-t$homeworld 
+  plant<-GET(url_pl) 
+  f<-content(plant, as = "text", encoding = "ISO-8859-1")
+  q<-fromJSON(f)
+  #jsonedit(q)
+  print(q$name)}
+  
+get_planet("R2-D2")
+get_planet("Darth Vader")
+
+map_chr(charinfo$name,get_planet) #does mapping work? it sure does!
+swapi_charinfo<-mutate(charinfo, homeplanet=map_chr(charinfo$name,get_planet))
+swapi_charinfo$homeworld<-NULL #drop the unnecessary column for visualization
+kable(swapi_charinfo)
+
+ggplot(swapi_charinfo, aes(homeplanet, mass, colour = gender)) + geom_point()
+
+```
+
+Let's do an example where an API key code is required using the NYTimes API
+```{r}
+key<-"4f650c601e234e20bd0e914c60b7f7f1"
+#sample<-GET("http://api.nytimes.com/svc/topstories/v2/{section}.{response format}?api-key={apikey here}")
+nyt<-GET("http://api.nytimes.com/svc/topstories/v2/movies.json?api-key=4f650c601e234e20bd0e914c60b7f7f1")
+#content(nyt)
+#status_code(nyt) #status code looks good
+```
+
+
+#It's possible to write a function to get the data from the NYT API
+```{r}
+get_topstories<- function (section){
+  query_string<- glue("http://api.nytimes.com/svc/topstories/v2/{section}.json?api-key=4f650c601e234e20bd0e914c60b7f7f1")
+  article_result<-GET(query_string)
+  article_content<- content(article_result, encoding = "ISO-8859-1")
+  #return(article_content)
+  }
+
+nyt_movies<-get_topstories("movies")  
+
+```
+
+```{r}
+#content(nyt)
+#headers(nyt)
+#stringi::stri_enc_detect(content(nyt, "raw"))
+nyttemp<-content(nyt, "text", encoding = "ISO-8859-1")
+nytjson<-fromJSON(nyttemp)
+#jsonedit(nytjson)
+map(nytjson, "title")  
+nyt_df<-reduce(nytjson, cbind)
+#View(nyt_df)
+#nyt_data<-nyt_df %>% select(section, title, abstract, url, 
+                            #byline, item_type, created_date,
+                            #published_date, des_facet, org_facet,
+                            #per_facet, short_url) %>% 
+                            #rename(c("des_facet" = "tags",
+                             #    "org_facet" = "produced_by",
+                            #     "per_facet"= "stars"))
+#View((nyt_data))                    
+```
+
+
+#Let's clean the byline by removing the "By" the precedes the columnist's name
+
+```{r}
+str(nyt_df$byline)
+#is.vector(nyt_data$byline) # a vector of strings
+str_view_all(nyt_df$byline, "By")
+nyt_df$byline<- gsub("By","",nyt_df$byline) #Perfect
+nyt_df$byline
+```
+
+
+#Select by articles that are explicitly Reviews
+```{r}
+reviews<-nyt_df[grep("Review", nyt_df$title), ] %>% select(section, title, abstract, byline, published_date)
+#View(nyt_data)
+kable(reviews)
+```
+
+REFLECTION: Homework 10 was an excellent opportunity to pull together several topics covered in STAT547. I started by calling data from the internet by hand, using the httr() family of operations. Branching out from the prompts, I decided to use the Star Wars API to pull multiple sources of data (planets, people, starships) from the web. Building a function to pull data from the web was achieved by using the glue function, streamlining the process of calling multiple datasets. In my greatest triumph of this course, I was able to create a function that identified the starwars character and used the embedded link to pull the homeplanet data from the web and populate a new "homeworld" column that contains the actual name of the planet, not just the link as before.  In addition, I made use of the NYTimes API to explore using a key and integrating more purrr functions. In doing so I was able to "edit" text within columns of a dataframe and select specific types of articles and develop a dataframe from those queries.
