@@ -27,14 +27,16 @@ library(glue)
 After tinkering with other much less friendly datasets, I opted to work with the starwars API. My intention is to isolate character data and merge it with planet data
 
 
+# 1.1: Get the data from the internet 
 In the most basic use of the httr() package, GET() can be used to call data from an API
 ```{r}
 swchar<-GET("https://swapi.co/api/people")
 swpla<-GET("https://swapi.co/api/planets")
 ```
 
-SWAPI is a friendly API to work with and does not require changing the parameters. For an example of how one would call data from an API requiring an authorization key scroll down to my workflow using the NYTimes API.
+SWAPI is a friendly API to work with and does not require changing the parameters. For an example of how one would call data from an API requiring an authorization key scroll navigate to [part II] of my homwork for an exercise in using purrr function son data aquired from the NYTimes API.
 
+# 1.2: Use a function to efficiently get multiple datasets  
 If you are making repeated requests using a specific API a function can be used to streamline the aquisition of data:
 
 ```{r}
@@ -47,7 +49,7 @@ str(swpla)
 ```
 
 
-#######working with starwars character data first:############
+# 1.3: Work with starwars character data first:
 
 ```{r}
 str(swchar)
@@ -83,7 +85,7 @@ ht<-(ht[4]) #this selection calls only the $results, as a singular vector
 is.vector(ht) #just checking that this is indeed a vector
 ```
 
-because I had the uninspired idea to do this for all character attributes, I created a function: 
+because I had the uninspired idea to do this for all character attributes, creating a dataset by hand, I decided to build a function: 
 ```{r}
 esel<-function(data, attribute, selector){
   x<-map(data, attribute)
@@ -106,9 +108,10 @@ str(chardf)
 #View(chardf)
 kable(chardf)
 ```
+
 Note: the reduce() function ONLY works because of the shape of the data, where by each list attribute is composed of 10 corresponding elements. That is, all Luke Skywalker's information belongs in the first location of each list element, so when the cbind is used it properly lines up character attributes. This is a dangerous assumption to make when using messier datasets.
 
-Plot Character data
+# 1.4 Plotting Character data
 ```{r}
 str(chardf$height) #yikes, height and mass data are both being treated as character strings
 chardf$height<-as.integer(chardf$height)
@@ -117,8 +120,11 @@ ggplot(chardf, aes(mass, height, colour = gender)) + geom_point()
 ```
 
 Yea, we have the character data! But there is still some information that would be nice to know, like where these characters are from. Instead of doing this by hand I created a function that utilizes the web address from the "homeworld" column and calls the information from the API to populate a new column "homeplanet"
+
+1.6 Getting homeplanet data by using the dataset I've already downloaded to define the internet source:
+
+First, get rid of unnecessary columns:
 ```{r}
-#First, get rid of unnecessary columns:
 charinfo<- chardf %>% select(name, height, mass, hair_color, eye_color,
                              skin_color, birth_year,gender, homeworld)
 
@@ -156,66 +162,3 @@ ggplot(swapi_charinfo, aes(homeplanet, mass, colour = gender)) + geom_point()
 
 ```
 
-Let's do an example where an API key code is required using the NYTimes API
-```{r}
-key<-"4f650c601e234e20bd0e914c60b7f7f1"
-#sample<-GET("http://api.nytimes.com/svc/topstories/v2/{section}.{response format}?api-key={apikey here}")
-nyt<-GET("http://api.nytimes.com/svc/topstories/v2/movies.json?api-key=4f650c601e234e20bd0e914c60b7f7f1")
-#content(nyt)
-#status_code(nyt) #status code looks good
-```
-
-
-#It's possible to write a function to get the data from the NYT API
-```{r}
-get_topstories<- function (section){
-  query_string<- glue("http://api.nytimes.com/svc/topstories/v2/{section}.json?api-key=4f650c601e234e20bd0e914c60b7f7f1")
-  article_result<-GET(query_string)
-  article_content<- content(article_result, encoding = "ISO-8859-1")
-  #return(article_content)
-  }
-
-nyt_movies<-get_topstories("movies")  
-
-```
-
-```{r}
-#content(nyt)
-#headers(nyt)
-#stringi::stri_enc_detect(content(nyt, "raw"))
-nyttemp<-content(nyt, "text", encoding = "ISO-8859-1")
-nytjson<-fromJSON(nyttemp)
-#jsonedit(nytjson)
-map(nytjson, "title")  
-nyt_df<-reduce(nytjson, cbind)
-#View(nyt_df)
-#nyt_data<-nyt_df %>% select(section, title, abstract, url, 
-                            #byline, item_type, created_date,
-                            #published_date, des_facet, org_facet,
-                            #per_facet, short_url) %>% 
-                            #rename(c("des_facet" = "tags",
-                             #    "org_facet" = "produced_by",
-                            #     "per_facet"= "stars"))
-#View((nyt_data))                    
-```
-
-
-#Let's clean the byline by removing the "By" the precedes the columnist's name
-
-```{r}
-str(nyt_df$byline)
-#is.vector(nyt_data$byline) # a vector of strings
-str_view_all(nyt_df$byline, "By")
-nyt_df$byline<- gsub("By","",nyt_df$byline) #Perfect
-nyt_df$byline
-```
-
-
-#Select by articles that are explicitly Reviews
-```{r}
-reviews<-nyt_df[grep("Review", nyt_df$title), ] %>% select(section, title, abstract, byline, published_date)
-#View(nyt_data)
-kable(reviews)
-```
-
-REFLECTION: Homework 10 was an excellent opportunity to pull together several topics covered in STAT547. I started by calling data from the internet by hand, using the httr() family of operations. Branching out from the prompts, I decided to use the Star Wars API to pull multiple sources of data (planets, people, starships) from the web. Building a function to pull data from the web was achieved by using the glue function, streamlining the process of calling multiple datasets. In my greatest triumph of this course, I was able to create a function that identified the starwars character and used the embedded link to pull the homeplanet data from the web and populate a new "homeworld" column that contains the actual name of the planet, not just the link as before.  In addition, I made use of the NYTimes API to explore using a key and integrating more purrr functions. In doing so I was able to "edit" text within columns of a dataframe and select specific types of articles and develop a dataframe from those queries.

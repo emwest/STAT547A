@@ -11,16 +11,16 @@ library(knitr)
 library(tidyverse)
 library(glue)
 
-key<-"YOUR KEY HERE"
+your_key<-"YOUR AUTHORIZATION KEY HERE"
 #sample<-GET("http://api.nytimes.com/svc/topstories/v2/{section}.{response format}?api-key={apikey here}")
-nyt<-GET("http://api.nytimes.com/svc/topstories/v2/movies.json?api-key=4f650c601e234e20bd0e914c60b7f7f1")
+nyt<-GET("http://api.nytimes.com/svc/topstories/v2/movies.json?api-key=your_key")
 #content(nyt)
 status_code(nyt) #status code looks good
 
 #It's possible to write a function to get the data from the NYT API
 
 get_topstories<- function (section){
-  query_string<- glue("http://api.nytimes.com/svc/topstories/v2/{section}.json?api-key=4f650c601e234e20bd0e914c60b7f7f1")
+  query_string<- glue("http://api.nytimes.com/svc/topstories/v2/{section}.json?api-key=your_key")
   article_result<-GET(query_string)
   article_content<- content(article_result, encoding = "ISO-8859-1")
   #return(article_content)
