@@ -11,9 +11,9 @@ library(knitr)
 library(tidyverse)
 library(glue)
 
-your_key<-"YOUR AUTHORIZATION KEY HERE"
-#sample<-GET("http://api.nytimes.com/svc/topstories/v2/{section}.{response format}?api-key={apikey here}")
-nyt<-GET("http://api.nytimes.com/svc/topstories/v2/movies.json?api-key=your_key")
+your_key<-"YOUR AUTHORIZATION CODE HERE"
+#sample<-GET("http://api.nytimes.com/svc/topstories/v2/{section}.{response format}?api-key={apikey here}/")
+nyt<-GET(glue("http://api.nytimes.com/svc/topstories/v2/movies.json?api-key={your_key}"))
 #content(nyt)
 status_code(nyt) #status code looks good
 
