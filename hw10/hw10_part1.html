@@ -145,11 +145,11 @@ library(stringi)
 library(stringr)
 library(knitr)
 library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ───────────────────────────────────── tidyverse 1.2.0 ──</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────── tidyverse 1.2.0 ──</code></pre>
 <pre><code>## ✔ ggplot2 2.2.1     ✔ readr   1.1.1
 ## ✔ tibble  1.3.4     ✔ dplyr   0.7.4
 ## ✔ tidyr   0.7.2     ✔ forcats 0.2.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter()         masks stats::filter()
 ## ✖ purrr::flatten()        masks jsonlite::flatten()
 ## ✖ readr::guess_encoding() masks rvest::guess_encoding()
@@ -162,16 +162,18 @@ library(tidyverse)</code></pre>
 ## 
 ##     collapse</code></pre>
 <p>After tinkering with other much less friendly datasets, I opted to work with the starwars API. My intention is to isolate character data and merge it with planet data</p>
-<div id="in-the-most-basic-use-of-the-httr-package-get-can-be-used-to-call-data-from-an-api" class="section level1">
-<h1>1.1 In the most basic use of the httr() package, GET() can be used to call data from an API</h1>
+<div id="get-the-data-from-the-internet" class="section level1">
+<h1>1.1: Get the data from the internet</h1>
+<p>In the most basic use of the httr() package, GET() can be used to call data from an API</p>
 <pre class="r"><code>swchar&lt;-GET(&quot;https://swapi.co/api/people&quot;)</code></pre>
 <pre><code>## Warning in strptime(x, fmt, tz = &quot;GMT&quot;): unknown timezone 'default/America/
 ## Los_Angeles'</code></pre>
 <pre class="r"><code>swpla&lt;-GET(&quot;https://swapi.co/api/planets&quot;)</code></pre>
 <p>SWAPI is a friendly API to work with and does not require changing the parameters. For an example of how one would call data from an API requiring an authorization key scroll navigate to [part II] of my homwork for an exercise in using purrr function son data aquired from the NYTimes API.</p>
 </div>
-<div id="if-you-are-making-repeated-requests-using-a-specific-api-a-function-can-be-used-to-streamline-the-aquisition-of-data" class="section level1">
-<h1>1.2 If you are making repeated requests using a specific API a function can be used to streamline the aquisition of data:</h1>
+<div id="use-a-function-to-efficiently-get-multiple-datasets" class="section level1">
+<h1>1.2: Use a function to efficiently get multiple datasets</h1>
+<p>If you are making repeated requests using a specific API a function can be used to streamline the aquisition of data:</p>
 <pre class="r"><code>get_data&lt;-function(info){GET(glue(&quot;https://swapi.co/api/{info}/&quot;))}
 
 #function test:
@@ -181,7 +183,7 @@ str(z)</code></pre>
 ##  $ url        : chr &quot;https://swapi.co/api/starships/&quot;
 ##  $ status_code: int 200
 ##  $ headers    :List of 12
-##   ..$ date             : chr &quot;Tue, 05 Dec 2017 22:42:34 GMT&quot;
+##   ..$ date             : chr &quot;Wed, 06 Dec 2017 18:20:19 GMT&quot;
 ##   ..$ content-type     : chr &quot;application/json&quot;
 ##   ..$ transfer-encoding: chr &quot;chunked&quot;
 ##   ..$ connection       : chr &quot;keep-alive&quot;
@@ -191,7 +193,7 @@ str(z)</code></pre>
 ##   ..$ etag             : chr &quot;W/\&quot;9d11d1ceef86e0dc36273bd093bf29f7\&quot;&quot;
 ##   ..$ via              : chr &quot;1.1 vegur&quot;
 ##   ..$ server           : chr &quot;cloudflare-nginx&quot;
-##   ..$ cf-ray           : chr &quot;3c8a84f41f7a3b14-YVR&quot;
+##   ..$ cf-ray           : chr &quot;3c91422c28e63af6-YVR&quot;
 ##   ..$ content-encoding : chr &quot;gzip&quot;
 ##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
 ##  $ all_headers:List of 1
@@ -199,7 +201,7 @@ str(z)</code></pre>
 ##   .. ..$ status : int 200
 ##   .. ..$ version: chr &quot;HTTP/1.1&quot;
 ##   .. ..$ headers:List of 12
-##   .. .. ..$ date             : chr &quot;Tue, 05 Dec 2017 22:42:34 GMT&quot;
+##   .. .. ..$ date             : chr &quot;Wed, 06 Dec 2017 18:20:19 GMT&quot;
 ##   .. .. ..$ content-type     : chr &quot;application/json&quot;
 ##   .. .. ..$ transfer-encoding: chr &quot;chunked&quot;
 ##   .. .. ..$ connection       : chr &quot;keep-alive&quot;
@@ -209,7 +211,7 @@ str(z)</code></pre>
 ##   .. .. ..$ etag             : chr &quot;W/\&quot;9d11d1ceef86e0dc36273bd093bf29f7\&quot;&quot;
 ##   .. .. ..$ via              : chr &quot;1.1 vegur&quot;
 ##   .. .. ..$ server           : chr &quot;cloudflare-nginx&quot;
-##   .. .. ..$ cf-ray           : chr &quot;3c8a84f41f7a3b14-YVR&quot;
+##   .. .. ..$ cf-ray           : chr &quot;3c91422c28e63af6-YVR&quot;
 ##   .. .. ..$ content-encoding : chr &quot;gzip&quot;
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
 ##  $ cookies    :'data.frame': 1 obs. of  7 variables:
@@ -217,12 +219,12 @@ str(z)</code></pre>
 ##   ..$ flag      : logi TRUE
 ##   ..$ path      : chr &quot;/&quot;
 ##   ..$ secure    : logi TRUE
-##   ..$ expiration: POSIXct[1:1], format: &quot;2018-12-05 22:42:32&quot;
+##   ..$ expiration: POSIXct[1:1], format: &quot;2018-12-06 18:20:17&quot;
 ##   ..$ name      : chr &quot;__cfduid&quot;
-##   ..$ value     : chr &quot;d8d488c4882548558241e7fb8c739d72e1512513752&quot;
+##   ..$ value     : chr &quot;df5d28253eab0953a6e8963a77b25b52b1512584417&quot;
 ##  $ content    : raw [1:6025] 7b 22 63 6f ...
-##  $ date       : POSIXct[1:1], format: &quot;2017-12-05 22:42:34&quot;
-##  $ times      : Named num [1:6] 0 0.000038 0.00004 0.000167 0.421087 ...
+##  $ date       : POSIXct[1:1], format: &quot;2017-12-06 18:20:19&quot;
+##  $ times      : Named num [1:6] 0 0.000036 0.000038 0.000121 0.164806 ...
 ##   ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;redirect&quot; &quot;namelookup&quot; &quot;connect&quot; &quot;pretransfer&quot; ...
 ##  $ request    :List of 7
 ##   ..$ method    : chr &quot;GET&quot;
@@ -244,7 +246,7 @@ str(z)</code></pre>
 ##  $ url        : chr &quot;https://swapi.co/api/planets/&quot;
 ##  $ status_code: int 200
 ##  $ headers    :List of 12
-##   ..$ date             : chr &quot;Tue, 05 Dec 2017 22:42:34 GMT&quot;
+##   ..$ date             : chr &quot;Wed, 06 Dec 2017 18:20:19 GMT&quot;
 ##   ..$ content-type     : chr &quot;application/json&quot;
 ##   ..$ transfer-encoding: chr &quot;chunked&quot;
 ##   ..$ connection       : chr &quot;keep-alive&quot;
@@ -254,7 +256,7 @@ str(z)</code></pre>
 ##   ..$ etag             : chr &quot;W/\&quot;394d177de8df8accc41f9427b749ef4a\&quot;&quot;
 ##   ..$ via              : chr &quot;1.1 vegur&quot;
 ##   ..$ server           : chr &quot;cloudflare-nginx&quot;
-##   ..$ cf-ray           : chr &quot;3c8a84f18efc3b14-YVR&quot;
+##   ..$ cf-ray           : chr &quot;3c91422a68823af6-YVR&quot;
 ##   ..$ content-encoding : chr &quot;gzip&quot;
 ##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
 ##  $ all_headers:List of 2
@@ -262,7 +264,7 @@ str(z)</code></pre>
 ##   .. ..$ status : int 301
 ##   .. ..$ version: chr &quot;HTTP/1.1&quot;
 ##   .. ..$ headers:List of 9
-##   .. .. ..$ date             : chr &quot;Tue, 05 Dec 2017 22:42:33 GMT&quot;
+##   .. .. ..$ date             : chr &quot;Wed, 06 Dec 2017 18:20:18 GMT&quot;
 ##   .. .. ..$ content-type     : chr &quot;text/html; charset=utf-8&quot;
 ##   .. .. ..$ transfer-encoding: chr &quot;chunked&quot;
 ##   .. .. ..$ connection       : chr &quot;keep-alive&quot;
@@ -270,13 +272,13 @@ str(z)</code></pre>
 ##   .. .. ..$ x-frame-options  : chr &quot;SAMEORIGIN&quot;
 ##   .. .. ..$ via              : chr &quot;1.1 vegur&quot;
 ##   .. .. ..$ server           : chr &quot;cloudflare-nginx&quot;
-##   .. .. ..$ cf-ray           : chr &quot;3c8a84ef9ec23b14-YVR&quot;
+##   .. .. ..$ cf-ray           : chr &quot;3c9142281fde3af6-YVR&quot;
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
 ##   ..$ :List of 3
 ##   .. ..$ status : int 200
 ##   .. ..$ version: chr &quot;HTTP/1.1&quot;
 ##   .. ..$ headers:List of 12
-##   .. .. ..$ date             : chr &quot;Tue, 05 Dec 2017 22:42:34 GMT&quot;
+##   .. .. ..$ date             : chr &quot;Wed, 06 Dec 2017 18:20:19 GMT&quot;
 ##   .. .. ..$ content-type     : chr &quot;application/json&quot;
 ##   .. .. ..$ transfer-encoding: chr &quot;chunked&quot;
 ##   .. .. ..$ connection       : chr &quot;keep-alive&quot;
@@ -286,7 +288,7 @@ str(z)</code></pre>
 ##   .. .. ..$ etag             : chr &quot;W/\&quot;394d177de8df8accc41f9427b749ef4a\&quot;&quot;
 ##   .. .. ..$ via              : chr &quot;1.1 vegur&quot;
 ##   .. .. ..$ server           : chr &quot;cloudflare-nginx&quot;
-##   .. .. ..$ cf-ray           : chr &quot;3c8a84f18efc3b14-YVR&quot;
+##   .. .. ..$ cf-ray           : chr &quot;3c91422a68823af6-YVR&quot;
 ##   .. .. ..$ content-encoding : chr &quot;gzip&quot;
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
 ##  $ cookies    :'data.frame': 1 obs. of  7 variables:
@@ -294,12 +296,12 @@ str(z)</code></pre>
 ##   ..$ flag      : logi TRUE
 ##   ..$ path      : chr &quot;/&quot;
 ##   ..$ secure    : logi TRUE
-##   ..$ expiration: POSIXct[1:1], format: &quot;2018-12-05 22:42:32&quot;
+##   ..$ expiration: POSIXct[1:1], format: &quot;2018-12-06 18:20:17&quot;
 ##   ..$ name      : chr &quot;__cfduid&quot;
-##   ..$ value     : chr &quot;d8d488c4882548558241e7fb8c739d72e1512513752&quot;
+##   ..$ value     : chr &quot;df5d28253eab0953a6e8963a77b25b52b1512584417&quot;
 ##  $ content    : raw [1:5039] 7b 22 63 6f ...
-##  $ date       : POSIXct[1:1], format: &quot;2017-12-05 22:42:34&quot;
-##  $ times      : Named num [1:6] 0.310812 0.000037 0.00004 0.000102 0.3716 ...
+##  $ date       : POSIXct[1:1], format: &quot;2017-12-06 18:20:19&quot;
+##  $ times      : Named num [1:6] 0.366592 0.000032 0.000034 0.000116 0.158854 ...
 ##   ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;redirect&quot; &quot;namelookup&quot; &quot;connect&quot; &quot;pretransfer&quot; ...
 ##  $ request    :List of 7
 ##   ..$ method    : chr &quot;GET&quot;
@@ -317,14 +319,14 @@ str(z)</code></pre>
 ##  $ handle     :Class 'curl_handle' &lt;externalptr&gt; 
 ##  - attr(*, &quot;class&quot;)= chr &quot;response&quot;</code></pre>
 </div>
-<div id="working-with-starwars-character-data-first" class="section level1">
-<h1>1.3 working with starwars character data first:</h1>
+<div id="work-with-starwars-character-data-first" class="section level1">
+<h1>1.3: Work with starwars character data first:</h1>
 <pre class="r"><code>str(swchar)</code></pre>
 <pre><code>## List of 10
 ##  $ url        : chr &quot;https://swapi.co/api/people/&quot;
 ##  $ status_code: int 200
 ##  $ headers    :List of 12
-##   ..$ date             : chr &quot;Tue, 05 Dec 2017 22:42:33 GMT&quot;
+##   ..$ date             : chr &quot;Wed, 06 Dec 2017 18:20:18 GMT&quot;
 ##   ..$ content-type     : chr &quot;application/json&quot;
 ##   ..$ transfer-encoding: chr &quot;chunked&quot;
 ##   ..$ connection       : chr &quot;keep-alive&quot;
@@ -334,7 +336,7 @@ str(z)</code></pre>
 ##   ..$ etag             : chr &quot;W/\&quot;d080408a4d656729b0f52a6feb0783ca\&quot;&quot;
 ##   ..$ via              : chr &quot;1.1 vegur&quot;
 ##   ..$ server           : chr &quot;cloudflare-nginx&quot;
-##   ..$ cf-ray           : chr &quot;3c8a84ecfe793b14-YVR&quot;
+##   ..$ cf-ray           : chr &quot;3c914223dee33af6-YVR&quot;
 ##   ..$ content-encoding : chr &quot;gzip&quot;
 ##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
 ##  $ all_headers:List of 2
@@ -342,22 +344,22 @@ str(z)</code></pre>
 ##   .. ..$ status : int 301
 ##   .. ..$ version: chr &quot;HTTP/1.1&quot;
 ##   .. ..$ headers:List of 10
-##   .. .. ..$ date             : chr &quot;Tue, 05 Dec 2017 22:42:33 GMT&quot;
+##   .. .. ..$ date             : chr &quot;Wed, 06 Dec 2017 18:20:17 GMT&quot;
 ##   .. .. ..$ content-type     : chr &quot;text/html; charset=utf-8&quot;
 ##   .. .. ..$ transfer-encoding: chr &quot;chunked&quot;
 ##   .. .. ..$ connection       : chr &quot;keep-alive&quot;
-##   .. .. ..$ set-cookie       : chr &quot;__cfduid=d8d488c4882548558241e7fb8c739d72e1512513752; expires=Wed, 05-Dec-18 22:42:32 GMT; path=/; domain=.swap&quot;| __truncated__
+##   .. .. ..$ set-cookie       : chr &quot;__cfduid=df5d28253eab0953a6e8963a77b25b52b1512584417; expires=Thu, 06-Dec-18 18:20:17 GMT; path=/; domain=.swap&quot;| __truncated__
 ##   .. .. ..$ location         : chr &quot;https://swapi.co/api/people/&quot;
 ##   .. .. ..$ x-frame-options  : chr &quot;SAMEORIGIN&quot;
 ##   .. .. ..$ via              : chr &quot;1.1 vegur&quot;
 ##   .. .. ..$ server           : chr &quot;cloudflare-nginx&quot;
-##   .. .. ..$ cf-ray           : chr &quot;3c8a84eaee463b14-YVR&quot;
+##   .. .. ..$ cf-ray           : chr &quot;3c914221ae793af6-YVR&quot;
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
 ##   ..$ :List of 3
 ##   .. ..$ status : int 200
 ##   .. ..$ version: chr &quot;HTTP/1.1&quot;
 ##   .. ..$ headers:List of 12
-##   .. .. ..$ date             : chr &quot;Tue, 05 Dec 2017 22:42:33 GMT&quot;
+##   .. .. ..$ date             : chr &quot;Wed, 06 Dec 2017 18:20:18 GMT&quot;
 ##   .. .. ..$ content-type     : chr &quot;application/json&quot;
 ##   .. .. ..$ transfer-encoding: chr &quot;chunked&quot;
 ##   .. .. ..$ connection       : chr &quot;keep-alive&quot;
@@ -367,7 +369,7 @@ str(z)</code></pre>
 ##   .. .. ..$ etag             : chr &quot;W/\&quot;d080408a4d656729b0f52a6feb0783ca\&quot;&quot;
 ##   .. .. ..$ via              : chr &quot;1.1 vegur&quot;
 ##   .. .. ..$ server           : chr &quot;cloudflare-nginx&quot;
-##   .. .. ..$ cf-ray           : chr &quot;3c8a84ecfe793b14-YVR&quot;
+##   .. .. ..$ cf-ray           : chr &quot;3c914223dee33af6-YVR&quot;
 ##   .. .. ..$ content-encoding : chr &quot;gzip&quot;
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
 ##  $ cookies    :'data.frame': 1 obs. of  7 variables:
@@ -375,12 +377,12 @@ str(z)</code></pre>
 ##   ..$ flag      : logi TRUE
 ##   ..$ path      : chr &quot;/&quot;
 ##   ..$ secure    : logi TRUE
-##   ..$ expiration: POSIXct[1:1], format: &quot;2018-12-05 22:42:32&quot;
+##   ..$ expiration: POSIXct[1:1], format: &quot;2018-12-06 18:20:17&quot;
 ##   ..$ name      : chr &quot;__cfduid&quot;
-##   ..$ value     : chr &quot;d8d488c4882548558241e7fb8c739d72e1512513752&quot;
+##   ..$ value     : chr &quot;df5d28253eab0953a6e8963a77b25b52b1512584417&quot;
 ##  $ content    : raw [1:5868] 7b 22 63 6f ...
-##  $ date       : POSIXct[1:1], format: &quot;2017-12-05 22:42:33&quot;
-##  $ times      : Named num [1:6] 0.388657 0.000028 0.00003 0.000095 0.313335 ...
+##  $ date       : POSIXct[1:1], format: &quot;2017-12-06 18:20:18&quot;
+##  $ times      : Named num [1:6] 0.414795 0.000029 0.000032 0.000094 0.524773 ...
 ##   ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;redirect&quot; &quot;namelookup&quot; &quot;connect&quot; &quot;pretransfer&quot; ...
 ##  $ request    :List of 7
 ##   ..$ method    : chr &quot;GET&quot;
